@@ -1,7 +1,6 @@
-# Node.js/Angular.js fullstack project for David Novodchuk
+# Study Agenda App Development Repository
 Run these following commands in order to get started:
 
 * ``` npm install ```
 * ``` bower install ```
 * ``` grunt serve ``` for running local development server
-* ``` grunt build ``` for deployment distrubation 
