@@ -1,0 +1,13 @@
+<!-- top navbar-->
+<header data-ng-include="'app/shared/partials/top-navbar.html'" class="topnavbar-wrapper"></header>
+<!-- sidebar-->
+<aside data-ng-include="'app/shared/partials/sidebar.html'" data-ng-controller="SidebarController" class="aside"></aside>
+<!-- offsidebar-->
+<!-- <aside data-ng-include="'app/shared/partials/offsidebar.html'" class="offsidebar"></aside> -->
+<!-- Main section-->
+<section>
+   <!-- Page content-->
+   <div ui-view="" autoscroll="false" data-ng-class="app.viewAnimation" class="content-wrapper"></div>
+</section>
+<!-- Page footer-->
+<footer data-ng-include="'app/shared/partials/footer.html'"></footer>

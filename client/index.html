@@ -1,0 +1,126 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- from Angle theme -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="{{app.description}}">
+    <meta name="keywords" content="app, responsive, angular, bootstrap, dashboard, admin">
+    <title data-ng-bind="::pageTitle()">IDcooking</title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(client) app/vendor.css -->
+      <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+      <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+      <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+      <link rel="stylesheet" href="bower_components/simple-line-icons/css/simple-line-icons.css" />
+      <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
+      <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,client}) app/app.css -->
+    <!-- <link rel="stylesheet" href="app/app.css">
+    <link rel="stylesheet" href="app/bootstrap.css"> -->
+      <!-- injector:css -->
+      <link rel="stylesheet" href="app/bootstrap.css">
+      <link rel="stylesheet" href="app/components/account/login/login.css">
+      <link rel="stylesheet" href="app/components/admin/dashboard/dashboard.css">
+      <link rel="stylesheet" href="app/components/admin/manage-schools/manage-schools.css">
+      <link rel="stylesheet" href="app/components/admin/manage-users/manage-users.css">
+      <link rel="stylesheet" href="app/components/student/dashboard/dashboard.css">
+      <link rel="stylesheet" href="app/shared/modal/modal.css">
+      <link rel="stylesheet" href="app/shared/templates/change-password/change-password.css">
+      <link rel="stylesheet" href="app/zapp.css">
+      <link rel="stylesheet" href="app/ztheme-b.css">
+      <link rel="stylesheet" href="assets/fontcustom/fontcustom.css">
+      <!-- endinjector -->
+    <!-- endbuild -->
+    <!-- <link rel="stylesheet" href="app/app.css"> -->
+  </head>
+  <body data-ng-app="studyAgendaApp" data-ng-class="{ 'layout-fixed' : app.layout.isFixed, 'aside-collapsed' : app.layout.isCollapsed, 'layout-boxed' : app.layout.isBoxed, 'layout-fs': app.useFullLayout, 'hidden-footer': app.hiddenFooter, 'layout-h': app.layout.horizontal, 'aside-float': app.layout.isFloat, 'offsidebar-open': app.offsidebarOpen, 'aside-toggled': app.asideToggled}">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Navigation bar -->
+    <!-- <div data-ng-include="'app/shared/navbar/navbar.html'"></div> -->
+    <!-- <div data-ng-include="'app/shared/top-navbar.html'"></div> -->
+
+    <!-- Add your site or application content here -->
+    <!-- <div ui-view=""></div> -->
+    <div data-ui-view="" data-autoscroll="false" class="wrapper">
+    </div>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-XXXXX-X');
+      ga('send', 'pageview');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+    <!-- build:js({client,node_modules}) app/vendor.js -->
+      <!-- bower:js -->
+      <script src="bower_components/jquery/dist/jquery.js"></script>
+      <script src="bower_components/angular/angular.js"></script>
+      <script src="bower_components/angular-resource/angular-resource.js"></script>
+      <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+      <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+      <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+      <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+      <script src="bower_components/angular-route/angular-route.js"></script>
+      <script src="bower_components/angular-animate/angular-animate.js"></script>
+      <script src="bower_components/ngstorage/ngStorage.js"></script>
+      <script src="bower_components/angular-translate/angular-translate.js"></script>
+      <script src="bower_components/oclazyload/dist/ocLazyLoad.js"></script>
+      <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+      <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+      <script src="bower_components/angular-ui-utils/modules/utils.js"></script>
+      <script src="bower_components/angular-ui-event/dist/event.js"></script>
+      <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+      <script src="bower_components/angular-ui-date/src/date.js"></script>
+      <script src="bower_components/screenfull/dist/screenfull.js"></script>
+      <script src="bower_components/angular-ui-select/dist/select.js"></script>
+      <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,client}) app/app.js -->
+        <script src="app/app.js"></script>
+          <!-- injector:js -->
+          <script src="app/base.js"></script>
+          <script src="app/components/account/account.js"></script>
+          <script src="app/components/account/login/login.controller.js"></script>
+          <script src="app/components/account/signup/signup.controller.js"></script>
+          <script src="app/components/admin/admin.js"></script>
+          <script src="app/components/admin/dashboard/dashboard.controller.js"></script>
+          <script src="app/components/admin/manage-schools/manage-schools.controller.js"></script>
+          <script src="app/components/admin/manage-users/manage-users.controller.js"></script>
+          <script src="app/components/student/dashboard/dashboard.controller.js"></script>
+          <script src="app/components/student/student.js"></script>
+          <script src="app/shared/directives/directives.js"></script>
+          <script src="app/shared/directives/sa-long-string.directive/sa-long-string.directive.js"></script>
+          <script src="app/shared/directives/sa-mongoose-error/sa-mongoose-error.directive.js"></script>
+          <script src="app/shared/modal/modal.service.js"></script>
+          <script src="app/shared/services/auth/auth.service.js"></script>
+          <script src="app/shared/services/auth/user.service.js"></script>
+          <script src="app/shared/services/category/category.service.js"></script>
+          <script src="app/shared/services/recipe/recipe.service.js"></script>
+          <script src="app/shared/templates/change-password/change-password.controller.js"></script>
+          <!-- endinjector -->
+        <!-- endbuild -->
+</body>
+</html>
