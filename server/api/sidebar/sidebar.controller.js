@@ -1,7 +1,6 @@
 "use strict";
 
 var _ = require("lodash");
-var Category = require("../category/category.model");
 var Q = require("q");
 var CONSANTS = require("../../lib/constants");
 var USER_ROLES = CONSANTS.USER_ROLES;

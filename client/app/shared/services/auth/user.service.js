@@ -17,6 +17,9 @@ angular.module('studyAgendaApp')
         params: {
           id:'me'
         }
+      },
+      update: {
+        method: 'PUT'
       }
 	  });
   });

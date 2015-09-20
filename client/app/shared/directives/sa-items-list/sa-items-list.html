@@ -1,0 +1,31 @@
+<form>
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon"><i class="fa fa-search"></i></div>
+      <input type="text" class="form-control" placeholder="{{searchPlaceholder}}" data-ng-model="searchQuery">
+    </div>      
+  </div>
+</form>
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <td data-ng-repeat="column in columns">
+        <a href="#" data-ng-click="changeSort(column.propertyName)">
+          {{column.columnName}}
+          <span data-ng-show="sortType == column.propertyName && !sortReverse" class="fa fa-caret-up"></span>
+          <span data-ng-show="sortType == column.propertyName && sortReverse" class="fa fa-caret-down"></span>
+        </a>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+      <!-- clickabale row version -->
+      <tr data-ng-if="rowLinkFun" data-ng-repeat="item in saItemsList | orderBy:sortType:sortReverse | filter:searchQuery" data-ng-click="rowLinkFun(item)">
+        <td data-ng-repeat="column in columns">{{item[column.propertyName]}}</td>
+      </tr>
+      <!-- not clickabale row version -->
+      <tr data-ng-if="!rowLinkFun" data-ng-repeat="item in saItemsList | orderBy:sortType:sortReverse | filter:searchQuery">
+        <td data-ng-repeat="column in columns">{{item[column.propertyName]}}</td>
+      </tr>
+  </tbody>
+</table>

@@ -1455,14 +1455,14 @@ _:-ms-lang(x),
 }
 
 /* hides the sidebar on mobiles*/
-  @media (max-width: 768px) {
+/*  @media (max-width: 768px) {
   .nav-wrapper {
   height: 0 !important;
   overflow: hidden !important;
   }
-}
+}*/
 /* adjust layout spaces */
-.wrapper > section {
+/*.wrapper > section {
   margin-top: 55px !important;
 }
 .wrapper > .aside .aside-inner {
@@ -1471,7 +1471,7 @@ _:-ms-lang(x),
 .wrapper > .offsidebar {
   padding-top: 55px;
   margin-top: 0;
-}
+}*/
 /* ========================================================================
    Component: offsidebar.less
  ========================================================================== */

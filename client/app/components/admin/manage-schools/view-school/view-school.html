@@ -1,0 +1,85 @@
+<h3>View School</h3>
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div data-ng-show="editMode">
+          <form role="form" data-ng-submit="updateSchool()" name="form" novalidate="" class="form-validate mb-lg">
+            <fieldset>
+              <legend>Edit School Details</legend>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Name</label>    
+                <div class="form-group has-feedback col-sm-10">
+                  <input type="text" name="account_name" placeholder="Enter name" autocomplete="off" data-ng-model="school.name" required="" class="form-control" />
+                  <span data-ng-show="form.account_name.$dirty &amp;&amp; form.account_name.$error.required" class="text-danger">This field is required</span>
+                </div>
+              </div>
+            </fieldset>
+            <div class="pull-right">
+              <button type="submit" class="btn btn-sm btn-primary">Update</button>
+              <button class="btn btn-sm btn-default" data-ng-click="cancelForm()">cancel</button>
+            </div>
+          </form>
+        </div>
+        <div data-ng-if="!editMode">
+          <fieldset>
+            <legend>School Details</legend>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Name</label>    
+              <div class="form-group has-feedback col-sm-10">{{school.name}}</div>
+            </div>
+          </fieldset>
+          <div class="pull-left">
+            <button class="btn btn-sm btn-danger" data-ng-click="deleteSchool()">delete school</button>
+          </div>
+          <div class="pull-right">
+            <button class="btn btn-sm btn-default" data-ng-click="updateEditMode(true)">edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form role="form" data-ng-submit="addCampus()" name="addCampusForm" novalidate="" class="form-validate mb-lg">
+          <fieldset>
+            <legend>Add Campus</legend>
+              <label class="col-sm-2 control-label">Campus name</label>     
+              <div class="form-group has-feedback col-sm-10">
+                <input type="text" name="campus_name" placeholder="Enter campus name to add" autocomplete="off" data-ng-model="newCampus.name" required="" class="form-control" />
+                <span data-ng-show="(addCampusForm.$submitted || addCampusForm.campus_name.$dirty) &amp;&amp; addCampusForm.campus_name.$error.required" class="text-danger">Campus name is required</span>
+              </div>
+          </fieldset>
+          <fieldset>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Address</label>   
+              <div class="form-group has-feedback col-sm-10">
+                <input type="text" name="campus_address" placeholder="Enter campus address" autocomplete="off" data-ng-model="newCampus.address" required="" class="form-control" />
+                <span data-ng-show="(addCampusForm.$submitted || addCampusForm.campus_address.$dirty) &amp;&amp; addCampusForm.campus_address.$error.required" class="text-danger">Campus address is required</span>
+              </div>
+            </div>
+          </fieldset>
+          <div class="pull-right" data-ng-if="!addCampusForm.$dirty" >
+            <button type="submit" class="btn btn-sm btn-primary">add campus</button>
+          </div>
+          <div class="pull-right" data-ng-if="addCampusForm.$dirty" >
+            <button type="submit" class="btn btn-sm btn-primary">add campus</button>
+            <button class="btn btn-sm btn-default" data-ng-click="cancelAddCampusForm()">cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <fieldset>
+          <legend>Campus List</legend>
+            <div data-sa-items-list="school.campuses" 
+                 data-columns="columns" 
+                 data-search-placeholder="'Search campuses'" 
+                 data-row-link-fun="rowLinkFun"></div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

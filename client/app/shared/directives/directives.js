@@ -2,6 +2,6 @@
 
 // list of all directives
 angular.module('studyAgendaApp.directives', [
-  'idc-long-string',
+  'sa-items-list',
   'sa-mongoose-error'
 ]);

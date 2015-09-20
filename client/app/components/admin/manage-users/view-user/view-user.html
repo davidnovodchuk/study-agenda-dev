@@ -1,0 +1,50 @@
+<h3>View User</h3>
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form role="form" data-ng-submit="updateUser()" name="form" novalidate="" class="form-validate mb-lg">
+          <fieldset>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Name</label>    
+              <div class="form-group has-feedback col-sm-10">
+                <input type="text" name="account_name" placeholder="Enter name" autocomplete="off" data-ng-model="user.name" required="" class="form-control" />
+                <span data-ng-show="form.account_name.$dirty &amp;&amp; form.account_name.$error.required" class="text-danger">This field is required</span>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Email Address</label>    
+              <div class="form-group has-feedback col-sm-10">
+                <input type="email" name="account_email" placeholder="Enter email" autocomplete="off" data-ng-model="user.email" required="" class="form-control" />
+                <span data-ng-show="form.account_email.$dirty &amp;&amp; form.account_email.$error.required" class="text-danger">This field is required</span>
+                <span data-ng-show="form.account_email.$dirty &amp;&amp; form.account_email.$error.email" class="text-danger">This field must be a valid email address</span>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset data-ng-if="!isCurrentUser">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Role</label>
+              <div class="col-sm-10">
+                <label class="radio-inline c-radio" data-ng-repeat="(key, value) in availableRoles">
+                  <div data-ng-if="value === user.role">
+                    <input type="radio" name="role" data-ng-value="value" checked="checked" data-ng-model="user.role" />
+                    <span class="fa fa-circle"></span>{{key.toLowerCase()}}</label>
+                  </div>
+                  <div data-ng-if="value !== user.role">
+                    <input type="radio" name="role" data-ng-value="value" data-ng-model="user.role" />
+                    <span class="fa fa-circle"></span>{{key.toLowerCase()}}</label>
+                  </div>
+              </div>
+            </div>
+           </fieldset>
+          <div data-ng-if="form.$dirty" class="pull-right">
+            <button type="submit" class="btn btn-sm btn-primary">Update</button>
+            <button class="btn btn-sm btn-default" data-ng-click="cancelForm()">cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
