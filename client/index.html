@@ -30,15 +30,17 @@
     <link rel="stylesheet" href="app/bootstrap.css"> -->
       <!-- injector:css -->
       <link rel="stylesheet" href="app/bootstrap.css">
+      <link rel="stylesheet" href="app/components/account/change-password/change-password.css">
       <link rel="stylesheet" href="app/components/account/login/login.css">
       <link rel="stylesheet" href="app/components/admin/dashboard/dashboard.css">
       <link rel="stylesheet" href="app/components/admin/manage-schools/manage-schools.css">
+      <link rel="stylesheet" href="app/components/admin/manage-schools/view-school/view-school.css">
       <link rel="stylesheet" href="app/components/admin/manage-users/manage-users.css">
+      <link rel="stylesheet" href="app/components/admin/manage-users/view-user/view-user.css">
       <link rel="stylesheet" href="app/components/student/dashboard/dashboard.css">
       <link rel="stylesheet" href="app/shared/modal/modal.css">
-      <link rel="stylesheet" href="app/shared/templates/change-password/change-password.css">
       <link rel="stylesheet" href="app/zapp.css">
-      <link rel="stylesheet" href="app/ztheme-b.css">
+      <link rel="stylesheet" href="app/ztheme-a.css">
       <link rel="stylesheet" href="assets/fontcustom/fontcustom.css">
       <!-- endinjector -->
     <!-- endbuild -->
@@ -103,23 +105,31 @@
           <!-- injector:js -->
           <script src="app/base.js"></script>
           <script src="app/components/account/account.js"></script>
+          <script src="app/components/account/change-password/change-password.controller.js"></script>
           <script src="app/components/account/login/login.controller.js"></script>
           <script src="app/components/account/signup/signup.controller.js"></script>
           <script src="app/components/admin/admin.js"></script>
           <script src="app/components/admin/dashboard/dashboard.controller.js"></script>
           <script src="app/components/admin/manage-schools/manage-schools.controller.js"></script>
+          <script src="app/components/admin/manage-schools/manage-schools.js"></script>
+          <script src="app/components/admin/manage-schools/view-school/view-school.controller.js"></script>
           <script src="app/components/admin/manage-users/manage-users.controller.js"></script>
+          <script src="app/components/admin/manage-users/manage-users.js"></script>
+          <script src="app/components/admin/manage-users/view-user/view-user.controller.js"></script>
+          <script src="app/components/student/agenda/agenda.controller.js"></script>
+          <script src="app/components/student/availability/availability.controller.js"></script>
+          <script src="app/components/student/courses-tasks/courses-tasks.controller.js"></script>
           <script src="app/components/student/dashboard/dashboard.controller.js"></script>
+          <script src="app/components/student/enrolments/enrolments.controller.js"></script>
           <script src="app/components/student/student.js"></script>
           <script src="app/shared/directives/directives.js"></script>
-          <script src="app/shared/directives/sa-long-string.directive/sa-long-string.directive.js"></script>
+          <script src="app/shared/directives/sa-items-list/sa-items-list.directive.js"></script>
           <script src="app/shared/directives/sa-mongoose-error/sa-mongoose-error.directive.js"></script>
           <script src="app/shared/modal/modal.service.js"></script>
           <script src="app/shared/services/auth/auth.service.js"></script>
           <script src="app/shared/services/auth/user.service.js"></script>
-          <script src="app/shared/services/category/category.service.js"></script>
-          <script src="app/shared/services/recipe/recipe.service.js"></script>
-          <script src="app/shared/templates/change-password/change-password.controller.js"></script>
+          <script src="app/shared/services/campus/campus.service.js"></script>
+          <script src="app/shared/services/school/school.service.js"></script>
           <!-- endinjector -->
         <!-- endbuild -->
 </body>
