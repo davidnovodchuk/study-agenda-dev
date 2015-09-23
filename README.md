@@ -1,8 +1,8 @@
 # Study Agenda App Development Repository
 
-Please read the CONTRIBUTION.md file before starting contributing.
+*Please read the CONTRIBUTION.md file before starting contributing.*
 
-Run these following commands in order to get started:
+Run the following commands in order to get started:
 
 * ``` npm install ```
 * ``` bower install ```
