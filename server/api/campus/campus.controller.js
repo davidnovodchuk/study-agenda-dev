@@ -6,7 +6,7 @@ var User = require("../user/user.model");
 var School = require("../school/school.model");
 var Q = require("q");
 
-// Get list of campuses
+// Get list of all campuses
 exports.index = function(req, res) {
   return Q(
     Campus.find()
