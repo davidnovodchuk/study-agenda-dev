@@ -20,13 +20,7 @@ var UserSchema = new Schema({
   },
   hashedPassword: String,
   provider: String,
-  salt: String,
-  publisher: {
-    recipes: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Recipe'
-    }]
-  }
+  salt: String
 });
 
 /**
