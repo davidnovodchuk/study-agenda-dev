@@ -9,7 +9,7 @@
 - Fork the repo on GitHub.
 - Clone the repository and go to the project directory:
 ```
-  git clone https://github.com/davidnovodchuk/study-agenda-dev.git
+  git clone https://github.com/[YOUR_USERNAME]/study-agenda-dev.git
   cd study-agenda-dev
 ```
 - Add the main repository as a remote:
