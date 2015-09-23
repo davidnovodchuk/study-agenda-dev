@@ -38,4 +38,18 @@ Contributing:
   git add --all // adding all changed I made
   git commit
 ```
-- This part is very important: after 
+- This part is very important: after doing git commit, an editor will be opened so you will be able to write the commit message. The first commit message in the branch should have the following context:
+```
+  Title (usually same as issue title)
+  
+  Body (usually same as issue body)
+  
+  Fixes #3
+```
+- The important part is the last line that specifies the issue number you are fixing. It is important because once you branch is merged with the base branch ('development'), it automatically closes the issue related to the branch.
+- Now we can push the first commit:
+```
+  git push origin issue3 // git push origin BRANCH_NAME
+```
+- After pushing, we need to crete a pull request so someboty else will review your changed:
+- On Github, go to your fork of this repository. At the top you will see the just pushed branch name and a button that says "Compare & Pull Request". This is how you create a pull request.
