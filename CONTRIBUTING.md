@@ -1,10 +1,10 @@
-Contributing Guide for Study Agenda developers:
+# Contributing Guide for Study Agenda developers:
 
 - We will not use the 'master' branch for development.
 - Instead, we have a branch called 'development' which is our default base development branch.
 - We will not push into 'master' or 'development' branches. Instead, each of us will be working on a separate branch that will be merged to 'development' (using the GitHub website).
 
-Cloning for the first time
+## Cloning for the first time
 
 - Fork the repo on GitHub.
 - Clone the repository and go to the project directory:
@@ -17,7 +17,7 @@ Cloning for the first time
   git remote add upstream git@github.com:davidnovodchuk/study-agenda-dev.git
 ```
 
-Contributing:
+## Contributing:
 
 - When developing something, you should first create an issue with what you will be working on. 
 - I created an issue called "Demonstration issue" and assigned it to miself.
