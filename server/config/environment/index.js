@@ -31,7 +31,7 @@ var all = {
 
   // List of user roles
   // NOTE: user roles are now defined in constants.JSON file
-  // userRoles: ['guest', 'publisher', 'admin'],
+  // userRoles: ['guest', 'admin'],
 
   // MongoDB connection options
   mongo: {
