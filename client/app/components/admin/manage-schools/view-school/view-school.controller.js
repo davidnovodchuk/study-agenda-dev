@@ -60,6 +60,7 @@ angular.module('studyAgendaApp')
           getSchool();
           // initializing the add campus form
           $scope.newCampus = new Campus();
+          $scope.newCampus.school = $state.params.schoolId;
           $scope.addCampusForm.$setPristine();
         })
         .catch(function(err) {
