@@ -4021,8 +4021,8 @@ App.controller('ChartRickshawController', ['$scope', function($scope) {
  * Handle sidebar collapsible elements
  =========================================================*/
 
-App.controller('SidebarController', ['$rootScope', '$scope', '$state', '$http', '$timeout', 'Utils',
-  function($rootScope, $scope, $state, $http, $timeout, Utils){
+App.controller('SidebarController', ['$rootScope', '$scope', '$state', '$http', '$timeout', 'Utils', 'USER_ROLES',
+  function($rootScope, $scope, $state, $http, $timeout, Utils, USER_ROLES) {
 
     var collapseList = [];
 
@@ -4058,44 +4058,84 @@ App.controller('SidebarController', ['$rootScope', '$scope', '$state', '$http', 
              (isActive(item) ? ' active' : '') ;
     };
 
-    $scope.loadSidebarMenu = function() {
+    // NOTE: getting sidebar items from the server, currently not in use:
+    // $scope.loadSidebarMenu = function() {
 
-      // var menuJson = 'server/sidebar-menu.json',
-      var menuJson = 'api/sidebar',
-          menuURL  = menuJson + '?v=' + (new Date().getTime()); // jumps cache
-      $http.get(menuURL)
-        .success(function(items) {
-           $scope.menuItems = items;
-        })
-        .error(function(data, status, headers, config) {
-          alert('Failure loading menu');
-        });
-      };
+    //   var menuJson = 'server/sidebar-menu.json',
+    //   var menuJson = 'api/sidebar',
+    //       menuURL  = menuJson + '?v=' + (new Date().getTime()); // jumps cache
+    //   $http.get(menuURL)
+    //     .success(function(items) {
+    //        $scope.menuItems = items;
+    //     })
+    //     .error(function(data, status, headers, config) {
+    //       alert('Failure loading menu');
+    //     });
+    //   };
 
-      $scope.menuItems = [
-        {
-          "text": "Admin Sidebar",
-          "heading": "true"
-        },
-        {
-          "text": "Admin Dashboard",
-          "sref": "admin.dashboard",
-          // "params": { "categoryId": category.urlName },
-          "icon": "icon-speedometer"
-        },
-        {
-          "text": "Manage Schools",
-          "sref": "admin.manage-schools",
-          // "params": { "categoryId": category.urlName },
-          "icon": "icon-speedometer"
-        },
-        {
-          "text": "Manage Users",
-          "sref": "admin.manage-users",
-          // "params": { "categoryId": category.urlName },
-          "icon": "icon-speedometer"
-        }
-      ];
+      if ($rootScope.user && $rootScope.user.role === USER_ROLES.ADMIN) {
+        $scope.menuItems = [
+          {
+            "text": "Admin Sidebar",
+            "heading": "true"
+          },
+          {
+            "text": "Admin Dashboard",
+            "sref": "admin.dashboard",
+            // "params": { "categoryId": category.urlName },
+            "icon": "icon-speedometer"
+          },
+          {
+            "text": "Manage Schools",
+            "sref": "admin.manage-schools",
+            // "params": { "categoryId": category.urlName },
+            "icon": "icon-speedometer"
+          },
+          {
+            "text": "Manage Users",
+            "sref": "admin.manage-users",
+            // "params": { "categoryId": category.urlName },
+            "icon": "icon-speedometer"
+          }
+        ];
+      } else if ($rootScope.user && $rootScope.user.role === USER_ROLES.STUDENT) {
+        $scope.menuItems = [
+          {
+            "text": "Student Sidebar",
+            "heading": "true"
+          },
+          {
+            "text": "Dashboard",
+            "sref": "student.dashboard",
+            // "params": { "categoryId": category.urlName },
+            "icon": "icon-speedometer"
+          },
+          {
+            "text": "Availability",
+            "sref": "student.availability",
+            // "params": { "categoryId": category.urlName },
+            "icon": "icon-speedometer"
+          },
+          {
+            "text": "Agenda",
+            "sref": "student.agenda",
+            // "params": { "categoryId": category.urlName },
+            "icon": "icon-speedometer"
+          },
+          {
+            "text": "Enrolments",
+            "sref": "student.enrolments",
+            // "params": { "categoryId": category.urlName },
+            "icon": "icon-speedometer"
+          },
+          {
+            "text": "Courses and Tasks",
+            "sref": "student.courses-tasks",
+            // "params": { "categoryId": category.urlName },
+            "icon": "icon-speedometer"
+          }
+        ];
+      }
 
       // $scope.loadSidebarMenu();
 

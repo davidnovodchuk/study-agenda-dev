@@ -1,14 +1,13 @@
 <h3>Manage Users</h3>  
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <ul class="list-group">
-      <li class="list-group-item" data-ng-repeat="user in users">
-          <strong>{{user.name}}</strong><br>
-          <span class="text-muted">{{user.email}}</span>
-          <a data-ng-click="delete(user)" class="trash">
-            <em class="icon-trash pull-right"></em>
-          </a>
-      </li>
-    </ul>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div data-sa-items-list="data" 
+             data-columns="columns" 
+             data-search-placeholder="'Search users'" 
+             data-row-link-fun="rowLinkFun"></div>
+      </div>
+    </div>
   </div>
 </div>

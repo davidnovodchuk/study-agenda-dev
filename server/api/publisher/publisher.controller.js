@@ -1,7 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
-var Recipe = require('../recipe/recipe.model');
+// var Recipe = require('../recipe/recipe.model');
 var User = require('../user/user.model');
 
 // // Get list of recipes

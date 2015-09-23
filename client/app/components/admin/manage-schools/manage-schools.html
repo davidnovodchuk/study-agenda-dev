@@ -1,6 +1,42 @@
 <h3>Manage Schools</h3>  
 <div class="row">
   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-    Schools data goes here!
+    <div class="panel panel-default">
+    <div class="panel-body">
+      <form role="form" data-ng-submit="addSchool()" name="addSchoolForm" novalidate="" class="form-validate mb-lg">
+        <fieldset>
+          <legend>Add School</legend>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">School name</label>
+            <div class="col-sm-10">
+              <div class="input-group">
+                <input type="text" name="school_name" placeholder="Enter school name to add" autocomplete="off" data-ng-model="newSchool.name" required="" class="form-control" />
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-primary">Add school</button>
+                </span>
+              </div>
+                <span data-ng-show="(addSchoolForm.$submitted || addSchoolForm.school_name.$dirty) &amp;&amp; addSchoolForm.school_name.$error.required" class="text-danger">School name is required for adding a school!</span>
+            </div>
+          </div>
+        </fieldset>
+        <div class="pull-right" data-ng-if="addSchoolForm.$dirty">
+          <button class="btn btn-sm btn-default" data-ng-click="cancelAddSchoolForm()">cancel</button>
+        </div>
+      </form>
+     </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <fieldset>
+          <legend>School List</legend>
+            <div data-sa-items-list="schools" 
+                 data-columns="columns" 
+                 data-search-placeholder="'Search schools'" 
+                 data-row-link-fun="rowLinkFun"></div>
+        </fieldset>
+      </div>
+    </div>
   </div>
 </div>

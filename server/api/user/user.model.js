@@ -24,7 +24,7 @@ var UserSchema = new Schema({
   publisher: {
     recipes: [{
       type: Schema.Types.ObjectId,
-      ref: "Recipe"
+      ref: 'Recipe'
     }]
   }
 });
@@ -48,8 +48,10 @@ UserSchema
   .virtual('profile')
   .get(function() {
     return {
+      '_id': this._id,
       'name': this.name,
-      'role': this.role
+      'role': this.role,
+      'email': this.email
     };
   });
 

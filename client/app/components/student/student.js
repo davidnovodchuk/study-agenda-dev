@@ -23,8 +23,36 @@ angular.module('studyAgendaApp')
       })
       .state('student.change-password', {
         url: 'change-password',
-        templateUrl: 'app/shared/templates/change-password/change-password.html',
+        templateUrl: 'app/components/account/change-password/change-password.html',
         controller: 'ChangePasswordCtrl',
+        authenticate: true,
+        hasRole: USER_ROLES.STUDENT,
+      })
+      .state('student.availability', {
+        url: 'availability',
+        templateUrl: 'app/components/student/availability/availability.html',
+        controller: 'StudentAvailabilityCtrl',
+        authenticate: true,
+        hasRole: USER_ROLES.STUDENT,
+      })
+      .state('student.agenda', {
+        url: 'agenda',
+        templateUrl: 'app/components/student/agenda/agenda.html',
+        controller: 'StudentAgendaCtrl',
+        authenticate: true,
+        hasRole: USER_ROLES.STUDENT,
+      })
+      .state('student.enrolments', {
+        url: 'enrolments',
+        templateUrl: 'app/components/student/enrolments/enrolments.html',
+        controller: 'StudentEnrolmentsCtrl',
+        authenticate: true,
+        hasRole: USER_ROLES.STUDENT,
+      })
+      .state('student.courses-tasks', {
+        url: 'courses-tasks',
+        templateUrl: 'app/components/student/courses-tasks/courses-tasks.html',
+        controller: 'StudentCoursesTasksCtrl',
         authenticate: true,
         hasRole: USER_ROLES.STUDENT,
       });
