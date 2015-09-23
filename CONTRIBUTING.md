@@ -1,4 +1,4 @@
-# Contributing Guide for Study Agenda developers:
+# Contributing Guide for Study Agenda developers
 
 - We will not use the 'master' branch for development.
 - Instead, we have a branch called 'development' which is our default base development branch.
