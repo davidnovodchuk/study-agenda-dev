@@ -21,7 +21,14 @@
   <tbody>
       <!-- clickabale row version -->
       <tr data-ng-if="rowLinkFun" data-ng-repeat="item in saItemsList | orderBy:sortType:sortReverse | filter:searchQuery" data-ng-click="rowLinkFun(item)">
-        <td data-ng-repeat="column in columns">{{item[column.propertyName]}}</td>
+        <td data-ng-repeat="column in columns">
+          <div data-ng-if="column.isDate">
+            {{item[column.propertyName] | date:'MMMM dd, yyyy'}}
+          </div>
+          <div data-ng-if="!column.isDate">
+            {{item[column.propertyName]}}
+          </div>
+        </td>
       </tr>
       <!-- not clickabale row version -->
       <tr data-ng-if="!rowLinkFun" data-ng-repeat="item in saItemsList | orderBy:sortType:sortReverse | filter:searchQuery">

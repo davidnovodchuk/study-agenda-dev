@@ -1,0 +1,11 @@
+<div class="ngdialog-message">
+  <h3>Confirm Deletion</h3>
+  <p>Are you sure you want to delete {{"\"" + deleteItemName + "\""}}?</p>
+  <p data-ng-if="additionalText">{{additionalText}}</p>
+</div>
+<div class="ngdialog-buttons">
+  <div class="pull-right">
+    <button type="button" ng-click="confirm(confirmValue)" class="btn btn-primary mr">Yes</button>
+    <button type="button" ng-click="closeThisDialog('button')" class="btn btn-default">Cancel</button>
+  </div>
+</div>

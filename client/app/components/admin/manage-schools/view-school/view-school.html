@@ -3,8 +3,8 @@
   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <div class="panel panel-default">
       <div class="panel-body">
-        <div data-ng-show="editMode">
-          <form role="form" data-ng-submit="updateSchool()" name="form" novalidate="" class="form-validate mb-lg">
+        <form role="form" data-ng-submit="updateSchool()" name="form" novalidate="" class="form-validate mb-lg">
+          <div data-ng-if="editMode">
             <fieldset>
               <legend>Edit School Details</legend>
               <div class="form-group">
@@ -19,8 +19,8 @@
               <button type="submit" class="btn btn-sm btn-primary">Update</button>
               <button class="btn btn-sm btn-default" data-ng-click="cancelForm()">cancel</button>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
         <div data-ng-if="!editMode">
           <fieldset>
             <legend>School Details</legend>
@@ -30,7 +30,11 @@
             </div>
           </fieldset>
           <div class="pull-left">
-            <button class="btn btn-sm btn-danger" data-ng-click="deleteSchool()">delete school</button>
+            <div data-sa-delete-confirmation 
+                 data-delete-button-text="'delete school'"
+                 data-delete-function="deleteSchool"
+                 data-delete-item-name="school.name"
+                 data-additional-text="'All related campuses, courses and tasks will be deleted'"></div>
           </div>
           <div class="pull-right">
             <button class="btn btn-sm btn-default" data-ng-click="updateEditMode(true)">edit</button>
@@ -74,7 +78,7 @@
       <div class="panel-body">
         <fieldset>
           <legend>Campus List</legend>
-            <div data-sa-items-list="school.campuses" 
+            <div data-sa-items-list="campuses" 
                  data-columns="columns" 
                  data-search-placeholder="'Search campuses'" 
                  data-row-link-fun="rowLinkFun"></div>

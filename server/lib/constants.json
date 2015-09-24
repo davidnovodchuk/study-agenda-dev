@@ -2,5 +2,10 @@
 	"USER_ROLES": {
 		"ADMIN": 1,
 		"STUDENT": 2
+	},
+	"TASK_PRIVACY_TYPES": {
+		"PUBLIC": 1,
+		"PRIVATE": 2,
+		"SPECIFIED_USERS": 3
 	}
 }

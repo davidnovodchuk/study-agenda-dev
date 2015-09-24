@@ -1,7 +1,7 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./campus.controller');
+var controller = require('./task.controller');
 var auth = require('../../auth/auth.service');
 var CONSANTS = require('../../lib/constants');
 var USER_ROLES = CONSANTS.USER_ROLES;

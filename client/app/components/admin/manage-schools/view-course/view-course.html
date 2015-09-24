@@ -1,0 +1,128 @@
+<h3>View Course</h3>
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form role="form" data-ng-submit="updateCourse()" name="form" novalidate="" class="form-validate mb-lg">
+          <div data-ng-if="editMode">
+            <fieldset>
+              <legend>Edit Course Details</legend>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Code</label>    
+                <div class="form-group has-feedback col-sm-10">
+                  <input type="text" name="course_code" placeholder="Enter code" autocomplete="off" data-ng-model="course.code" required="" class="form-control" />
+                  <span data-ng-show="form.course_code.$dirty &amp;&amp; form.course_code.$error.required" class="text-danger">This field is required</span>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Ttile</label>    
+                <div class="form-group has-feedback col-sm-10">
+                  <input type="text" name="course_title" placeholder="Enter title" autocomplete="off" data-ng-model="course.title" required="" class="form-control" />
+                  <span data-ng-show="form.course_title.$dirty &amp;&amp; form.course_title.$error.required" class="text-danger">This field is required</span>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Section</label>    
+                <div class="form-group has-feedback col-sm-10">
+                  <input type="text" name="course_section" placeholder="Enter section" autocomplete="off" data-ng-model="course.section" required="" class="form-control" />
+                  <span data-ng-show="form.course_section.$dirty &amp;&amp; form.course_section.$error.required" class="text-danger">This field is required</span>
+                </div>
+              </div>
+            </fieldset>
+            <div class="pull-right">
+              <button type="submit" class="btn btn-sm btn-primary">Update</button>
+              <button class="btn btn-sm btn-default" data-ng-click="cancelForm()">cancel</button>
+            </div>
+          </div>
+        </form>
+        <div data-ng-if="!editMode">
+          <fieldset>
+            <legend>Course Details</legend>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Code</label>    
+              <div class="form-group has-feedback col-sm-10">{{course.code}}</div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Title</label>    
+              <div class="form-group has-feedback col-sm-10">{{course.title}}</div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Section</label>    
+              <div class="form-group has-feedback col-sm-10">{{course.section}}</div>
+            </div>
+          </fieldset>
+          <div class="pull-left">
+            <div data-sa-delete-confirmation 
+                 data-delete-button-text="'delete course'"
+                 data-delete-function="deleteCourse"
+                 data-delete-item-name="course.title"
+                 data-additional-text="'Note: all related tasks will be deleted'"></div>
+          </div>
+          <div class="pull-right">
+            <button class="btn btn-sm btn-default" data-ng-click="updateEditMode(true)">edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form role="form" data-ng-submit="addTask()" name="addTaskForm" novalidate="" class="form-validate mb-lg">
+          <fieldset>
+            <legend>Add Task</legend>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Name</label>   
+              <div class="form-group has-feedback col-sm-10">
+                <input type="text" name="task_name" placeholder="Enter task name (eg. Assignment 1 or Midterm Test)" autocomplete="off" data-ng-model="newTask.name" required="" class="form-control" />
+                <span data-ng-show="(addTaskForm.$submitted || addTaskForm.task_name.$dirty) &amp;&amp; addTaskForm.task_name.$error.required" class="text-danger">Task name is required</span>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+              <label class="col-sm-2 control-label">Weight</label>     
+              <div class="form-group has-feedback col-sm-10">
+                <input type="number" name="task_weight" min="0" max="100" placeholder="How many percents the task worth?" autocomplete="off" data-ng-model="newTask.weight" required="" class="form-control" />
+                <span data-ng-show="(addTaskForm.$submitted || addTaskForm.task_weight.$dirty) &amp;&amp; addTaskForm.task_weight.$error.required" class="text-danger">Task weight is required</span>
+              </div>
+          </fieldset>
+          <fieldset>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Due Date</label>   
+              <div class="form-group has-feedback col-sm-10">
+                <input type="date" name="task_dueDate" placeholder="Enter task due date" autocomplete="off" data-ng-model="newTask.dueDate" required="" class="form-control" />
+                <span data-ng-show="(addTaskForm.$submitted || addTaskForm.task_dueDate.$dirty) &amp;&amp; addTaskForm.task_dueDate.$error.required" class="text-danger">Task due date is required</span>
+              </div>
+            </div>
+          </fieldset>
+          <div class="pull-right" data-ng-if="!addTaskForm.$dirty" >
+            <button type="submit" class="btn btn-sm btn-primary">add task</button>
+          </div>
+          <div class="pull-right" data-ng-if="addTaskForm.$dirty" >
+            <button type="submit" class="btn btn-sm btn-primary">add task</button>
+            <button class="btn btn-sm btn-default" data-ng-click="cancelAddTaskForm()">cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <fieldset>
+          <legend>Task List</legend>
+            <div data-sa-items-list="tasks" 
+                 data-columns="columns" 
+                 data-search-placeholder="'Search tasks'" 
+                 data-row-link-fun="rowLinkFun"></div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

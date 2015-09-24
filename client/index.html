@@ -18,11 +18,13 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+      <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
       <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
       <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
-      <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+      <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.css" />
+      <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.css" />
       <link rel="stylesheet" href="bower_components/simple-line-icons/css/simple-line-icons.css" />
-      <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -34,7 +36,10 @@
       <link rel="stylesheet" href="app/components/account/login/login.css">
       <link rel="stylesheet" href="app/components/admin/dashboard/dashboard.css">
       <link rel="stylesheet" href="app/components/admin/manage-schools/manage-schools.css">
+      <link rel="stylesheet" href="app/components/admin/manage-schools/view-campus/view-campus.css">
+      <link rel="stylesheet" href="app/components/admin/manage-schools/view-course/view-course.css">
       <link rel="stylesheet" href="app/components/admin/manage-schools/view-school/view-school.css">
+      <link rel="stylesheet" href="app/components/admin/manage-schools/view-task/view-task.css">
       <link rel="stylesheet" href="app/components/admin/manage-users/manage-users.css">
       <link rel="stylesheet" href="app/components/admin/manage-users/view-user/view-user.css">
       <link rel="stylesheet" href="app/components/student/agenda/agenda.css">
@@ -82,25 +87,26 @@
       <!-- bower:js -->
       <script src="bower_components/jquery/dist/jquery.js"></script>
       <script src="bower_components/angular/angular.js"></script>
-      <script src="bower_components/angular-resource/angular-resource.js"></script>
-      <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-      <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-      <script src="bower_components/lodash/dist/lodash.compat.js"></script>
-      <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-      <script src="bower_components/angular-route/angular-route.js"></script>
       <script src="bower_components/angular-animate/angular-animate.js"></script>
-      <script src="bower_components/ngstorage/ngStorage.js"></script>
-      <script src="bower_components/angular-translate/angular-translate.js"></script>
-      <script src="bower_components/oclazyload/dist/ocLazyLoad.js"></script>
-      <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+      <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+      <script src="bower_components/angular-cookies/angular-cookies.js"></script>
       <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
-      <script src="bower_components/angular-ui-utils/modules/utils.js"></script>
-      <script src="bower_components/angular-ui-event/dist/event.js"></script>
+      <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+      <script src="bower_components/angular-resource/angular-resource.js"></script>
+      <script src="bower_components/angular-route/angular-route.js"></script>
+      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+      <script src="bower_components/angular-translate/angular-translate.js"></script>
       <script src="bower_components/jquery-ui/jquery-ui.js"></script>
       <script src="bower_components/angular-ui-date/src/date.js"></script>
-      <script src="bower_components/screenfull/dist/screenfull.js"></script>
+      <script src="bower_components/angular-ui-event/dist/event.js"></script>
+      <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
       <script src="bower_components/angular-ui-select/dist/select.js"></script>
+      <script src="bower_components/angular-ui-utils/modules/utils.js"></script>
+      <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+      <script src="bower_components/ng-dialog/js/ngDialog.js"></script>
+      <script src="bower_components/ngstorage/ngStorage.js"></script>
+      <script src="bower_components/oclazyload/dist/ocLazyLoad.js"></script>
+      <script src="bower_components/screenfull/dist/screenfull.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
 
@@ -116,7 +122,10 @@
           <script src="app/components/admin/dashboard/dashboard.controller.js"></script>
           <script src="app/components/admin/manage-schools/manage-schools.controller.js"></script>
           <script src="app/components/admin/manage-schools/manage-schools.js"></script>
+          <script src="app/components/admin/manage-schools/view-campus/view-campus.controller.js"></script>
+          <script src="app/components/admin/manage-schools/view-course/view-course.controller.js"></script>
           <script src="app/components/admin/manage-schools/view-school/view-school.controller.js"></script>
+          <script src="app/components/admin/manage-schools/view-task/view-task.controller.js"></script>
           <script src="app/components/admin/manage-users/manage-users.controller.js"></script>
           <script src="app/components/admin/manage-users/manage-users.js"></script>
           <script src="app/components/admin/manage-users/view-user/view-user.controller.js"></script>
@@ -127,13 +136,16 @@
           <script src="app/components/student/enrolments/enrolments.controller.js"></script>
           <script src="app/components/student/student.js"></script>
           <script src="app/shared/directives/directives.js"></script>
+          <script src="app/shared/directives/sa-delete-confirmation/sa-delete-confirmation.directive.js"></script>
           <script src="app/shared/directives/sa-items-list/sa-items-list.directive.js"></script>
           <script src="app/shared/directives/sa-mongoose-error/sa-mongoose-error.directive.js"></script>
           <script src="app/shared/modal/modal.service.js"></script>
           <script src="app/shared/services/auth/auth.service.js"></script>
           <script src="app/shared/services/auth/user.service.js"></script>
           <script src="app/shared/services/campus/campus.service.js"></script>
+          <script src="app/shared/services/course/campus.service.js"></script>
           <script src="app/shared/services/school/school.service.js"></script>
+          <script src="app/shared/services/task/task.service.js"></script>
           <!-- endinjector -->
         <!-- endbuild -->
 </body>

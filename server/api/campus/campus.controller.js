@@ -43,6 +43,30 @@ exports.show = function(req, res) {
   });
 };
 
+
+// Get a single campus with its references populated
+exports.showWithReferences = function(req, res) {
+  var campusId = req.params.id;
+  
+  return Q(
+    Campus.findById(campusId)
+    .populate("school")
+    .populate("courses")
+    .exec()
+  )
+  .then(function(campus) {
+    if(!campus) { 
+      return res.send(404); 
+    }
+
+    return res.json(campus);
+  })
+  .fail(function(err) {
+
+    return handleError(res, err);
+  });
+};
+
 // Creates a new campus in the DB.
 exports.create = function(req, res) {
   var newCampus = req.body;
@@ -120,35 +144,11 @@ exports.destroy = function(req, res) {
     }
 
     return Q(
-      School.findById(campus.school)
-      .populate("schools")
-      .exec()
+      campus.remove()
     )
-    .then(function(schools) {
+    .then(function() {
 
-      function pullCampusFromSchool(){
-        _.each(schools, function(school) {
-          school.campuses.pull(campus._id);
-
-          return Q(
-            school.save()
-          )
-        });
-      }
-
-      return Q(
-        pullCampusFromSchool()
-      )
-      .then(function () {
-
-        return Q(
-          campus.remove()
-        )
-        .then(function() {
-
-          return res.send(204);
-        })
-      });
+      return res.send(204);
     });
   })
   .fail(function(err) {
