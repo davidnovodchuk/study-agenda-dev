@@ -14,7 +14,7 @@
 ```
 - Add the main repository as a remote:
 ```
-  git remote add upstream git@github.com:davidnovodchuk/study-agenda-dev.git
+  git remote add upstream https://github.com/davidnovodchuk/study-agenda-dev.git
 ```
 
 ## Contributing:
