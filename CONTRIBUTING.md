@@ -41,7 +41,7 @@
 - This part is very important: after doing git commit, an editor will be opened so you will be able to write the commit message. The first commit message in the branch should have the following context:
 ```
   Title (usually same as issue title)
-  
+   
   Body (usually same as issue body)
   
   Fixes #3
