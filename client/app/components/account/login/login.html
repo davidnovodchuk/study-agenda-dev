@@ -50,18 +50,20 @@
       <p class="text-center pv">SIGN IN TO CONTINUE.</p>
       <form role="form" data-ng-submit="login(form)" name="form" novalidate="" class="form-validate mb-lg">
         <div class="form-group has-feedback">
-           <input type="email" name="account_email" placeholder="Enter email" autocomplete="off" ng-model="user.email" required="" class="form-control" />
-           <span class="fa fa-envelope form-control-feedback text-muted"></span>
-           <span ng-show="form.account_email.$dirty &amp;&amp; form.account_email.$error.required" class="text-danger">This field is required</span>
-           <span ng-show="form.account_email.$dirty &amp;&amp; form.account_email.$error.email" class="text-danger">This field must be a valid email address</span>
+<!--           <label class="text-muted">Email address</label>
+ -->          <input type="email" name="account_email" placeholder="Enter email" autocomplete="off" ng-model="user.email" required="" class="form-control" />
+          <span class="fa fa-envelope form-control-feedback text-muted sa-fa"></span>
+          <span ng-show="form.account_email.$dirty &amp;&amp; form.account_email.$error.required" class="text-danger">This field is required</span>
+          <span ng-show="form.account_email.$dirty &amp;&amp; form.account_email.$error.email" class="text-danger">This field must be a valid email address</span>
         </div>
         <div class="form-group has-feedback">
-           <input type="password" name="account_password" placeholder="Password" ng-model="user.password" required="" class="form-control" />
-           <span class="fa fa-lock form-control-feedback text-muted"></span>
-           <span ng-show="form.account_password.$dirty &amp;&amp; form.account_password.$error.required" class="text-danger">This field is required</span>
+<!--           <label class="text-muted">Password</label>
+ -->          <input type="password" name="account_password" placeholder="Password" ng-model="user.password" required="" class="form-control" />
+          <span class="fa fa-lock form-control-feedback text-muted sa-fa"></span>
+          <span ng-show="form.account_password.$dirty &amp;&amp; form.account_password.$error.required" class="text-danger">This field is required</span>
         </div>
         <div class="clearfix">
-           <div class="checkbox c-checkbox pull-left mt0">
+           <div class="sa checkbox c-checkbox pull-left mt0">
               <label>
                <input type="checkbox" value="" name="account_remember" ng-model="user.remember" />
                <span class="fa fa-check"></span>Remember Me</label>

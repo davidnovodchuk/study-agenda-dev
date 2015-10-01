@@ -1,68 +1,73 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h1>Sign up</h1>
-    </div>
-    <div class="col-sm-12">
-      <form class="form" name="form" data-ng-submit="register(form)" novalidate>
-
-        <div class="form-group" data-ng-class="{ 'has-success': form.name.$valid && submitted,
-                                            'has-error': form.name.$invalid && submitted }">
-          <label>Name</label>
-
-          <input type="text" name="name" class="form-control" data-ng-model="user.name"
-                 required/>
-          <p class="help-block" data-ng-show="form.name.$error.required && submitted">
-            A name is required
-          </p>
-        </div>
-
-        <div class="form-group" data-ng-class="{ 'has-success': form.email.$valid && submitted,
-                                            'has-error': form.email.$invalid && submitted }">
-          <label>Email</label>
-
-          <input type="email" name="email" class="form-control" data-ng-model="user.email"
-                 required
-                 sa-mongoose-error/>
-          <p class="help-block" data-ng-show="form.email.$error.email && submitted">
-            Doesn't look like a valid email.
-          </p>
-          <p class="help-block" data-ng-show="form.email.$error.required && submitted">
-            What's your email address?
-          </p>
-          <p class="help-block" data-ng-show="form.email.$error.mongoose">
-            {{ errors.email }}
-          </p>
-        </div>
-
-        <div class="form-group" data-ng-class="{ 'has-success': form.password.$valid && submitted,
-                                            'has-error': form.password.$invalid && submitted }">
-          <label>Password</label>
-
-          <input type="password" name="password" class="form-control" data-ng-model="user.password"
-                 data-ng-minlength="3"
-                 required
-                 sa-mongoose-error/>
-          <p class="help-block"
-             data-ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
-            Password must be at least 3 characters.
-          </p>
-          <p class="help-block" data-ng-show="form.password.$error.mongoose">
-            {{ errors.password }}
-          </p>
-        </div>
-
-        <div>
-          <button class="btn btn-inverse btn-lg btn-login" type="submit">
-            Sign up
-          </button>
-          <a class="btn btn-default btn-lg btn-register" href="/login">
-            Login
-          </a>
-        </div>
-
-      </form>
-    </div>
-  </div>
-  <hr>
+<div class="block-center mt-xl wd-xl">
+   <!-- START panel-->
+   <div class="panel panel-dark panel-flat">
+      <div class="panel-heading text-center">
+         <a href="#">
+            <img src="assets/img/logo.png" alt="Image" class="block-center img-rounded" />
+         </a>
+      </div>
+      <div class="panel-body">
+         <p class="text-center pv">REGISTER FOR STUDY AGENDA</p>
+         <form role="form" name="form" novalidate data-ng-submit="register(form)" class="form-validate mb-lg">
+            <div class="form-group has-feedback" data-ng-class="{ 'has-success': form.firstName.$valid && submitted, 'has-error': form.firstName.$invalid && submitted }">
+               <label class="text-muted">First name</label>
+               <input type="text" name="firstName" placeholder="Enter first name" data-ng-model="user.firstName" class="form-control" required/>
+               <span class="fa fa-user form-control-feedback text-muted sa-fa"></span>
+               <span data-ng-show="(submitted || form.firstName.$dirty) &amp;&amp; form.firstName.$error.required" class="text-danger">First name is required</span>
+            </div>
+            <div class="form-group has-feedback" data-ng-class="{ 'has-success': form.lastName.$valid && submitted, 'has-error': form.lastName.$invalid && submitted }">
+               <label class="text-muted">Last name</label>
+               <input type="text" name="lastName" placeholder="Enter last name" data-ng-model="user.lastName" class="form-control" required/>
+               <span class="fa fa-user form-control-feedback text-muted sa-fa"></span>
+               <span data-ng-show="(submitted || form.lastName.$dirty) &amp;&amp; form.lastName.$error.required" class="text-danger">Last name is required</span>
+            </div>
+            <div class="form-group has-feedback" data-ng-class="{ 'has-success': form.email.$valid && submitted, 'has-error': form.email.$invalid && submitted }">
+               <label class="text-muted">Email address</label>
+               <input type="email" name="email" placeholder="Enter email" autocomplete="off" data-ng-model="user.email" required class="form-control" sa-mongoose-error required/>
+               <span class="fa fa-envelope form-control-feedback text-muted sa-fa"></span>
+               <span data-ng-show="(submitted || form.email.$dirty) &amp;&amp; form.email.$error.required" class="text-danger">We can't register you without an email</span>
+               <span data-ng-show="form.email.$dirty &amp;&amp; form.email.$error.email" class="text-danger">Doesn't look like a valid email...</span>
+               <span data-ng-show="form.email.$error.mongoose" class="text-danger">{{ errors.email }}</span>
+            </div>
+            <div class="form-group has-feedback" data-ng-class="{ 'has-success': form.password.$valid && submitted, 'has-error': form.password.$invalid && submitted }">
+               <label class="text-muted">Password</label>
+               <input id="password" type="password" name="password" data-ng-model="user.password" data-ng-pattern="/^[^ ]{6,10}$/" required="" class="form-control" placeholder="Enter password" required/>
+               <span class="fa fa-lock form-control-feedback text-muted sa-fa"></span>
+               <span data-ng-show="(submitted || form.password.$dirty) &amp;&amp; form.password.$error.required" class="text-danger">Password is required</span>
+               <span data-ng-show="form.password.$dirty &amp;&amp; form.password.$error.pattern" class="text-danger">Password to have a length of 6-10 characters</span>
+               <span class="text-danger" data-ng-show="form.password.$error.mongoose">
+                  {{ errors.password }}
+               </span>
+            </div>
+            <div class="form-group has-feedback" data-ng-class="{ 'has-success': form.password_confirm.$valid && submitted, 'has-error': form.password_confirm.$invalid && submitted }">
+               <label class="text-muted">Confirm Password</label>
+               <input type="password" name="password_confirm" data-ng-model="user.password_confirm" ui-validate=" '$value==form.password.$viewValue' " ui-validate-watch=" 'form.password.$viewValue' " class="form-control" placeholder="Confirm password" required/>
+               <span class="fa fa-lock form-control-feedback text-muted sa-fa"></span>
+               <span data-ng-show="(submitted || form.password_confirm.$dirty) &amp;&amp; form.password_confirm.$error.required" class="text-danger">Password confirmation is required</span>
+               <span data-ng-show="form.password_confirm.$dirty &amp;&amp; form.password_confirm.$error.validator" class="text-danger">Password doesn't match</span>
+            </div>
+            <div class="clearfix">
+               <div class="checkbox c-checkbox pull-left mt0">
+                  <label>
+                     <input type="checkbox" required="" name="account_agreed" data-ng-model="user.agreed" />
+                     <span class="fa fa-check"></span>I agree with the <a href="#">terms &amp; conditions</a>
+                  </label>
+               </div>
+            </div>
+            <span data-ng-show="!(form.account_agreed.$viewValue) && submitted" class="text-danger">You must agree to terms &amp; conditions</span>
+            <button type="submit" class="btn btn-block btn-primary mt-lg">Create account</button>
+         </form>
+         <div data-ng-show="form.authMsg" class="alert alert-danger text-center">{{form.authMsg}}</div>
+         <p class="pt-lg text-center">Have an account?</p><a ui-sref="account.login" class="btn btn-block btn-default">Login</a>
+      </div>
+   </div>
+   <!-- END panel-->
+   <div class="p-lg text-center">
+      <span>&copy;</span>
+      <span data-ng-bind="app.year"></span>
+      <span>-</span>
+      <span data-ng-bind="app.name"></span>
+      <br/>
+      <span data-ng-bind="app.description"></span>
+   </div>
 </div>

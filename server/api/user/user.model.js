@@ -8,19 +8,67 @@ var USER_ROLES = constants.USER_ROLES;
 
 var UserSchema = new Schema({
   name: String,
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
     lowercase: true,
     required: true,
     unique: true
-  },
+  }, 
   role: {
     type: Number,
-    default: USER_ROLES.STUDENT
+    default: USER_ROLES.STUDENT,
+    required: true
   },
   hashedPassword: String,
   provider: String,
-  salt: String
+  salt: String,
+  studyDays: [{
+    day: {
+      type: Date,
+      required: true
+    },
+    minutes: {
+      type: Number,
+      required: true
+    }
+  }],
+  enrollments: [{
+    school: {
+      type: Schema.ObjectId,
+      ref: 'sa_schools'
+    },
+    campuses: [{
+      type: Schema.ObjectId,
+      ref: 'sa_campuses'
+    }],
+    courses: [{
+      type: Schema.ObjectId,
+      ref: 'sa_courses'
+    }]
+  }],
+  taskNotifications: [{
+    task: {
+      type: Schema.ObjectId,
+      ref: 'sa_tasks'
+    }
+  }],
+  // modifiedTasks types:
+  // - 0 : a task that does not apply to the user
+  modifiedTasks: [{
+    task: {
+      type: Schema.ObjectId,
+      ref: 'sa_tasks'
+    },
+    modificationType: Number
+  }]  
 });
 
 /**
@@ -103,6 +151,10 @@ UserSchema
   .pre('save', function(next) {
     if (!this.isNew) return next();
 
+    if(this.password.length < 6){
+      next(new Error('Password must be at least 6 characters'))
+    }
+
     if (!validatePresenceOf(this.hashedPassword))
       next(new Error('Invalid password'));
     else
@@ -148,4 +200,4 @@ UserSchema.methods = {
   }
 };
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('sa_users', UserSchema);
