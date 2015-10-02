@@ -33,6 +33,16 @@ exports.create = function (req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.role = USER_ROLES.STUDENT;
+  newUser.studyDays = [];
+  // var today = new Date();
+
+  for (var i = 0; i < 7; i++) {
+    var studyDay = {};
+    studyDay.day = new Date();
+    studyDay.day.setDate(studyDay.day.getDate() + i - new Date().getDay());
+    studyDay.minutes = 0;
+    newUser.studyDays.push(studyDay);
+  }
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
@@ -91,42 +101,44 @@ exports.changePassword = function(req, res, next) {
 exports.update = function(req, res, next) {
   var userId = req.body._id;
 
-  if(req.body._id) { 
-    delete req.body._id; 
+  if(req.body._id) {
+    delete req.body._id;
   }
 
   // password can only be changed with changePassword
-  if(req.body.hashedPassword) { 
-    delete req.body.hashedPassword; 
+  if(req.body.hashedPassword) {
+    delete req.body.hashedPassword;
   }
 
   // a user cannot change his role
-  if(userId.toString() === req.user._id.toString()) { 
-    delete req.body.role; 
+  if(userId.toString() === req.user._id.toString()) {
+    delete req.body.role;
   }
 
   // student can modify own information, admin can update others as well
-  if(userId.toString() === req.user._id.toString() || !auth.hasRole(USER_ROLES.ADMIN)) { 
-    delete req.body.role; 
+  if(userId.toString() === req.user._id.toString() || !auth.hasRole(USER_ROLES.ADMIN)) {
+    delete req.body.role;
   }
-  
+
   return Q(
     User.findById(userId)
     .exec()
   )
   .then(function(user) {
-    if(!user) { 
-      return res.send(404); 
+    if(!user) {
+      return res.send(404);
     }
 
     var updated = _.merge(user, req.body);
 
+    if (req.body.studyDays) {
+      updated.studyDays = req.body.studyDays;
+    }
     return Q(
       updated.save()
     )
-    .then(function() {
-
-      return res.status(200).json(user);
+    .then(function(updatedUser) {
+      return res.status(200).json(updatedUser);
     })
   })
   .fail(function(err) {
