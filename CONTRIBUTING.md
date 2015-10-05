@@ -55,4 +55,28 @@
 - On Github, go to your fork of this repository. At the top you will see the just pushed branch name and a button that says "Compare & Pull Request". This is how you create a pull request.
 - You will be able to see a demonstration issue and pull request in this branch.
 
-Paul's push attempt
+### Merging Pull Request
+
+- The only way we will add new code to the development branch is by merging pull request after a review was done and approved.
+- IMPORTANT: After a review is approved, all the commits in the approved pull requst should be "squashed" into one commit so only one commit is added to the development brach that has all the chages done in the merged branch.
+- Here is how you squash:
+- First, got to development branch and pull latest changes:
+```
+  git checkout development
+  git pull upstream development
+```
+- Let's say I want to squash all commits in branch 'issue9', I first go to issue9 branch:
+```
+  git checkout issue9
+```
+- Then, rebase:
+```
+  git rebase -i upstream/development
+```
+- An editor will be opened with summery of all your commits that are done in the branch and are not in development branch.
+- Before each commit there is the string "pick". leave the first pick (the first commit message), and put "f" instead of all other "pick"s and save. This will squash all the commits into one commit that will have the commit message of the first commit.
+- Then, if there are no conflicts, all your commits will be squashed and added to the latest development code. In this way you make sure there are no conflicts and the branch can be merged into development.
+- Push the changes, add "--force" when you push because you changed the commits history and without "--force" you won't be able to push:
+```
+  git push origin issue9 --force
+```
