@@ -15,6 +15,7 @@ module.exports = function(app) {
   app.use('/api/courses', require('./api/course'));
   app.use('/api/tasks', require('./api/task'));
   app.use('/api/sidebar', require('./api/sidebar'));
+  app.use('/api/students', require('./api/student'));
 
   app.use('/auth', require('./auth'));
 

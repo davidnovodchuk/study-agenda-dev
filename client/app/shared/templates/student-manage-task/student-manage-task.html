@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <button type="button" class="close" data-ng-click="cancel()">
+         <span aria-hidden="true">&times;</span>
+         <span class="sr-only">Close</span>
+  </button>
+  <h4 class="modal-title" id="myModalLabel">
+      Manage Task - {{task.name}}
+  </h4>
+</div>
+<div class="modal-body">
+    <div class="student-manage-task-top-btn-bottom-padding" data-ng-if="!task.completed">
+      <button type="button" data-ng-click="markTaskCompleted()" class="btn btn-success student-manage-task-top-btn">Mark task completed</button>
+    </div>
+    <div class="student-manage-task-top-btn-bottom-padding" data-ng-if="task.completed">
+      <button type="button" data-ng-click="unmarkTaskCompleted()" class="btn btn-success student-manage-task-top-btn">Unmark task completed</button>
+    </div>
+    <div class="student-manage-task-top-btn-bottom-padding">
+      <button type="button" data-ng-click="editTask()" class="btn btn-primary student-manage-task-top-btn">Edit task details</button>
+    </div>
+    <button type="button" data-ng-click="removeTask()" class="btn btn-danger student-manage-task-top-btn">Remvoe from my tasks</button>
+</div>
+<div class="modal-footer">
+  <span data-ng-show="serverError" class="text-danger">{{serverError}}</span>
+  <div class="pull-right">
+    <button type="button" data-ng-click="cancel()" class="btn btn-default">Cancel</button>
+  </div>
+</div>

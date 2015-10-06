@@ -7,5 +7,10 @@
 		"PUBLIC": 1,
 		"PRIVATE": 2,
 		"SPECIFIED_USERS": 3
+	},
+	"TASK_MODIFICATION_TYPES": {
+		"COMPLETED": 1,
+		"NOT_APPLY": 2,
+		"APPLY" : 3
 	}
 }
