@@ -1,0 +1,75 @@
+<h3>View Task</h3>
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form role="form" data-ng-submit="updateTask()" name="form" novalidate="" class="form-validate mb-lg">
+          <div data-ng-if="editMode">
+            <fieldset>
+              <legend>Edit Task Details</legend>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Name</label>    
+                <div class="form-group has-feedback col-sm-10">
+                  <input type="text" name="task_name" placeholder="Enter name" autocomplete="off" data-ng-model="task.name" required="" class="form-control" />
+                  <span data-ng-show="form.task_name.$dirty &amp;&amp; form.task_name.$error.required" class="text-danger">This field is required</span>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Weight</label>   
+                <div class="form-group has-feedback col-sm-10">
+                  <input type="number" name="task_weight" min="0" max="100" placeholder="Enter weight" autocomplete="off" data-ng-model="task.weight" required="" class="form-control" />
+                  <span data-ng-show="form.task_weight.$dirty &amp;&amp; form.task_weight.$error.required" class="text-danger">This field is required</span>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Due Date</label>    
+                <div class="form-group has-feedback col-sm-10">
+                  <input type="date" name="task_dueDate" placeholder="Enter Due Date" autocomplete="off" data-ng-model="task.dueDate" required="" class="form-control" />
+                  <span data-ng-show="form.task_dueDate.$dirty &amp;&amp; form.task_dueDate.$error.required" class="text-danger">This field is required</span>
+                </div>
+              </div>
+            </fieldset>
+            <div class="pull-right">
+              <button type="submit" class="btn btn-sm btn-primary">Update</button>
+              <button class="btn btn-sm btn-default" data-ng-click="cancelForm()">cancel</button>
+            </div>
+          </div>
+        </form>
+        <div data-ng-if="!editMode">
+          <fieldset>
+            <legend>Task Details</legend>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Name</label>    
+              <div class="form-group has-feedback col-sm-10">{{task.name}}</div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Weight</label>    
+              <div class="form-group has-feedback col-sm-10">{{task.weight + " %"}}</div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Due Date</label>    
+              <div class="form-group has-feedback col-sm-10">{{task.dueDate | date:'MMMM dd, yyyy'}}</div>
+            </div>
+          </fieldset>
+          <div class="pull-left">
+            <div data-sa-delete-confirmation 
+                 data-delete-button-text="'delete task'"
+                 data-delete-function="deleteTask"
+                 data-delete-item-name="task.name"></div>
+          </div>
+          <div class="pull-right">
+            <button class="btn btn-sm btn-default" data-ng-click="updateEditMode(true)">edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

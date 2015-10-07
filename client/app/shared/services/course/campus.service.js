@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('studyAgendaApp')
-  .factory('School', function ($resource) {
-    return $resource('/api/schools/:id/:controller', { id: '@_id' }, {
+  .factory('Course', function ($resource) {
+    return $resource('/api/courses/:id/:controller', { id: '@_id' }, {
       update: {
         method: 'PUT'
       },

@@ -2,15 +2,24 @@
 
 angular.module('studyAgendaApp')
   .controller('AdminManageSchoolsViewSchoolCtrl', function ($scope, $state, School, Campus) {
-    $scope.newCampus = new Campus();
-    $scope.newCampus.school = $state.params.schoolId;
+    var initializeCampus = function() {
+      $scope.newCampus = new Campus();
+      $scope.newCampus.school = $state.params.schoolId;
+    };
 
     var getSchool = function() {
-      new School().$getWithPopulatedCampuses({id: $state.params.schoolId}, function(school) {
+      new School().$getWithPopulatedReferences({id: $state.params.schoolId})
+      .then(function(school) {
         $scope.school = school;
+        $scope.campuses = school.campuses;
+        delete $scope.school.campuses;
+      })
+      .catch(function(err) {
+        // TODO: show error
       });
     };
 
+    initializeCampus();
     getSchool();
 
     $scope.columns = [
@@ -22,7 +31,7 @@ angular.module('studyAgendaApp')
 
     $scope.rowLinkFun = function(item){
       // TODO: implement manage-schools-view-campus state
-      // $state.go('admin.manage-schools-view-campus', {campusId: item._id});
+      $state.go('admin.manage-schools-view-campus', {campusId: item._id});
     };
 
     $scope.updateEditMode = function(newValue) {
@@ -59,8 +68,7 @@ angular.module('studyAgendaApp')
           // repapulating the school (with the new campus)
           getSchool();
           // initializing the add campus form
-          $scope.newCampus = new Campus();
-          $scope.newCampus.school = $state.params.schoolId;
+          initializeCampus();
           $scope.addCampusForm.$setPristine();
         })
         .catch(function(err) {
@@ -86,7 +94,7 @@ angular.module('studyAgendaApp')
     };
 
     $scope.cancelAddCampusForm = function() {
-      $scope.newCampus = new Campus();
+      initializeCampus();
       $scope.addCampusForm.$setPristine();
     };
   });

@@ -40,7 +40,7 @@ exports.show = function(req, res) {
 };
 
 // Get a single school with its campuses populated
-exports.showWithCampuses = function(req, res) {
+exports.showWithReferences = function(req, res) {
   return Q(
     School.findById(req.params.id)
     .populate("campuses")
@@ -113,31 +113,21 @@ exports.destroy = function(req, res) {
 
   return Q(
     School.findById(schoolId)
-    .populate("campuses")
     .exec()
   )
   .then(function(school) {
     if(!school) { 
+
       return res.send(404); 
     }
 
-    function deleteRelatedCampuses() {
-      _.each(school.campuses, function(campus) {
-
-        return Q(
-          campus.remove()
-        )
-      });
-    }
-
-    return Q.all([
-      deleteRelatedCampuses(),
+    return Q( 
       school.remove()
-    ])
-    .spread(function() {
+    )
+    .then(function() {
 
       return res.sendStatus(204);
-    });
+    })
   })
   .fail(function(err) {
     return handleError(res, err);

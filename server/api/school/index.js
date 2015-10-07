@@ -14,6 +14,6 @@ router.post('/', auth.isAuthenticated(), controller.create);
 router.put('/:id', auth.isAuthenticated(), controller.update);
 router.patch('/:id', auth.isAuthenticated(), controller.update);
 router.delete('/:id', auth.hasRole(USER_ROLES.ADMIN), controller.destroy);
-router.get('/:id/with-campuses', auth.isAuthenticated(), controller.showWithCampuses);
+router.get('/:id/with-references', auth.isAuthenticated(), controller.showWithReferences);
 
 module.exports = router;

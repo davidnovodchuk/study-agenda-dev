@@ -105,7 +105,7 @@ exports.update = function(req, res, next) {
   }
 
   // student can modify own information, admin can update others as well
-  if(userId.toString() === req.user._id.toString() || auth.hasRole(USER_ROLES.ADMIN)) { 
+  if(userId.toString() === req.user._id.toString() || !auth.hasRole(USER_ROLES.ADMIN)) { 
     delete req.body.role; 
   }
   
