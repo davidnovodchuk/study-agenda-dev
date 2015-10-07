@@ -10,9 +10,11 @@ angular.module('studyAgendaApp')
 
       if(form.$valid) {
         Auth.createUser({
-          name: $scope.user.name,
+          firstName: $scope.user.firstName,
+          lastName: $scope.user.lastName,
           email: $scope.user.email,
-          password: $scope.user.password
+          password: $scope.user.password,
+          password_confirm: $scope.user.password
         })
         .then( function() {
           // Account created, redirect to home

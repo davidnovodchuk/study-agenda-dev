@@ -1,0 +1,16 @@
+/* ========================================================================
+   Study Agenda team custom css file
+ ========================================================================== */
+
+ /* over-writing span fa icons location */
+label + .form-control + .form-control-feedback.sa-fa {
+  top: 26px;
+}
+
+.form-control + .form-control-feedback.sa-fa{
+  top: 0px;
+}
+
+.sa.checkbox, .sa.radio {
+  padding-left: 0px;
+}
