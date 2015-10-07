@@ -2,7 +2,7 @@
    <!-- START panel-->
    <div class="panel panel-dark panel-flat">
       <div class="panel-heading text-center">
-         <a href="#">
+         <a href="/#/">
             <img src="assets/img/logo.png" alt="Image" class="block-center img-rounded" />
          </a>
       </div>
@@ -23,7 +23,7 @@
             </div>
             <div class="form-group has-feedback" data-ng-class="{ 'has-success': form.email.$valid && submitted, 'has-error': form.email.$invalid && submitted }">
                <label class="text-muted">Email address</label>
-               <input type="email" name="email" placeholder="Enter email" autocomplete="off" data-ng-model="user.email" required class="form-control" sa-mongoose-error required/>
+               <input type="email" name="email" placeholder="Enter email" autocomplete="off" data-ng-model="user.email" required class="form-control" sa-mongoose-error required data-ng-change="form.email.change()"/>
                <span class="fa fa-envelope form-control-feedback text-muted sa-fa"></span>
                <span data-ng-show="(submitted || form.email.$dirty) &amp;&amp; form.email.$error.required" class="text-danger">We can't register you without an email</span>
                <span data-ng-show="form.email.$dirty &amp;&amp; form.email.$error.email" class="text-danger">Doesn't look like a valid email...</span>
@@ -31,7 +31,7 @@
             </div>
             <div class="form-group has-feedback" data-ng-class="{ 'has-success': form.password.$valid && submitted, 'has-error': form.password.$invalid && submitted }">
                <label class="text-muted">Password</label>
-               <input id="password" type="password" name="password" data-ng-model="user.password" data-ng-pattern="/^[^ ]{6,10}$/" required="" class="form-control" placeholder="Enter password" required/>
+               <input id="password" type="password" name="password" data-ng-model="user.password" data-ng-pattern="/^[^ ]{6,10}$/" required="" class="form-control" placeholder="Enter password" required data-ng-change="form.password.change()"/>
                <span class="fa fa-lock form-control-feedback text-muted sa-fa"></span>
                <span data-ng-show="(submitted || form.password.$dirty) &amp;&amp; form.password.$error.required" class="text-danger">Password is required</span>
                <span data-ng-show="form.password.$dirty &amp;&amp; form.password.$error.pattern" class="text-danger">Password to have a length of 6-10 characters</span>
