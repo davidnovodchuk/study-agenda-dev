@@ -1,0 +1,52 @@
+<!-- PROFILE HTML PAGE -->
+<div class="block-center">
+   <!-- START panel-->
+
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <div class="panel panel-primary">
+        <form role="form" name="form" novalidate data-ng-submit="updateProfile()" class="form-validate">
+          <div class="panel-heading">
+            <h4>Profile management</h4>
+          </div>
+
+          <div class="panel-body">
+
+            <div class="form-group has-feedback" data-ng-class="{ 'has-success': form.firstName.$valid &amp;&amp; submitted, 'has-error': form.firstName.$invalid &amp;&amp; submitted }">
+               <label class="text-muted">First name</label>
+               <input type="text" name="firstName" placeholder="Enter first name" data-ng-model="user.firstName" class="form-control" required/>
+               <span class="fa fa-user form-control-feedback text-muted sa-fa"></span>
+               <span data-ng-show="(submitted || form.firstName.$dirty) &amp;&amp; form.firstName.$error.required" class="text-danger">First name is required</span>
+            </div>
+            <div class="form-group has-feedback" data-ng-class="{ 'has-success': form.lastName.$valid &amp;&amp; submitted, 'has-error': form.lastName.$invalid &amp;&amp; submitted }">
+               <label class="text-muted">Last name</label>
+               <input type="text" name="lastName" placeholder="Enter last name" data-ng-model="user.lastName" class="form-control" required/>
+               <span class="fa fa-user form-control-feedback text-muted sa-fa"></span>
+               <span data-ng-show="(submitted || form.lastName.$dirty) &amp;&amp; form.lastName.$error.required" class="text-danger">Last name is required</span>
+            </div>
+
+            <div class="form-group has-feedback" data-ng-class="{ 'has-success': form.email.$valid &amp;&amp; submitted, 'has-error': form.email.$invalid &amp;&amp; submitted }">
+               <label class="text-muted">Email address</label>
+               <input type="email" name="email" placeholder="Enter email" autocomplete="off" data-ng-model="user.email" required class="form-control" sa-mongoose-error data-ng-change="form.email.change()"/>
+               <span class="fa fa-envelope form-control-feedback text-muted sa-fa"></span>
+               <span data-ng-show="(submitted || form.email.$dirty) &amp;&amp; form.email.$error.required" class="text-danger">You still need an email address here</span>
+               <span data-ng-show="form.email.$dirty &amp;&amp; form.email.$error.email" class="text-danger">Doesn't look like a valid email...</span>
+               <span data-ng-show="form.email.$error.mongoose" class="text-danger">{{ errors.email }}</span>
+            </div>
+
+            <div>
+              <label class="text-muted">Password</label>
+              <p>To change your password, click <a class="btn btn-info btn-xs" data-ng-click="changePasswordModal()">Change my password</a> </p>
+              <span data-ng-show="form.$pristine" class="text-success">{{ message }}</span>
+            </div>
+
+            <button type="submit" class="btn btn-block btn-primary mt-lg">Update profile</button>
+          </div>
+          <div data-ng-if="user" data-ng-class="{active: isActive('/logout')}">
+            <a href="" data-ng-click="logout()">Logout</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

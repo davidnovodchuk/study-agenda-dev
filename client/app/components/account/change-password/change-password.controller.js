@@ -1,21 +1,36 @@
 'use strict';
 
 angular.module('studyAgendaApp')
-  .controller('ChangePasswordCtrl', function ($scope, User, Auth) {
+  .controller('ChangePasswordCtrl', function ($scope, $modalInstance,User, Auth) {
     $scope.errors = {};
-    
-    $scope.changePassword = function(form) {
+
+    $scope.cancel = function(){
+      $modalInstance.dismiss();
+    };
+
+    $scope.changePassword = function() {
       $scope.submitted = true;
-      if(form.$valid) {
+      if($scope.changePass.$valid) {
         Auth.changePassword( $scope.user.oldPassword, $scope.user.newPassword )
         .then( function() {
-          $scope.message = 'Password successfully changed.';
+          //$scope.user = user;
+          
+          $scope.message = 'Password successfully changed';
+
+          $scope.changePass.$setPristine();
+          
+          $modalInstance.close();
         })
-        .catch( function() {
-          form.password.$setValidity('mongoose', false);
-          $scope.errors.other = 'Incorrect password';
+        .catch( function(err) {
+          $scope.changePass.oldPassword.$setValidity('mongoose', false);
+          $scope.errors.oldPassword = 'Incorrect current password';
           $scope.message = '';
+          // assign custom change to the fields with errors 
+          // in order to unset validity and allow for resubmission
+          $scope.changePass.oldPassword.change = function(){
+            $scope.changePass.oldPassword.$setValidity('mongoose',true);
+          }
         });
       }
-		};
+    }
   });

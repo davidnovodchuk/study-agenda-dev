@@ -27,10 +27,11 @@
     "ngstorage": "~0.3.7",
     "oclazyload": "~1.0.2",
     "screenfull": "~2.0.0",
-    "simple-line-icons": "~1.0.0",
     "angular-ui-select": "~0.12.1",
     "angular-bootstrap-slider": "~0.1.18",
-    "angular-sweetalert": "latest"
+    "angular-sweetalert": "latest",
+    "simple-line-icons": "~1.0.0",
+    "ng-notify": "~0.7.1"
   },
   "devDependencies": {
     "angular-mocks": "1.3.18",

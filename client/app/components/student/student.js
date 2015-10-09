@@ -55,5 +55,19 @@ angular.module('studyAgendaApp')
         controller: 'StudentCoursesTasksCtrl',
         authenticate: true,
         hasRole: USER_ROLES.STUDENT,
+      })
+      .state('student.profile', {
+        url: 'profile',
+        templateUrl: 'app/components/account/profile/profile.html',
+        controller: 'ProfileCtrl',
+        authenticate: true,
+        hasRole: USER_ROLES.STUDENT
+      })
+      .state('student.recover', {
+        url: 'recover',
+        templateUrl: 'app/components/account/recover/recover.html',
+        controller: 'RecoverCtrl',
+        authenticate: true,
+        hasRole: USER_ROLES.STUDENT
       });
   });

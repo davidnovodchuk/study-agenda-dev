@@ -1,7 +1,7 @@
 'use strict';
 
 // APP START
-// ----------------------------------- 
+// -----------------------------------
 
 var App = angular.module('studyAgendaApp', [
     'ngRoute',
@@ -20,9 +20,10 @@ var App = angular.module('studyAgendaApp', [
     'ui.select',
     'studyAgendaApp.directives',
     'ngDialog',
+    'ngNotify',
     'ui.bootstrap-slider',
     'oitozero.ngSweetAlert'
-  ]);
+]);
 
 App.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
   $urlRouterProvider
@@ -98,7 +99,7 @@ App.run(function ($rootScope, $state, $stateParams, $window, $templateCache) {
   });*/
 
   // Scope Globals
-  // ----------------------------------- 
+  // -----------------------------------
   $rootScope.app = {
     name: 'Study Agenda',
     description: 'Organize Your Study Time',
@@ -131,7 +132,7 @@ App.config(function ($stateProvider) {
  $stateProvider
   .state('app', {
     authenticate: true,
-    controller: ['$rootScope', '$state', 'USER_ROLES', 
+    controller: ['$rootScope', '$state', 'USER_ROLES',
      function($rootScope, $state, USER_ROLES) {
       if ($rootScope.user && $rootScope.user.role === USER_ROLES.ADMIN) {
         $state.go('admin');
@@ -300,8 +301,8 @@ App
       'morris':             ['vendor/raphael/raphael.js',
                              'vendor/morris.js/morris.js',
                              'vendor/morris.js/morris.css'],
-      'loaders.css':          ['vendor/loaders.css/loaders.css'],
-      'spinkit':              ['vendor/spinkit/css/spinkit.css']
+      'loaders.css':        ['vendor/loaders.css/loaders.css'],
+      'spinkit':            ['vendor/spinkit/css/spinkit.css'],
     }
   })
 ;
@@ -467,7 +468,7 @@ App.filter('propsFilter', function() {
 });
 /**=========================================================
  * Module: calendar-ui.js
- * This script handle the calendar demo with draggable 
+ * This script handle the calendar demo with draggable
  * events and events creations
  =========================================================*/
 
@@ -485,9 +486,9 @@ App.controller('CalendarController', ['$scope', function($scope) {
    * @param jQuery Object elements Set of element as jQuery objects
    */
   var ExternalEvent = function (elements) {
-      
+
       if (!elements) return;
-      
+
       elements.each(function() {
           var $this = $(this);
           // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
@@ -537,9 +538,9 @@ App.controller('CalendarController', ['$scope', function($scope) {
               day:   'day'
           },
           editable: true,
-          droppable: true, // this allows things to be dropped onto the calendar 
+          droppable: true, // this allows things to be dropped onto the calendar
           drop: function(date, allDay) { // this function is called when something is dropped
-              
+
               var $this = $(this),
                   // retrieve the dropped element's stored Event Object
                   originalEventObject = $this.data('calendarEventObject');
@@ -557,10 +558,10 @@ App.controller('CalendarController', ['$scope', function($scope) {
               clonedEventObject.borderColor = $this.css('border-color');
 
               // render the event on the calendar
-              // the last `true` argument determines if the event "sticks" 
+              // the last `true` argument determines if the event "sticks"
               // (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
               calElement.fullCalendar('renderEvent', clonedEventObject, true);
-              
+
               // if necessary remove the element from the list
               if(removeAfterDrop.is(':checked')) {
                 $this.remove();
@@ -594,17 +595,17 @@ App.controller('CalendarController', ['$scope', function($scope) {
     // Color switchers
     var eventColorSelector = $('.external-event-color-selector .circle');
 
-    // Trash events Droparea 
+    // Trash events Droparea
     $('.external-events-trash').droppable({
       accept:       '.fc-event',
       activeClass:  'active',
       hoverClass:   'hovered',
       tolerance:    'touch',
       drop: function(event, ui) {
-        
+
         // You can use this function to send an ajax request
         // to remove the event from the repository
-        
+
         if(draggingEvent) {
           var eid = draggingEvent.id || draggingEvent._id;
           // Remove the event
@@ -630,12 +631,12 @@ App.controller('CalendarController', ['$scope', function($scope) {
 
     eventAddBtn.click(function(e) {
         e.preventDefault();
-        
+
         // Get event name from input
         var val = eventNameInput.val();
         // Dont allow empty values
         if ($.trim(val) === '') return;
-        
+
         // Create new event element
         var newEvent = $('<div/>').css({
                             'background-color': currColor,
@@ -669,7 +670,7 @@ App.controller('CalendarController', ['$scope', function($scope) {
               {
                   title: 'All Day Event',
                   start: new Date(y, m, 1),
-                  backgroundColor: '#f56954', //red 
+                  backgroundColor: '#f56954', //red
                   borderColor: '#f56954' //red
               },
               {
@@ -802,7 +803,7 @@ App.controller('ChartJSController', ["$scope", "colors", function($scope, colors
 
 
 // Line chart
-// ----------------------------------- 
+// -----------------------------------
 
   $scope.lineData = {
       labels : ['January','February','March','April','May','June','July'],
@@ -848,7 +849,7 @@ App.controller('ChartJSController', ["$scope", "colors", function($scope, colors
 
 
 // Bar chart
-// ----------------------------------- 
+// -----------------------------------
 
   $scope.barData = {
       labels : ['January','February','March','April','May','June','July'],
@@ -869,7 +870,7 @@ App.controller('ChartJSController', ["$scope", "colors", function($scope, colors
         }
       ]
   };
-  
+
   $scope.barOptions = {
     scaleBeginAtZero : true,
     scaleShowGridLines : true,
@@ -883,8 +884,8 @@ App.controller('ChartJSController', ["$scope", "colors", function($scope, colors
 
 
 //  Doughnut chart
-// ----------------------------------- 
-  
+// -----------------------------------
+
   $scope.doughnutData = [
     {
       value: 300,
@@ -918,7 +919,7 @@ App.controller('ChartJSController', ["$scope", "colors", function($scope, colors
   };
 
 // Pie chart
-// ----------------------------------- 
+// -----------------------------------
 
   $scope.pieData =[
         {
@@ -953,8 +954,8 @@ App.controller('ChartJSController', ["$scope", "colors", function($scope, colors
   };
 
 // Polar chart
-// ----------------------------------- 
-  
+// -----------------------------------
+
   $scope.polarData = [
         {
           value: 300,
@@ -1000,7 +1001,7 @@ App.controller('ChartJSController', ["$scope", "colors", function($scope, colors
 
 
 // Radar chart
-// ----------------------------------- 
+// -----------------------------------
 
   $scope.radarData = {
     labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
@@ -1060,7 +1061,7 @@ App.controller('ChartistController', ['$scope', function ($scope) {
   'use strict';
 
   // Line chart
-  // ----------------------------------- 
+  // -----------------------------------
 
   $scope.lineData = {
     labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
@@ -1080,7 +1081,7 @@ App.controller('ChartistController', ['$scope', function ($scope) {
   };
 
   // Bar bipolar
-  // ----------------------------------- 
+  // -----------------------------------
 
   $scope.barBipolarOptions = {
     high: 10,
@@ -1101,7 +1102,7 @@ App.controller('ChartistController', ['$scope', function ($scope) {
 
 
   // Bar horizontal
-  // ----------------------------------- 
+  // -----------------------------------
 
   $scope.barHorizontalData = {
     labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
@@ -1122,7 +1123,7 @@ App.controller('ChartistController', ['$scope', function ($scope) {
   };
 
   // Smil Animations
-  // ----------------------------------- 
+  // -----------------------------------
 
   // Let's put a sequence number aside so we can use it in the event callbacks
   var seq = 0,
@@ -1247,7 +1248,7 @@ App.controller('ChartistController', ['$scope', function ($scope) {
 
 
   // SVG PATH animation
-  // ----------------------------------- 
+  // -----------------------------------
 
   $scope.pathData = {
     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -1290,7 +1291,7 @@ App.controller('ChartistController', ['$scope', function ($scope) {
  =========================================================*/
 
 App.controller('CodeEditorController', ['$scope', '$http', '$ocLazyLoad', function ($scope, $http, $ocLazyLoad) {
-  
+
   $scope.editorThemes = ['3024-day','3024-night','ambiance-mobile','ambiance','base16-dark','base16-light','blackboard','cobalt','eclipse','elegant','erlang-dark','lesser-dark','mbo','mdn-like','midnight','monokai','neat','neo','night','paraiso-dark','paraiso-light','pastel-on-dark','rubyblue','solarized','the-matrix','tomorrow-night-eighties','twilight','vibrant-ink','xq-dark','xq-light'];
 
   $scope.editorOpts = {
@@ -1304,7 +1305,7 @@ App.controller('CodeEditorController', ['$scope', '$http', '$ocLazyLoad', functi
   $scope.refreshEditor = 0;
 
   // Load dinamically the stylesheet for the selected theme
-  // You can use ozLazyLoad to load also the mode js based 
+  // You can use ozLazyLoad to load also the mode js based
   // on the file extension that is loaded (see handle_filetree)
   $scope.loadTheme = function() {
     var BASE = 'vendor/codemirror/theme/';
@@ -1323,7 +1324,7 @@ App.controller('CodeEditorController', ['$scope', '$http', '$ocLazyLoad', functi
 
   var selectedBranch;
   $scope.handle_filetree = function(branch) {
-    
+
     selectedBranch = branch;
 
     var basePath = 'server/editor/';
@@ -1336,11 +1337,11 @@ App.controller('CodeEditorController', ['$scope', '$http', '$ocLazyLoad', functi
       $http
         .get( basePath + branch.path )
         .success(function(response){
-          
+
           console.log('Loaded.. ' + branch.path);
           // set the new code into the editor
           $scope.code = response;
-          
+
           $scope.editorOpts.mode = detectMode(branch.path);
           console.log( 'Mode is: ' + $scope.editorOpts.mode);
 
@@ -1370,7 +1371,7 @@ App.controller('CodeEditorController', ['$scope', '$http', '$ocLazyLoad', functi
     if ( b && b.children.length === 0 ) {
       b = tree.get_parent_branch(b);
     }
-    
+
     return tree.add_branch(b, {
       "label": "another.html",
       "path": "source/another.html"
@@ -1554,14 +1555,14 @@ App.controller('DatepickerDemoCtrl', ['$scope', function ($scope) {
 /**=========================================================
  * Module: demo-dialog.js
  * Demo for multiple ngDialog Usage
- * - ngDialogProvider for default values not supported 
+ * - ngDialogProvider for default values not supported
  *   using lazy loader. Include plugin in base.js instead.
  =========================================================*/
 
 // Called from the route state. 'tpl' is resolved before
 App.controller('DialogIntroCtrl', ['$scope', 'ngDialog', 'tpl', function($scope, ngDialog, tpl) {
   'user strict';
-  
+
   // share with other controllers
   $scope.tpl = tpl;
   // open dialog window
@@ -1789,9 +1790,9 @@ App.controller('FormDemoCtrl', ["$scope", "$resource", function($scope, $resourc
 
   // the following allow to request array $resource instead of object (default)
   var actions = {'get': {method: 'GET', isArray: true}};
-  
+
   // Tags inputs
-  // ----------------------------------- 
+  // -----------------------------------
   var Cities = $resource('server/cities.json', {}, actions);
 
   Cities.get(function(data){
@@ -1813,7 +1814,7 @@ App.controller('FormDemoCtrl', ["$scope", "$resource", function($scope, $resourc
   $scope.slider8 = [250,750];
 
   // Chosen data
-  // ----------------------------------- 
+  // -----------------------------------
 
   var States = $resource('server/chosen-states.json', {},  {'query':    {method:'GET', isArray:true} });
 
@@ -1825,14 +1826,14 @@ App.controller('FormDemoCtrl', ["$scope", "$resource", function($scope, $resourc
     return false;
   };
 
-  // Angular wysiwyg 
-  // ----------------------------------- 
+  // Angular wysiwyg
+  // -----------------------------------
 
   $scope.wysiwygContent = '<p> Write something here.. </p>';
 
   // Text Angular (wysiwyg)
-  // ----------------------------------- 
-  
+  // -----------------------------------
+
   $scope.htmlContent = '<h2>Try me!</h2><p>textAngular is a super cool WYSIWYG Text Editor directive for AngularJS</p><p><b>Features:</b></p><ol><li>Automatic Seamless Two-Way-Binding</li><li style="color: blue;">Super Easy <b>Theming</b> Options</li><li>Simple Editor Instance Creation</li><li>Safely Parses Html for Custom Toolbar Icons</li><li>Doesn&apos;t Use an iFrame</li><li>Works with Firefox, Chrome, and IE8+</li></ol><p><a href="https://github.com/fraywing/textAngular">Source</a> </p>';
 
 
@@ -1854,12 +1855,12 @@ App.controller('NotifyDemoCtrl', ['$scope', 'Notify', '$timeout', function Alert
 
   // Service usage example
   $timeout(function(){
-    
-    Notify.alert( 
-        'This is a custom message from notify..', 
+
+    Notify.alert(
+        'This is a custom message from notify..',
         {status: 'success'}
     );
-  
+
   }, 500);
 
 
@@ -1894,29 +1895,29 @@ App.controller('PaginationDemoCtrl', ['$scope', function ($scope) {
 App.controller('PanelsCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
 
   // PANEL COLLAPSE EVENTS
-  // ----------------------------------- 
+  // -----------------------------------
 
   // We can use panel id name for the boolean flag to [un]collapse the panel
   $scope.$watch('panelDemo1',function(newVal){
-      
+
       console.log('panelDemo1 collapsed: ' + newVal);
 
   });
 
 
   // PANEL DISMISS EVENTS
-  // ----------------------------------- 
+  // -----------------------------------
 
   // Before remove panel
   $scope.$on('panel-remove', function(event, id, deferred){
-    
+
     console.log('Panel #' + id + ' removing');
-    
+
     // Here is obligatory to call the resolve() if we pretend to remove the panel finally
     // Not calling resolve() will NOT remove the panel
     // It's up to your app to decide if panel should be removed or not
     deferred.resolve();
-  
+
   });
 
   // Panel removed ( only if above was resolved() )
@@ -1928,18 +1929,18 @@ App.controller('PanelsCtrl', ['$scope', '$timeout', function ($scope, $timeout) 
 
 
   // PANEL REFRESH EVENTS
-  // ----------------------------------- 
+  // -----------------------------------
 
   $scope.$on('panel-refresh', function(event, id) {
     var secs = 3;
-    
+
     console.log('Refreshing during ' + secs +'s #'+id);
 
     $timeout(function(){
-      // directive listen for to remove the spinner 
+      // directive listen for to remove the spinner
       // after we end up to perform own operations
       $scope.$broadcast('removeSpinner', id);
-      
+
       console.log('Refreshed #' + id);
 
     }, 3000);
@@ -1947,7 +1948,7 @@ App.controller('PanelsCtrl', ['$scope', '$timeout', function ($scope, $timeout) 
   });
 
   // PANELS VIA NG-REPEAT
-  // ----------------------------------- 
+  // -----------------------------------
 
   $scope.panels = [
     {
@@ -1974,7 +1975,7 @@ App.controller('PanelsCtrl', ['$scope', '$timeout', function ($scope, $timeout) 
  =========================================================*/
 
 App.controller('PopoverDemoCtrl', ['$scope', function ($scope) {
-  
+
   $scope.dynamicPopover = 'Hello, World!';
   $scope.dynamicPopoverTitle = 'Title';
 
@@ -2149,9 +2150,9 @@ App.controller('TypeaheadCtrl', ['$scope', '$http', function ($scope, $http) {
 
 App.controller('FlotChartController', ['$scope', 'ChartData', '$timeout', function($scope, ChartData, $timeout) {
   'use strict';
-  
+
   // BAR
-  // ----------------------------------- 
+  // -----------------------------------
   $scope.barData = ChartData.load('server/chart/bar.json');
   $scope.barOptions = {
       series: {
@@ -2185,7 +2186,7 @@ App.controller('FlotChartController', ['$scope', 'ChartData', '$timeout', functi
   };
 
   // BAR STACKED
-  // ----------------------------------- 
+  // -----------------------------------
   $scope.barStackeData = ChartData.load('server/chart/barstacked.json');
   $scope.barStackedOptions = {
       series: {
@@ -2222,7 +2223,7 @@ App.controller('FlotChartController', ['$scope', 'ChartData', '$timeout', functi
   };
 
   // SPLINE
-  // ----------------------------------- 
+  // -----------------------------------
   $scope.splineData = ChartData.load('server/chart/spline.json');
   $scope.splineOptions = {
       series: {
@@ -2267,7 +2268,7 @@ App.controller('FlotChartController', ['$scope', 'ChartData', '$timeout', functi
   };
 
   // AREA
-  // ----------------------------------- 
+  // -----------------------------------
   $scope.areaData = ChartData.load('server/chart/area.json');
   $scope.areaOptions = {
       series: {
@@ -2306,7 +2307,7 @@ App.controller('FlotChartController', ['$scope', 'ChartData', '$timeout', functi
   };
 
   // LINE
-  // ----------------------------------- 
+  // -----------------------------------
   $scope.lineData = ChartData.load('server/chart/line.json');
   $scope.lineOptions = {
       series: {
@@ -2341,7 +2342,7 @@ App.controller('FlotChartController', ['$scope', 'ChartData', '$timeout', functi
   };
 
   // PIE
-  // ----------------------------------- 
+  // -----------------------------------
   $scope.pieData = ChartData.load('server/chart/pie.json');
   $scope.pieOptions = {
       series: {
@@ -2367,7 +2368,7 @@ App.controller('FlotChartController', ['$scope', 'ChartData', '$timeout', functi
   };
 
   // DONUT
-  // ----------------------------------- 
+  // -----------------------------------
   $scope.donutData = ChartData.load('server/chart/donut.json');
   $scope.donutOptions = {
       series: {
@@ -2380,7 +2381,7 @@ App.controller('FlotChartController', ['$scope', 'ChartData', '$timeout', functi
 
 
   // REALTIME
-  // ----------------------------------- 
+  // -----------------------------------
   $scope.realTimeOptions = {
       series: {
         lines: { show: true, fill: true, fillColor:  { colors: ['#a0e0f3', '#23b7e5'] } },
@@ -2409,7 +2410,7 @@ App.controller('FlotChartController', ['$scope', 'ChartData', '$timeout', functi
 
   // Generate random data for realtime demo
   var data = [], totalPoints = 300;
-    
+
   update();
 
   function getRandomData() {
@@ -2441,19 +2442,19 @@ App.controller('FlotChartController', ['$scope', 'ChartData', '$timeout', functi
 
 
   // PANEL REFRESH EVENTS
-  // ----------------------------------- 
+  // -----------------------------------
 
   $scope.$on('panel-refresh', function(event, id) {
-    
+
     console.log('Simulating chart refresh during 3s on #'+id);
 
     // Instead of timeout you can request a chart data
     $timeout(function(){
-      
-      // directive listen for to remove the spinner 
+
+      // directive listen for to remove the spinner
       // after we end up to perform own operations
       $scope.$broadcast('removeSpinner', id);
-      
+
       console.log('Refreshed #' + id);
 
     }, 3000);
@@ -2462,18 +2463,18 @@ App.controller('FlotChartController', ['$scope', 'ChartData', '$timeout', functi
 
 
   // PANEL DISMISS EVENTS
-  // ----------------------------------- 
+  // -----------------------------------
 
   // Before remove panel
   $scope.$on('panel-remove', function(event, id, deferred){
-    
+
     console.log('Panel #' + id + ' removing');
-    
+
     // Here is obligatory to call the resolve() if we pretend to remove the panel finally
     // Not calling resolve() will NOT remove the panel
     // It's up to your app to decide if panel should be removed or not
     deferred.resolve();
-  
+
   });
 
   // Panel removed ( only if above was resolved() )
@@ -2482,9 +2483,9 @@ App.controller('FlotChartController', ['$scope', 'ChartData', '$timeout', functi
     console.log('Panel #' + id + ' removed');
 
   });
-  
+
 }]).service('ChartData', ["$resource", function($resource){
-  
+
   var opts = {
       get: { method: 'GET', isArray: true }
     };
@@ -2519,7 +2520,7 @@ App.controller('ImageCropController', ["$scope", function($scope) {
     if(file)
       reader.readAsDataURL(file);
   };
-  
+
   angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
 
 }]);
@@ -2530,7 +2531,7 @@ App.controller('ImageCropController', ["$scope", function($scope) {
 
 App.controller('FormValidationController', ["$scope", function ($scope) {
   'use strict';
-  
+
   $scope.notBlackListed = function(value) {
     var blacklist = ['some@mail.com','another@email.com'];
     return blacklist.indexOf(value) === -1;
@@ -2593,7 +2594,7 @@ App.controller('FormxEditableController', ['$scope', 'editableOptions', 'editabl
     };
 
     // Local select
-    // ----------------------------------- 
+    // -----------------------------------
 
     $scope.user2 = {
       status: 2
@@ -2612,7 +2613,7 @@ App.controller('FormxEditableController', ['$scope', 'editableOptions', 'editabl
     };
 
     // select remote
-    // ----------------------------------- 
+    // -----------------------------------
 
     $scope.user3 = {
       id: 4,
@@ -2635,7 +2636,7 @@ App.controller('FormxEditableController', ['$scope', 'editableOptions', 'editabl
     });
 
     // Typeahead
-    // ----------------------------------- 
+    // -----------------------------------
 
     $scope.user4 = {
       state: 'Arizona'
@@ -2681,7 +2682,7 @@ App.controller('ModalGmapController', ['$scope', '$modal', '$timeout', function 
           map: $scope.myMapModal,
           position: position
         });
-        // 2. Trigger a resize so the map is redrawed 
+        // 2. Trigger a resize so the map is redrawed
         google.maps.event.trigger($scope.myMapModal, 'resize');
         // 3. Move to the center if it is misaligned
         $scope.myMapModal.panTo(position);
@@ -2712,7 +2713,7 @@ App.controller('GMapController', ["$scope", "$timeout", function($scope, $timeou
       new google.maps.LatLng(33.790807, -117.835734),
       new google.maps.LatLng(33.787453, -117.835858)
     ];
-  
+
   $scope.addMarker = addMarker;
   // we use timeout to wait maps to be ready before add a markers
   $timeout(function(){
@@ -2764,7 +2765,7 @@ App.controller('GMapController', ["$scope", "$timeout", function($scope, $timeou
   };
 
   ///////////////
-  
+
   function addMarker(map, position) {
     return new google.maps.Marker({
       map: map,
@@ -2775,7 +2776,7 @@ App.controller('GMapController', ["$scope", "$timeout", function($scope, $timeou
 }]);
 /**=========================================================
  * Module: calendar-ui.js
- * This script handle the calendar demo with draggable 
+ * This script handle the calendar demo with draggable
  * events and events creations
  =========================================================*/
 
@@ -2814,7 +2815,7 @@ App.controller('InfiniteScrollController', ["$scope", "$timeout", function($scop
  =========================================================*/
 
 App.controller('LocalizationController', ["$rootScope", "tmhDynamicLocale", "$locale", function($rootScope, tmhDynamicLocale, $locale) {
-  
+
   $rootScope.availableLocales = {
     'en': 'English',
     'es': 'Spanish',
@@ -2824,11 +2825,11 @@ App.controller('LocalizationController', ["$rootScope", "tmhDynamicLocale", "$lo
     'ja': 'Japanese',
     'ko': 'Korean',
     'zh': 'Chinese'};
-  
+
   $rootScope.model = {selectedLocale: 'en'};
-  
+
   $rootScope.$locale = $locale;
-  
+
   $rootScope.changeLocale = tmhDynamicLocale.set;
 
 }]);
@@ -2915,7 +2916,7 @@ App.controller('AppController',
     $rootScope.app.layout.horizontal = ( $rootScope.$stateParams.layout == 'app-h') ;
 
     // Loading bar transition
-    // ----------------------------------- 
+    // -----------------------------------
     var thBar;
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         if($('.wrapper > section').length) // check if bar container exists
@@ -2979,7 +2980,7 @@ App.controller('AppController',
       $localStorage.layout = $scope.app.layout;
     }, true);
 
-    
+
     // Allows to use branding color with interpolation
     // {{ colorByName('primary') }}
     $scope.colorByName = colors.byName;
@@ -3066,7 +3067,7 @@ App.controller('MasonryDeckController', ['$scope', 'RouteHelpers', function ($sc
         return {
             restrict: 'A',
 
-            link: function(scope, element, attrs) {   
+            link: function(scope, element, attrs) {
                 var cssClass = attrs.loadedclass;
 
                 element.bind('load', function (e) {
@@ -3278,7 +3279,7 @@ App.controller('AbnTestController', ['$scope', '$timeout', '$resource', function
       ]
     }
   ];
-  
+
   var treedata_geography = [
     {
       label: 'North America',
@@ -3320,31 +3321,31 @@ App.controller('AbnTestController', ['$scope', '$timeout', '$resource', function
     }
     return $scope.my_data;
   };
-  
+
   var tree;
   // This is our API control variable
   $scope.my_tree = tree = {};
   $scope.try_async_load = function() {
-    
+
     $scope.my_data = [];
     $scope.doing_async = true;
-    
+
     // Request tree data via $resource
     var remoteTree = $resource('server/treedata.json');
-    
+
     return remoteTree.get(function(res){
-      
+
       $scope.my_data = res.data;
 
       $scope.doing_async = false;
-    
+
       return tree.expand_all();
-    
-    // we must return a promise so the plugin 
+
+    // we must return a promise so the plugin
     // can watch when it's resolved
     }).$promise;
   };
-  
+
   // Adds a new branch to the tree
   $scope.try_adding_a_branch = function() {
     var b;
@@ -3357,7 +3358,7 @@ App.controller('AbnTestController', ['$scope', '$timeout', '$resource', function
       }
     });
   };
-  
+
 }]);
 
 /**=========================================================
@@ -3366,7 +3367,7 @@ App.controller('AbnTestController', ['$scope', '$timeout', '$resource', function
  =========================================================*/
 
 App.controller('NestableController', ['$scope', function($scope) {
-  
+
   'use strict';
 
   $scope.items =  [
@@ -3542,7 +3543,7 @@ function NGTableCtrl($scope, $filter, ngTableParams, $resource, $timeout, ngTabl
   ];
 
   // SELECT ROWS
-  // ----------------------------------- 
+  // -----------------------------------
 
   vm.data = data;
 
@@ -3570,7 +3571,7 @@ function NGTableCtrl($scope, $filter, ngTableParams, $resource, $timeout, ngTabl
   };
 
   // EXPORT CSV
-  // -----------------------------------  
+  // -----------------------------------
 
   var data4 = [{name: "Moroni", age: 50},
       {name: "Tiancum", age: 43},
@@ -3602,7 +3603,7 @@ function NGTableCtrl($scope, $filter, ngTableParams, $resource, $timeout, ngTabl
 
 
   // SORTING
-  // ----------------------------------- 
+  // -----------------------------------
 
 
 
@@ -3619,13 +3620,13 @@ function NGTableCtrl($scope, $filter, ngTableParams, $resource, $timeout, ngTabl
           var orderedData = params.sorting() ?
                   $filter('orderBy')(data, params.orderBy()) :
                   data;
-  
+
           $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
       }
   });
 
   // FILTERS
-  // ----------------------------------- 
+  // -----------------------------------
 
   vm.tableParams2 = new ngTableParams({
       page: 1,            // show first page
@@ -3651,7 +3652,7 @@ function NGTableCtrl($scope, $filter, ngTableParams, $resource, $timeout, ngTabl
   });
 
   // AJAX
-  
+
   var Api = $resource('server/table-data.json');
 
   vm.tableParams5 = new ngTableParams({
@@ -3661,10 +3662,10 @@ function NGTableCtrl($scope, $filter, ngTableParams, $resource, $timeout, ngTabl
       total: 0,           // length of data
       counts: [],         // hide page counts control
       getData: function($defer, params) {
-          
+
           // Service using cache to avoid mutiple requests
           ngTableDataService.getData( $defer, params, Api);
-          
+
           /* direct ajax request to api (perform result pagination on the server)
           Api.get(params.url(), function(data) {
               $timeout(function() {
@@ -3699,7 +3700,7 @@ App.service('ngTableDataService', function() {
       else {
         filterdata($defer, params);
       }
-      
+
       function filterdata($defer, params) {
         var from = (params.page() - 1) * params.count();
         var to = params.page() * params.count();
@@ -3711,7 +3712,7 @@ App.service('ngTableDataService', function() {
 
     }
   };
-  
+
   return TableData;
 
 });
@@ -3732,7 +3733,7 @@ App.controller('NotificationController', ['$scope', function($scope){
     return pos;
   };
 
-  // Predicts tooltip top position 
+  // Predicts tooltip top position
   // based on the trigger element
   function predictTooltipTop(el) {
     var top = el.offsetTop;
@@ -3745,7 +3746,7 @@ App.controller('NotificationController', ['$scope', function($scope){
     return (top - height) - (window.pageYOffset);
   }
 
-  // Predicts tooltip top position 
+  // Predicts tooltip top position
   // based on the trigger element
   function predictTooltipLeft(el) {
     var left = el.offsetLeft;
@@ -3805,13 +3806,13 @@ App.controller('portletsController', [ '$scope', '$timeout', '$window', function
   function savePortletOrder(event, ui) {
     var self = event.target;
     var data = angular.fromJson($scope.$storage[storageKeyName]);
-    
+
     if(!data) { data = {}; }
 
     data[self.id] = $(self).sortable('toArray');
 
     $scope.$storage[storageKeyName] = angular.toJson(data);
-      
+
     // save portlet size to avoid jumps
     saveListSize.apply(self);
   }
@@ -3821,13 +3822,13 @@ App.controller('portletsController', [ '$scope', '$timeout', '$window', function
     var data = angular.fromJson($scope.$storage[storageKeyName]);
 
     if(data) {
-      
+
       var porletId = self.id,
           panels   = data[porletId];
 
       if(panels) {
         var portlet = $('#'+porletId);
-        
+
         $.each(panels, function(index, value) {
            $('#'+value).appendTo(portlet);
         });
@@ -3920,7 +3921,7 @@ App.controller('ChartRickshawController', ['$scope', function($scope) {
 
   $scope.rendererChanged(0);
   $scope.paletteChanged(0);
-  $scope.changeSeriesData(0);  
+  $scope.changeSeriesData(0);
 
   // Graph 2
 
@@ -3989,8 +3990,8 @@ App.controller('SidebarController', ['$rootScope', '$scope', '$state', '$http', 
     };
 
     // Load menu from json file
-    // ----------------------------------- 
-    
+    // -----------------------------------
+
     $scope.getMenuItemPropClasses = function(item) {
       return (item.heading ? 'nav-heading' : '') +
              (isActive(item) ? ' active' : '') ;
@@ -4078,7 +4079,7 @@ App.controller('SidebarController', ['$rootScope', '$scope', '$state', '$http', 
       // $scope.loadSidebarMenu();
 
     // Handle sidebar collapse items
-    // ----------------------------------- 
+    // -----------------------------------
 
     $scope.addCollapse = function($index, item) {
       collapseList[$index] = $rootScope.app.layout.asideHover ? true : !isActive(item);
@@ -4104,11 +4105,11 @@ App.controller('SidebarController', ['$rootScope', '$scope', '$state', '$http', 
       else if ( isParentItem ) {
         closeAllBut(-1);
       }
-      
+
       $scope.lastEventFromChild = isChild($index);
 
       return true;
-    
+
     };
 
     function closeAllBut(index) {
@@ -4148,7 +4149,7 @@ App.controller('SortableController', ['$scope', function($scope) {
   $scope.sortableCallback = function (sourceModel, destModel, start, end) {
     console.log(start + ' -> ' + end);
   };
-  
+
   $scope.sortableOptions = {
       placeholder: '<div class="box-placeholder p0 m0"><div></div></div>',
       forcePlaceholderSize: true
@@ -4178,44 +4179,44 @@ function SweetAlertController(SweetAlert) {
     }
 
     vm.demo4 = function() {
-      SweetAlert.swal({   
-        title: "Are you sure?",   
-        text: "Your will not be able to recover this imaginary file!",   
-        type: "warning",   
-        showCancelButton: true,   
-        confirmButtonColor: "#DD6B55",   
+      SweetAlert.swal({
+        title: "Are you sure?",
+        text: "Your will not be able to recover this imaginary file!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
         confirmButtonText: "Yes, delete it!",
         closeOnConfirm: false
-      },  function(){  
+      },  function(){
         SweetAlert.swal("Booyah!");
       });
     }
 
     vm.demo5 = function() {
-      SweetAlert.swal({   
-        title: "Are you sure?",   
-        text: "Your will not be able to recover this imaginary file!",   
-        type: "warning",   
-        showCancelButton: true,   
-        confirmButtonColor: "#DD6B55",   
-        confirmButtonText: "Yes, delete it!",   
-        cancelButtonText: "No, cancel plx!",   
-        closeOnConfirm: false,   
-        closeOnCancel: false 
-      }, function(isConfirm){  
-        if (isConfirm) {     
-          SweetAlert.swal("Deleted!", "Your imaginary file has been deleted.", "success");   
-        } else {     
-          SweetAlert.swal("Cancelled", "Your imaginary file is safe :)", "error");   
-        } 
+      SweetAlert.swal({
+        title: "Are you sure?",
+        text: "Your will not be able to recover this imaginary file!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel plx!",
+        closeOnConfirm: false,
+        closeOnCancel: false
+      }, function(isConfirm){
+        if (isConfirm) {
+          SweetAlert.swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        } else {
+          SweetAlert.swal("Cancelled", "Your imaginary file is safe :)", "error");
+        }
       });
     }
 
     vm.demo6 = function() {
-      SweetAlert.swal({   
-        title: "Sweet!",   
-        text: "Here's a custom image.",   
-        imageUrl: "http://oitozero.com/img/avatar.jpg" 
+      SweetAlert.swal({
+        title: "Sweet!",
+        text: "Here's a custom image.",
+        imageUrl: "http://oitozero.com/img/avatar.jpg"
       });
     }
 
@@ -4230,7 +4231,7 @@ App.controller('TablexEditableController', ['$scope', '$filter', '$http', 'edita
   function($scope, $filter, $http, editableOptions, editableThemes, $q) {
 
   // editable row
-  // ----------------------------------- 
+  // -----------------------------------
   $scope.users = [
     {id: 1, name: 'awesome user1', status: 2, group: 4, groupName: 'admin'},
     {id: 2, name: 'awesome user2', status: undefined, group: 3, groupName: 'vip'},
@@ -4299,7 +4300,7 @@ App.controller('TablexEditableController', ['$scope', '$filter', '$http', 'edita
   };
 
   // editable column
-  // ----------------------------------- 
+  // -----------------------------------
 
 
   $scope.saveColumn = function(column) {
@@ -4312,7 +4313,7 @@ App.controller('TablexEditableController', ['$scope', '$filter', '$http', 'edita
   };
 
   // editable table
-  // ----------------------------------- 
+  // -----------------------------------
 
   // filter users to show
   $scope.filterUser = function(user) {
@@ -4335,7 +4336,7 @@ App.controller('TablexEditableController', ['$scope', '$filter', '$http', 'edita
       if (user.isDeleted) {
         delete user.isDeleted;
       }
-      // remove new 
+      // remove new
       if (user.isNew) {
         $scope.users.splice(i, 1);
       }
@@ -4351,7 +4352,7 @@ App.controller('TablexEditableController', ['$scope', '$filter', '$http', 'edita
       if (user.isDeleted) {
         $scope.users.splice(i, 1);
       }
-      // mark as not new 
+      // mark as not new
       if (user.isNew) {
         user.isNew = false;
       }
@@ -4367,7 +4368,7 @@ App.controller('TablexEditableController', ['$scope', '$filter', '$http', 'edita
 }]);
 
 App.controller("TodoController", ['$scope', '$filter', function($scope, $filter) {
-  
+
   $scope.items = [
     {
       todo: {title: "Meeting with Mark at 7am.", description: "Pellentesque convallis mauris eu elit imperdiet quis eleifend quam aliquet. "},
@@ -4382,15 +4383,15 @@ App.controller("TodoController", ['$scope', '$filter', function($scope, $filter)
       complete: false
     }
     ];
-  
+
   $scope.editingTodo = false;
   $scope.todo = {};
 
   $scope.addTodo = function() {
-    
+
     if( $scope.todo.title === "" ) return;
     if( !$scope.todo.description ) $scope.todo.description = "";
-    
+
     if( $scope.editingTodo ) {
       $scope.todo = {};
       $scope.editingTodo = false;
@@ -4401,7 +4402,7 @@ App.controller("TodoController", ['$scope', '$filter', function($scope, $filter)
       $scope.todo.description = "";
     }
   };
-  
+
   $scope.editTodo = function(index, $event) {
     $event.preventDefault();
     $event.stopPropagation();
@@ -4412,7 +4413,7 @@ App.controller("TodoController", ['$scope', '$filter', function($scope, $filter)
   $scope.removeTodo = function(index, $event) {
     $scope.items.splice(index, 1);
   };
-  
+
   $scope.clearAll = function() {
     $scope.items = [];
   };
@@ -4433,7 +4434,7 @@ App.controller("TodoController", ['$scope', '$filter', function($scope, $filter)
  * Module: tour.js
  =========================================================*/
 App.controller('TourCtrl', ['$scope',function($scope){
-  
+
   // BootstrapTour is not compatible with z-index based layout
   // so adding position:static for this case makes the browser
   // to ignore the property
@@ -4449,9 +4450,9 @@ App.controller('TourCtrl', ['$scope',function($scope){
  * Module: UIGridController
   =========================================================*/
 App.controller('UIGridController', ['$scope', 'uiGridConstants', '$http', function($scope, uiGridConstants, $http) {
-  
+
   // Basic example
-  // ----------------------------------- 
+  // -----------------------------------
 
   $scope.gridOptions = {
     rowHeight: 34,
@@ -4558,12 +4559,12 @@ App.controller('UIGridController', ['$scope', 'uiGridConstants', '$http', functi
       }
     ]
   };
-  
+
   // Complex example
-  // ----------------------------------- 
+  // -----------------------------------
 
   var data = [];
-   
+
   $scope.gridOptionsComplex = {
       showGridFooter: true,
       showColumnFooter: true,
@@ -4574,10 +4575,10 @@ App.controller('UIGridController', ['$scope', 'uiGridConstants', '$http', functi
           { field: 'age', aggregationType: uiGridConstants.aggregationTypes.avg, aggregationHideLabel: true, width: '13%' },
           { name: 'ageMin', field: 'age', aggregationType: uiGridConstants.aggregationTypes.min, width: '13%', displayName: 'Age for min' },
           { name: 'ageMax', field: 'age', aggregationType: uiGridConstants.aggregationTypes.max, width: '13%', displayName: 'Age for max' },
-          { name: 'customCellTemplate', 
-            field: 'age', 
-            width: '14%', 
-            footerCellTemplate: '<div class="ui-grid-cell-contents bg-info text-center">Custom HTML</div>' 
+          { name: 'customCellTemplate',
+            field: 'age',
+            width: '14%',
+            footerCellTemplate: '<div class="ui-grid-cell-contents bg-info text-center">Custom HTML</div>'
           },
           { name: 'registered', field: 'registered', width: '20%', cellFilter: 'date', footerCellFilter: 'date', aggregationType: uiGridConstants.aggregationTypes.max }
       ],
@@ -4586,7 +4587,7 @@ App.controller('UIGridController', ['$scope', 'uiGridConstants', '$http', functi
         $scope.gridApi = gridApi;
       }
   }
-   
+
   $http.get('server/uigrid-complex.json')
     .success(function(data) {
       data.forEach( function(row) {
@@ -4605,7 +4606,7 @@ App.controller('UIGridController', ['$scope', 'uiGridConstants', '$http', functi
         { name: 'company' }
       ]
     };
-   
+
     $http.get('server/uigrid-100.json')
     .success(function (data) {
       $scope.gridOptions1.data = data;
@@ -4975,7 +4976,7 @@ App.filter('propsFilter', function() {
  =========================================================*/
 
 App.controller('FileUploadController', ['$scope', 'FileUploader', function($scope, FileUploader) {
-    
+
     var uploader = $scope.uploader = new FileUploader({
         url: 'server/upload.php'
     });
@@ -5030,11 +5031,11 @@ App.controller('FileUploadController', ['$scope', 'FileUploader', function($scop
 App.controller('UserBlockController', ['$scope', function($scope) {
 
   $scope.userBlockVisible = true;
-  
+
   $scope.$on('toggleUserBlock', function(event, args) {
 
     $scope.userBlockVisible = ! $scope.userBlockVisible;
-    
+
   });
 
 }]);
@@ -5059,7 +5060,7 @@ App.controller('VectorMapController', ['$scope', function($scope) {
     'US': 839,     // USA
     'SA': 410      // Saudi Arabia
   };
-  
+
   $scope.markersData = [
     { latLng:[41.90, 12.45],  name:'Vatican City'          },
     { latLng:[43.73, 7.41],   name:'Monaco'                },
@@ -5167,7 +5168,7 @@ App.directive("animateEnabled", ["$animate", function ($animate) {
 }]);
 /**=========================================================
  * Module: chart.js
- * Wrapper directive for chartJS. 
+ * Wrapper directive for chartJS.
  * Based on https://gist.github.com/AndreasHeiberg/9837868
  =========================================================*/
 
@@ -5281,12 +5282,12 @@ App.directive('classyloader', ["$timeout", "Utils", function($timeout, Utils) {
   return {
     restrict: 'A',
     link: function(scope, element, attrs) {
-      // run after interpolation  
+      // run after interpolation
       $timeout(function(){
-  
+
         var $element = $(element),
             options  = $element.data();
-        
+
         // At lease we need a data-percentage attribute
         if(options) {
           if( options.triggerInView ) {
@@ -5331,12 +5332,12 @@ App.directive('resetKey',  ['$state','$rootScope', function($state, $rootScope) 
       resetKey: '='
     },
     link: function(scope, element, attrs) {
-      
+
       scope.resetKey = attrs.resetKey;
 
     },
     controller: ["$scope", "$element", function($scope, $element) {
-    
+
       $element.on('click', function (e) {
           e.preventDefault();
 
@@ -5364,10 +5365,10 @@ App.directive('filestyle', function() {
     restrict: 'A',
     controller: ["$scope", "$element", function($scope, $element) {
       var options = $element.data();
-      
+
       // old usage support
         options.classInput = $element.data('classinput') || options.classInput;
-      
+
       $element.filestyle(options);
     }]
   };
@@ -5387,15 +5388,15 @@ App.directive('flatdoc', ['$location', function($location) {
       Flatdoc.run({
         fetcher: Flatdoc.file(attrs.src)
       });
-      
+
       var $root = $('html, body');
       $(document).on('flatdoc:ready', function() {
         var docMenu = $('[role="flatdoc-menu"]');
         docMenu.find('a').on('click', function(e) {
           e.preventDefault(); e.stopPropagation();
-          
+
           var $this = $(this);
-          
+
           docMenu.find('a.active').removeClass('active');
           $this.addClass('active');
 
@@ -5428,7 +5429,7 @@ App.directive('flot', ['$http', '$timeout', function($http, $timeout) {
     },
     link: linkFunction
   };
-  
+
   function linkFunction(scope, element, attributes) {
     var height, plot, plotArea, width;
     var heightDefault = 220;
@@ -5475,10 +5476,10 @@ App.directive('flot', ['$http', '$timeout', function($http, $timeout) {
       for(var sName in series) {
         angular.forEach(series[sName], toggleFor(sName));
       }
-      
+
       plot.setData(someData);
       plot.draw();
-      
+
       function toggleFor(sName) {
         return function (s, i){
           if(someData[i] && someData[i][sName])
@@ -5487,7 +5488,7 @@ App.directive('flot', ['$http', '$timeout', function($http, $timeout) {
       }
     }
     scope.$watch('series', onSerieToggled, true);
-    
+
     function onSrcChanged(src) {
 
       if( src ) {
@@ -5502,7 +5503,7 @@ App.directive('flot', ['$http', '$timeout', function($http, $timeout) {
         }).error(function(){
           $.error('Flot chart: Bad request.');
         });
-        
+
       }
     }
     scope.$watch('src', onSrcChanged);
@@ -5530,12 +5531,12 @@ App.directive('formWizard', ["$parse", function($parse){
   };
 
   function Wizard (quantity, validate, element) {
-    
+
     var self = this;
     self.quantity = parseInt(quantity,10);
     self.validate = validate;
     self.element = element;
-    
+
     self.init = function() {
       self.createsteps(self.quantity);
       self.go(1); // always start at fist step
@@ -5543,7 +5544,7 @@ App.directive('formWizard', ["$parse", function($parse){
     };
 
     self.go = function(step) {
-      
+
       if ( angular.isDefined(self.steps[step]) ) {
 
         if(self.validate && step !== 1) {
@@ -5600,9 +5601,9 @@ App.directive('toggleFullscreen', ['browser', function(browser) {
             e.preventDefault();
 
             if (screenfull.enabled) {
-              
+
               screenfull.toggle();
-              
+
               // Switch icon indicator
               if(screenfull.isFullscreen)
                 $(this).children('em').removeClass('fa-expand').addClass('fa-compress');
@@ -5763,7 +5764,7 @@ App.directive('searchOpen', ['navSearch', function(navSearch) {
           if (e.keyCode == 27) // ESC
             navSearch.dismiss();
         });
-        
+
       // click anywhere closes the search
       $(document).on('click', navSearch.dismiss);
       // dismissable options
@@ -5790,7 +5791,7 @@ App.directive('notify', ["$window", "Notify", function($window, Notify){
         message: '='
     },
     link: function (scope, element, attrs) {
-      
+
       element.on('click', function (e) {
         e.preventDefault();
         Notify.alert(scope.message, scope.options);
@@ -5811,7 +5812,7 @@ App.directive("now", ['dateFilter', '$interval', function(dateFilter, $interval)
     return {
       restrict: 'E',
       link: function(scope, element, attrs){
-        
+
         var format = attrs.format;
 
         function updateTime() {
@@ -5826,7 +5827,7 @@ App.directive("now", ['dateFilter', '$interval', function(dateFilter, $interval)
 }]);
 /**=========================================================
  * Module panel-tools.js
- * Directive tools to control panels. 
+ * Directive tools to control panels.
  * Allows collapse, refresh and dismiss (remove)
  * Saves panel state in browser storage
  =========================================================*/
@@ -5857,18 +5858,18 @@ App.directive('paneltool', ["$compile", "$timeout", function($compile, $timeout)
       temp += templates.refresh.replace(/{{spinner}}/g, attrs.toolRefresh);
     return temp;
   }
-  
+
   return {
     restrict: 'E',
     scope: false,
     link: function (scope, element, attrs) {
 
       var tools = scope.panelTools || attrs;
-  
+
       $timeout(function() {
         element.html(getTemplate(element, tools )).show();
         $compile(element.contents())(scope);
-        
+
         element.addClass('pull-right');
       });
 
@@ -5896,7 +5897,7 @@ App.directive('paneltool', ["$compile", "$timeout", function($compile, $timeout)
         function removeElement() {
           var deferred = $q.defer();
           var promise = deferred.promise;
-          
+
           // Communicate event destroying panel
           $scope.$emit(removeEvent, parent.attr('id'), deferred);
           promise.then(destroyMiddleware);
@@ -5934,10 +5935,10 @@ App.directive('paneltool', ["$compile", "$timeout", function($compile, $timeout)
  =========================================================*/
 .directive('panelCollapse', ['$timeout', function($timeout){
   'use strict';
-  
+
   var storageKeyName = 'panelState',
       storage;
-  
+
   return {
     restrict: 'A',
     scope: false,
@@ -5990,12 +5991,12 @@ App.directive('paneltool', ["$compile", "$timeout", function($compile, $timeout)
  =========================================================*/
 .directive('panelRefresh', ["$q", function($q){
   'use strict';
-  
+
   return {
     restrict: 'A',
     scope: false,
     controller: ["$scope", "$element", function ($scope, $element) {
-      
+
       var refreshEvent   = 'panel-refresh',
           whirlClass     = 'whirl',
           defaultSpinner = 'standard';
@@ -6036,13 +6037,13 @@ App.directive('paneltool', ["$compile", "$timeout", function($compile, $timeout)
  * Provides a simple way to run animation with a trigger
  * Requires animo.js
  =========================================================*/
- 
+
 App.directive('animate', ["$window", "Utils", function($window, Utils){
 
   'use strict';
 
   var $scroller = $(window).add('body, .wrapper');
-  
+
   return {
     restrict: 'A',
     link: function (scope, elem, attrs) {
@@ -6052,9 +6053,9 @@ App.directive('animate', ["$window", "Utils", function($window, Utils){
           offset    = $elem.data('offset'),
           delay     = $elem.data('delay')     || 100, // milliseconds
           animation = $elem.data('play')      || 'bounce';
-      
+
       if(typeof offset !== 'undefined') {
-        
+
         // test if the element starts visible
         testAnimation($elem);
         // test on scroll
@@ -6091,7 +6092,7 @@ App.directive('animate', ["$window", "Utils", function($window, Utils){
         if(target && target.length) {
           target.animo( { animation: animation } );
         }
-        
+
       });
     }
   };
@@ -6120,7 +6121,7 @@ App.directive('scrollable', function(){
  =========================================================*/
 
 App.directive('sidebar', ['$rootScope', '$timeout', '$window', 'Utils', function($rootScope, $timeout, $window, Utils) {
-  
+
   var $win  = $($window);
   var $body = $('body');
   var $scope;
@@ -6133,7 +6134,7 @@ App.directive('sidebar', ['$rootScope', '$timeout', '$window', 'Utils', function
     transclude: true,
     replace: true,
     link: function(scope, element, attrs) {
-      
+
       $scope   = scope;
       $sidebar = element;
 
@@ -6146,7 +6147,7 @@ App.directive('sidebar', ['$rootScope', '$timeout', '$window', 'Utils', function
           subNav.trigger('mouseleave');
           subNav = toggleMenuItem( $(this) );
 
-          // Used to detect click and touch events outside the sidebar          
+          // Used to detect click and touch events outside the sidebar
           sidebarAddBackdrop();
 
         }
@@ -6174,10 +6175,10 @@ App.directive('sidebar', ['$rootScope', '$timeout', '$window', 'Utils', function
 
       // Autoclose when click outside the sidebar
       if ( angular.isDefined(attrs.sidebarAnyclickClose) ) {
-            
+
         var wrapper = $('.wrapper');
         var sbclickEvent = 'click.sidebar';
-        
+
         $rootScope.$watch('app.asideToggled', watchExternalClicks);
 
       }
@@ -6216,7 +6217,7 @@ App.directive('sidebar', ['$rootScope', '$timeout', '$window', 'Utils', function
     });
   }
 
-  // Open the collapse sidebar submenu items when on touch devices 
+  // Open the collapse sidebar submenu items when on touch devices
   // - desktop only opens on hover
   function toggleTouchItem($element){
     $element
@@ -6227,13 +6228,13 @@ App.directive('sidebar', ['$rootScope', '$timeout', '$window', 'Utils', function
   }
 
   // Handles hover to open items under collapsed menu
-  // ----------------------------------- 
+  // -----------------------------------
   function toggleMenuItem($listItem) {
 
     removeFloatingNav();
 
     var ul = $listItem.children('ul');
-    
+
     if( !ul.length ) return $();
     if( $listItem.hasClass('open') ) {
       toggleTouchItem($listItem);
@@ -6245,7 +6246,7 @@ App.directive('sidebar', ['$rootScope', '$timeout', '$window', 'Utils', function
     // float aside uses extra padding on aside
     var mar = parseInt( $asideInner.css('padding-top'), 0) + parseInt( $aside.css('padding-top'), 0);
     var subNav = ul.clone().appendTo( $aside );
-    
+
     toggleTouchItem($listItem);
 
     var itemTop = ($listItem.position().top + mar) - $sidebar.scrollTop();
@@ -6284,7 +6285,7 @@ App.directive('skycon', function(){
   return {
     restrict: 'A',
     link: function(scope, element, attrs) {
-      
+
       var skycons = new Skycons({'color': (attrs.color || 'white')});
 
       element.html('<canvas width="' + attrs.width + '" height="' + attrs.height + '"></canvas>');
@@ -6300,7 +6301,7 @@ App.directive('skycon', function(){
  * Module: sparkline.js
  * SparkLines Mini Charts
  =========================================================*/
- 
+
 App.directive('sparkline', ['$timeout', '$window', function($timeout, $window){
 
   'use strict';
@@ -6340,11 +6341,11 @@ App.directive('sparkline', ['$timeout', '$window', function($timeout, $window){
 
 App.directive('checkAll', function() {
   'use strict';
-  
+
   return {
     restrict: 'A',
     controller: ["$scope", "$element", function($scope, $element){
-      
+
       $element.on('change', function() {
         var $this = $(this),
             index= $this.index() + 1,
@@ -6449,9 +6450,9 @@ App.directive('vectorMap', ['vectorMap', function(vectorMap){
             regionFill:   attrs.regionFill   || defaultColors.regionFill,
             mapName:      attrs.mapName      || 'world_mill_en'
           };
-      
+
       element.css('height', mapHeight);
-      
+
       vectorMap.init( element , options, scope.seriesData, scope.markersData);
 
     }
@@ -6478,9 +6479,9 @@ App.directive('vectorMap', ['vectorMap', function(vectorMap){
  * Module: colors.js
  * Services to retrieve global colors
  =========================================================*/
- 
+
 App.factory('colors', ['APP_COLORS', function(colors) {
-  
+
   return {
     byName: function(name) {
       return (colors[name] || '#fff');
@@ -6493,18 +6494,18 @@ App.factory('colors', ['APP_COLORS', function(colors) {
  * Module: nav-search.js
  * Services to share navbar search functions
  =========================================================*/
- 
+
 App.service('navSearch', function() {
   var navbarFormSelector = 'form.navbar-form';
   return {
     toggle: function() {
-      
+
       var navbarForm = $(navbarFormSelector);
 
       navbarForm.toggleClass('open');
-      
+
       var isOpen = navbarForm.hasClass('open');
-      
+
       navbarForm.find('input')[isOpen ? 'focus' : 'blur']();
 
     },
@@ -6785,7 +6786,7 @@ App.provider('RouteHelpers', ['APP_REQUIRES', function (appRequires) {
 
 App.service('Utils', ["$window", "APP_MEDIAQUERY", function($window, APP_MEDIAQUERY) {
     'use strict';
-    
+
     var $html = angular.element("html"),
         $win  = angular.element($window),
         $body = angular.element('body');
@@ -6939,11 +6940,11 @@ App.service('vectorMap', function() {
         }
   };
 });
-// To run this code, edit file 
+// To run this code, edit file
 // index.html or index.jade and change
 // html data-ng-app attribute from
 // angle to myAppName
-// ----------------------------------- 
+// -----------------------------------
 
 // var myApp = angular.module('myAppName', ['angle']);
 
@@ -6956,7 +6957,7 @@ App.service('vectorMap', function() {
 // myApp.config(["RouteHelpersProvider", function(RouteHelpersProvider) {
 
 //   // Custom Route definition
-  
+
 // }]);
 
 // myApp.controller('oneOfMyOwnController', ["$scope", function($scope) {
