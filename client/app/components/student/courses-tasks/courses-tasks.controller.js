@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('studyAgendaApp')
-  .controller('StudentCoursesTasksCtrl', function ($scope, $modal, TASK_MODIFICATION_TYPES, 
+  .controller('StudentCoursesTasksCtrl', function ($scope, $modal, TASK_MODIFICATION_TYPES,
     TASK_PRIVACY_TYPES, Student) {
     var getCourses = function() {
       new Student().$getCoursesTasks({id: 'me'})
@@ -98,8 +98,8 @@ angular.module('studyAgendaApp')
     };
 
     $scope.editTask = function (course, task) {
-      var editTaskModal = $modal.open({ 
-        templateUrl: 'app/shared/templates/student-manage-task/student-manage-task.html', 
+      var editTaskModal = $modal.open({
+        templateUrl: 'app/shared/templates/student-manage-task/student-manage-task.html',
         controller: 'StudentManageTaskCtrl',
         resolve: {
           student: function() {

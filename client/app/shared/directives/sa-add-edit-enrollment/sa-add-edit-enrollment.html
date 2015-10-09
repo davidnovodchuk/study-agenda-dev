@@ -1,0 +1,157 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form role="form" data-ng-submit="addEnrollment()" name="addEnrollmentForm" novalidate="" class="form-validate mb-lg">
+      <div class="form-group">
+        <label>What school do you attend?</label>
+        <ul data-ng-show="newEnrollment.school">
+          <li>{{newEnrollment.school.name}}<span class="pull-right"><a data-ng-click="removeNewEnrollmentSchool()">remove</a></span></li>
+        </ul>
+        <data-ui-select data-ng-show="!newEnrollment.school" data-ng-model="newEnrollment.school" theme="select2" style="width: 100%;" data-on-select="schoolSelected($item, $model)" required>
+          <data-ui-select-match placeholder="Select school">{{$select.selected.name}}</data-ui-select-match>
+          <data-ui-select-choices repeat="school in schools | propsFilter: {name: $select.search}" refresh="refreshSchools($select)" refresh-delay="0">
+            <div data-ng-bind-html="school.name | highlight: $select.search"></div>
+          </data-ui-select-choices>
+        </data-ui-select>
+      </div>
+      <div class="form-group" data-ng-show="newEnrollment.school" >
+        <label>In what campuses do you take courses?</label>
+        <ul data-ng-show="newEnrollment.school">
+          <li data-ng-repeat="campus in newEnrollment.campuses">{{campus.name}}<span class="pull-right"><a data-ng-click="removeNewEnrollmentCampus(campus._id)">remove</a></span></li>
+        </ul>
+        <data-ui-select data-on-select="campusSelected($item, $model)" data-ng-model="newCampus" theme="select2" style="width: 100%;" required>
+          <data-ui-select-match placeholder="Select campus">Add campus</data-ui-select-match>
+          <data-ui-select-choices repeat="campus in campuses | propsFilter: {name: $select.search, address: $select.search}" refresh="refreshCampuses($select)" refresh-delay="0">
+            <div data-ng-bind-html="campus.name | highlight: $select.search"></div>
+          </data-ui-select-choices>
+        </data-ui-select>
+      </div>
+      <div class="form-group" data-ng-show="newEnrollment.campuses.length">
+        <label>What courses do you take?</label>
+        <ul data-ng-show="newEnrollment.courses">
+          <li data-ng-repeat="course in newEnrollment.courses">{{(course.code || course.title) + ' ' + course.section}}<span class="pull-right"><a data-ng-click="removeNewEnrollmentCourse(course._id)">remove</a></span></li>
+        </ul>
+        <data-ui-select class="dropdown" data-on-select="courseSelected($item, $model)" data-ng-model="newCourse" theme="select2" style="width: 100%;" required>
+          <data-ui-select-match placeholder="Select course">Add course</data-ui-select-match>
+          <data-ui-select-choices class="ui-select-choices" repeat="course in courses | propsFilter: {code: $select.search, title: $select.search}" refresh="refreshCourses($select)" refresh-delay="0">
+             <div data-ng-if="!course.section" ng-bind-html="course.code | highlight: $select.search"></div>
+             <div data-ng-if="course.section" ng-bind-html="course.code + ' - Section ' + course.section + ' (' + course.campusName + ' campus)' | highlight: $select.search"></div>
+             <small data-ng-show="course.title">Title:
+                <span ng-bind-html="''+course.title | highlight: $select.search"></span>
+             </small>
+          </data-ui-select-choices>
+        </data-ui-select>
+      </div>
+      <div class="pull-right" data-ng-if="newEnrollment.school" >
+        <button type="submit" class="btn btn-sm btn-primary">{{isInEditMode ? 'update' : 'add'}} enrollment</button>
+        <button class="btn btn-sm btn-default" data-ng-click="cancelAddEnrollmentForm()">cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/ng-template" id="createCampusDialog">
+  <form role="form" data-ng-submit="addCampus()" name="addCampusForm" novalidate="" class="form-validate mb-lg">
+  <div class="modal-header">
+    <button type="button" class="close" data-ng-click="cancel()">
+           <span aria-hidden="true">&times;</span>
+           <span class="sr-only">Close</span>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">
+      Create Campus
+    </h4>
+  </div>
+  <div class="modal-body">
+    <fieldset>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">School</label>
+        <div class="form-group col-sm-10">
+          {{schoolName}}
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <label class="col-sm-2 control-label">Campus name</label>
+      <div class="form-group col-sm-10">
+        <input type="text" name="campus_name" placeholder="Enter campus name to add" autocomplete="off" data-ng-model="newCampus.name" required="" class="form-control" />
+        <span data-ng-show="(addCampusForm.$submitted || addCampusForm.campus_name.$dirty) &amp;&amp; addCampusForm.campus_name.$error.required" class="text-danger">Campus name is required</span>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Address</label>
+        <div class="form-group col-sm-10">
+          <input type="text" name="campus_address" placeholder="Enter campus address" autocomplete="off" data-ng-model="newCampus.address" required="" class="form-control" />
+          <span data-ng-show="(addCampusForm.$submitted || addCampusForm.campus_address.$dirty) &amp;&amp; addCampusForm.campus_address.$error.required" class="text-danger">Campus address is required</span>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  <div class="modal-footer">
+    <span data-ng-show="serverError" class="text-danger">{{serverError}}</span>
+    <div class="pull-right">
+      <button type="submit" data-ng-disabled="addCampusForm.$invalid" class="btn btn-primary mr">Create Campus</button>
+      <button type="button" data-ng-click="cancel()" class="btn btn-default">Cancel</button>
+    </div>
+  </div>
+  </form>
+</script>
+<script type="text/ng-template" id="createCourseDialog">
+  <form role="form" data-ng-submit="addCourse()" name="addCourseForm" novalidate="" class="form-validate mb-lg">
+  <div class="modal-header">
+    <button type="button" class="close" data-ng-click="cancel()">
+           <span aria-hidden="true">&times;</span>
+           <span class="sr-only">Close</span>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">
+      Create Course
+    </h4>
+  </div>
+  <div class="modal-body">
+    <fieldset>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Campus</label>
+        <div class="form-group col-sm-10" data-ng-if="multipleCampuses">
+          <select name="repeatSelect" id="repeatSelect" data-ng-model="newCourse.campus" required="" class="form-control">
+            <option ng-repeat="campus in campuses" value="{{campus._id}}">{{campus.name}}</option>
+          </select>
+          <span data-ng-show="(addCourseForm.$submitted || addCourseForm.course_code.$dirty) &amp;&amp; addCourseForm.course_code.$error.required" class="text-danger">Course campus is required</span>
+        </div>
+        <div class="form-group col-sm-10" data-ng-if="!multipleCampuses">
+          {{campusName}}
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Course Code</label>
+      <div class="form-group col-sm-10">
+        <input type="text" name="course_code" placeholder="Enter course address" autocomplete="off" data-ng-model="newCourse.code" required="" class="form-control" />
+        <span data-ng-show="(addCourseForm.$submitted || addCourseForm.course_code.$dirty) &amp;&amp; addCourseForm.course_code.$error.required" class="text-danger">Course address is required</span>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+      <label class="col-sm-2 control-label">Title</label>
+      <div class="form-group col-sm-10">
+        <input type="text" name="course_title" placeholder="Enter course name to add" autocomplete="off" data-ng-model="newCourse.title" required="" class="form-control" />
+        <span data-ng-show="(addCourseForm.$submitted || addCourseForm.course_title.$dirty) &amp;&amp; addCourseForm.course_title.$error.required" class="text-danger">Course name is required</span>
+      </div>
+  </fieldset>
+  <fieldset>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Section</label>
+      <div class="form-group col-sm-10">
+        <input type="text" name="course_section" placeholder="Enter course address" autocomplete="off" data-ng-model="newCourse.section" required="" class="form-control" />
+        <span data-ng-show="(addCourseForm.$submitted || addCourseForm.course_section.$dirty) &amp;&amp; addCourseForm.course_section.$error.required" class="text-danger">Course address is required</span>
+      </div>
+    </div>
+  </fieldset>
+  </div>
+  <div class="modal-footer">
+    <span data-ng-show="serverError" class="text-danger">{{serverError}}</span>
+    <div class="pull-right">
+      <button type="submit" data-ng-disabled="addCourseForm.$invalid" class="btn btn-primary mr">Create Course</button>
+      <button type="button" data-ng-click="cancel()" class="btn btn-default">Cancel</button>
+    </div>
+  </div>
+  </form>
+</script>

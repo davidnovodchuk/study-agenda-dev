@@ -57,5 +57,4 @@ angular.module('studyAgendaApp')
       Auth.logout();
       $state.go('account.login');
     };
-
   });

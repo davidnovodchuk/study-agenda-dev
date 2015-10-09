@@ -2,9 +2,9 @@
 
 angular.module('studyAgendaApp')
   .factory('Student', function ($resource) {
-    return $resource('/api/students/:id/:controller', { 
-      id: '@_id' 
-    }, 
+    return $resource('/api/students/:id/:controller', {
+      id: '@_id'
+    },
     {
       getCoursesTasks: {
         method: 'GET',
@@ -16,6 +16,12 @@ angular.module('studyAgendaApp')
         method: 'PUT',
         params: {
           controller:'add-task-modification'
+        }
+      },
+      getEnrollments: {
+        method: 'GET',
+        params: {
+          controller:'enrollments'
         }
       }
     });

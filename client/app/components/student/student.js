@@ -42,10 +42,10 @@ angular.module('studyAgendaApp')
         authenticate: true,
         hasRole: USER_ROLES.STUDENT,
       })
-      .state('student.enrolments', {
-        url: 'enrolments',
-        templateUrl: 'app/components/student/enrolments/enrolments.html',
-        controller: 'StudentEnrolmentsCtrl',
+      .state('student.enrollments', {
+        url: 'enrollments',
+        templateUrl: 'app/components/student/enrollments/enrollments.html',
+        controller: 'StudentEnrollmentsCtrl',
         authenticate: true,
         hasRole: USER_ROLES.STUDENT,
       })
