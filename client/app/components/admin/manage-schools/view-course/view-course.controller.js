@@ -5,6 +5,7 @@ angular.module('studyAgendaApp')
     var initializeTask = function() {
       $scope.newTask = new Task();
       $scope.newTask.course = $state.params.courseId;
+      $scope.newTaskDueDate = new Date();
     };
 
     var getCourse = function() {
@@ -73,6 +74,7 @@ angular.module('studyAgendaApp')
 
     $scope.addTask = function() {
       if ($scope.addTaskForm.$valid) {
+        $scope.newTask.dueDate = $scope.newTaskDueDate;
         // saving course in the db
         $scope.newTask.$save()
         .then( function(task) {
@@ -109,16 +111,4 @@ angular.module('studyAgendaApp')
       initializeTask();
       $scope.addTaskForm.$setPristine();
     };
-
-    var isDateInputTypeCompatible = function() {
-      var input = document.createElement('input');
-      input.setAttribute('type','date');
-
-      var notADateValue = 'not-a-date';
-      input.setAttribute('value', notADateValue); 
-
-      return !(input.value === notADateValue);
-    };
-
-    console.log(isDateInputTypeCompatible());
   });

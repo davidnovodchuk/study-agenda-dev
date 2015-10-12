@@ -96,8 +96,7 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">Due Date</label>   
               <div class="form-group has-feedback col-sm-10">
-                <!-- <input type="date" name="task_dueDate" placeholder="Enter task due date" autocomplete="off" data-ng-model="newTask.dueDate" required="" class="form-control" /> -->
-                <datepicker data-ng-model="newTask.dueDate" data-min-date="dp.minDate" show-weeks="false" class="ui-datepicker well well-sm"></datepicker>
+                <div data-sa-date-input="newTaskDueDate" data-field-name="task_dueDate"></div>
                 <span data-ng-show="(addTaskForm.$submitted || addTaskForm.task_dueDate.$dirty) &amp;&amp; addTaskForm.task_dueDate.$error.required" class="text-danger">Task due date is required</span>
               </div>
             </div>
