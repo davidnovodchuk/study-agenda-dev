@@ -109,4 +109,16 @@ angular.module('studyAgendaApp')
       initializeTask();
       $scope.addTaskForm.$setPristine();
     };
+
+    var isDateInputTypeCompatible = function() {
+      var input = document.createElement('input');
+      input.setAttribute('type','date');
+
+      var notADateValue = 'not-a-date';
+      input.setAttribute('value', notADateValue); 
+
+      return !(input.value === notADateValue);
+    };
+
+    console.log(isDateInputTypeCompatible());
   });
