@@ -96,7 +96,7 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">Due Date</label>   
               <div class="form-group has-feedback col-sm-10">
-                <div data-sa-date-input="newTaskDueDate" data-field-name="task_dueDate"></div>
+                <div data-sa-date-input data-ng-model="newTaskDueDate" data-field-name="'task_dueDate'"></div>
                 <span data-ng-show="(addTaskForm.$submitted || addTaskForm.task_dueDate.$dirty) &amp;&amp; addTaskForm.task_dueDate.$error.required" class="text-danger">Task due date is required</span>
               </div>
             </div>

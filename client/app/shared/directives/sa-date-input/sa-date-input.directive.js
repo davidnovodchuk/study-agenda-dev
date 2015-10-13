@@ -6,15 +6,26 @@ angular.module('sa-date-input', [])
   return {
     restrict: 'A',
     templateUrl: 'app/shared/directives/sa-date-input/sa-date-input.html',
+    replace: true,
+    // transclude: true,
+    require: '?ngModel',
     scope: {
-      // required attributes
-      saDateInput: '@',
       // optional attribute
       fieldName: '=?'
     },
-    link: function(scope){
-      scope.data = {
-        dateModel: new Date(scope.saDateInput)
+    link: function(scope, element, attrs, ngModelDate){
+      if (!ngModelDate) {
+        return;
+      }
+
+      scope.data = {};
+
+      scope.onChange = function(){
+        ngModelDate.$setViewValue(scope.data.saDateInput);
+      };
+
+      ngModelDate.$render = function(){
+        scope.data.saDateInput = new Date(ngModelDate.$modelValue);
       };
 
       scope.isDateInputTypeCompatible = function() {
