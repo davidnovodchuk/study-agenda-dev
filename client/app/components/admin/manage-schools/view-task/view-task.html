@@ -28,8 +28,7 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label">Due Date</label>    
                 <div class="form-group col-sm-10">
-                  <input type="date" name="task_dueDate" placeholder="Enter Due Date" autocomplete="off" data-ng-model="task.dueDate" required="" class="form-control" />
-                  <span data-ng-show="form.task_dueDate.$dirty &amp;&amp; form.task_dueDate.$error.required" class="text-danger">This field is required</span>
+                  <div data-sa-date-input data-ng-model="task.dueDate" data-field-name="'task_dueDate'"></div>
                 </div>
               </div>
             </fieldset>

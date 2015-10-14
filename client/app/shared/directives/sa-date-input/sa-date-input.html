@@ -2,7 +2,9 @@
   <div data-ng-if="isDateInputTypeCompatible()">
     <input type="date" name="fieldName" placeholder="Enter task due date" autocomplete="off" data-ng-model="data.saDateInput" required="" class="form-control" data-ng-change="onChange()"/>
   </div>
-  <div data-ng-if="!isDateInputTypeCompatible()">
-    <datepicker name="fieldName" data-ng-model="data.saDateInput" show-weeks="false" class="ui-datepicker well well-sm" data-ng-change="onChange()"></datepicker>
+  <div data-ng-if="!isDateInputTypeCompatible()" class="datepicker-container">
+    <div class="datepicker-center">
+      <datepicker name="fieldName" data-ng-model="data.saDateInput" show-weeks="false" class="ui-datepicker well well-sm" data-ng-change="onChange()"></datepicker>
+    </div>
   </div>
 </div>

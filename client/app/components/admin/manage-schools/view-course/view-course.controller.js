@@ -5,7 +5,7 @@ angular.module('studyAgendaApp')
     var initializeTask = function() {
       $scope.newTask = new Task();
       $scope.newTask.course = $state.params.courseId;
-      $scope.newTaskDueDate = new Date();
+      $scope.newTask.dueDate = new Date();
     };
 
     var getCourse = function() {
@@ -74,8 +74,6 @@ angular.module('studyAgendaApp')
 
     $scope.addTask = function() {
       if ($scope.addTaskForm.$valid) {
-        $scope.newTask.dueDate = $scope.newTaskDueDate;
-        // console.log($scope.newTask.dueDate);
         // saving course in the db
         $scope.newTask.$save()
         .then( function(task) {
