@@ -7,7 +7,7 @@
           <fieldset>
             <div class="form-group">
               <label class="col-sm-2 control-label">Name</label>    
-              <div class="form-group col-sm-10">
+              <div class="form-group has-feedback col-sm-10">
                 <input type="text" name="account_name" placeholder="Enter name" autocomplete="off" data-ng-model="user.name" required="" class="form-control" />
                 <span data-ng-show="form.account_name.$dirty &amp;&amp; form.account_name.$error.required" class="text-danger">This field is required</span>
               </div>
@@ -16,7 +16,7 @@
           <fieldset>
             <div class="form-group">
               <label class="col-sm-2 control-label">Email Address</label>    
-              <div class="form-group col-sm-10">
+              <div class="form-group has-feedback col-sm-10">
                 <input type="email" name="account_email" placeholder="Enter email" autocomplete="off" data-ng-model="user.email" required="" class="form-control" />
                 <span data-ng-show="form.account_email.$dirty &amp;&amp; form.account_email.$error.required" class="text-danger">This field is required</span>
                 <span data-ng-show="form.account_email.$dirty &amp;&amp; form.account_email.$error.email" class="text-danger">This field must be a valid email address</span>
