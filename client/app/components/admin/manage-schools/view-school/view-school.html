@@ -9,7 +9,7 @@
               <legend>Edit School Details</legend>
               <div class="form-group">
                 <label class="col-sm-2 control-label">Name</label>    
-                <div class="form-group has-feedback col-sm-10">
+                <div class="form-group col-sm-10">
                   <input type="text" name="account_name" placeholder="Enter name" autocomplete="off" data-ng-model="school.name" required="" class="form-control" />
                   <span data-ng-show="form.account_name.$dirty &amp;&amp; form.account_name.$error.required" class="text-danger">This field is required</span>
                 </div>
@@ -26,7 +26,7 @@
             <legend>School Details</legend>
             <div class="form-group">
               <label class="col-sm-2 control-label">Name</label>    
-              <div class="form-group has-feedback col-sm-10">{{school.name}}</div>
+              <div class="form-group col-sm-10">{{school.name}}</div>
             </div>
           </fieldset>
           <div class="pull-left">
@@ -48,7 +48,7 @@
           <fieldset>
             <legend>Add Campus</legend>
               <label class="col-sm-2 control-label">Campus name</label>     
-              <div class="form-group has-feedback col-sm-10">
+              <div class="form-group col-sm-10">
                 <input type="text" name="campus_name" placeholder="Enter campus name to add" autocomplete="off" data-ng-model="newCampus.name" required="" class="form-control" />
                 <span data-ng-show="(addCampusForm.$submitted || addCampusForm.campus_name.$dirty) &amp;&amp; addCampusForm.campus_name.$error.required" class="text-danger">Campus name is required</span>
               </div>
@@ -56,7 +56,7 @@
           <fieldset>
             <div class="form-group">
               <label class="col-sm-2 control-label">Address</label>   
-              <div class="form-group has-feedback col-sm-10">
+              <div class="form-group col-sm-10">
                 <input type="text" name="campus_address" placeholder="Enter campus address" autocomplete="off" data-ng-model="newCampus.address" required="" class="form-control" />
                 <span data-ng-show="(addCampusForm.$submitted || addCampusForm.campus_address.$dirty) &amp;&amp; addCampusForm.campus_address.$error.required" class="text-danger">Campus address is required</span>
               </div>

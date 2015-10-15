@@ -5,6 +5,7 @@ angular.module('studyAgendaApp')
     var initializeTask = function() {
       $scope.newTask = new Task();
       $scope.newTask.course = $state.params.courseId;
+      $scope.newTask.dueDate = new Date();
     };
 
     var getCourse = function() {
