@@ -2,7 +2,7 @@
 
 angular.module('studyAgendaApp')
   .factory('Task', function ($resource) {
-    return $resource('/api/tasks/:id/:controller', { id: '@_id' }, {
+    return $resource('/api/tasks/:id/:controller/:controllerId', { id: '@_id' }, {
       update: {
         method: 'PUT'
       },
@@ -10,6 +10,12 @@ angular.module('studyAgendaApp')
         method: 'GET',
         params: {
           controller:'with-references'
+        }
+      },
+      studentUpdate: {
+        method: 'POST',
+        params: {
+          controller:'student-update'
         }
       }
     });

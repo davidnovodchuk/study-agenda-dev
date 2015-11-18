@@ -2,7 +2,7 @@
 
 angular.module('sa-delete-confirmation', [])
 
-.directive('saDeleteConfirmation', function(ngDialog) {
+.directive('saDeleteConfirmation', function($modal) {
   return {
     restrict: 'A',
     templateUrl: 'app/shared/directives/sa-delete-confirmation/sa-delete-confirmation.html',
@@ -12,16 +12,33 @@ angular.module('sa-delete-confirmation', [])
       deleteFunction: '=',
       deleteItemName: '=',
       // optional attribute:
-      additionalText: '=?'
+      additionalText: '=?',
+      deleteItemType: '=?',
+      deleteButtonClass: '=?'
     },
-    link: function(scope){
+    link: function(scope) {
       scope.confirmDelete = function() {
-        ngDialog.openConfirm({
+        var confirmDeleteModal = $modal.open({
           templateUrl: 'app/shared/directives/sa-delete-confirmation/delete-confirmation-dialog.html',
-          className: 'ngdialog-theme-default',
-          scope: scope
-        }).then(function () {
+          animation: true,
+          size: 'sm',
+          scope: scope,
+          controller: ['$scope', '$modalInstance', function($scope, $modalInstance) {
+            $scope.cancel = function() {
+              $modalInstance.dismiss();
+            };
+
+            $scope.confirm = function() {
+              $modalInstance.close();
+            };
+          }]
+        });
+
+        confirmDeleteModal.result
+        .then(function () {
           scope.deleteFunction();
+        }, function () {
+          // NOTE: code here is executed when modal is cancelled
         });
       };
     }

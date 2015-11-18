@@ -207,6 +207,11 @@ App
     'PRIVATE': 2,
     'SPECIFIED_USERS': 3
   })
+  .constant('TASK_MODIFICATION_TYPES', {
+    'COMPLETED': 1,
+    'NOT_APPLY': 2,
+    'APPLY': 3
+  })
   .constant('APP_COLORS', {
     'primary':                '#5d9cec',
     'success':                '#27c24c',

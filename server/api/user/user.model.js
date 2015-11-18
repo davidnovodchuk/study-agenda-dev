@@ -61,7 +61,9 @@ var UserSchema = new Schema({
     }
   }],
   // modifiedTasks types:
-  // - 0 : a task that does not apply to the user
+  // 1 : task completed
+  // 2 : task does not apply to user
+  // 3 : task applies to user (but not to other users)
   modifiedTasks: [{
     task: {
       type: Schema.ObjectId,

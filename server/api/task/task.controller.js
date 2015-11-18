@@ -6,6 +6,8 @@ var Course = require("../course/course.model");
 var Q = require("q");
 var CONSANTS = require("../../lib/constants");
 var TASK_PRIVACY_TYPES = CONSANTS.TASK_PRIVACY_TYPES;
+var TASK_MODIFICATION_TYPES = CONSANTS.TASK_MODIFICATION_TYPES;
+var User = require("../user/user.model");
 
 // Get list of all tasks
 exports.index = function(req, res) {
@@ -153,6 +155,89 @@ exports.showWithReferences = function(req, res) {
   })
   .fail(function(err) {
 
+    return handleError(res, err);
+  });
+};
+
+exports.studentUpdate = function(req, res) {
+  var studentId = req.user._id;
+  var originalTaskId = req.body._id;
+  var newTask = req.body;
+
+  delete(newTask._id);
+  newTask.privacyType = TASK_PRIVACY_TYPES.PRIVATE;
+
+  var createPrivateTask = function() {
+    return Q(
+      Task.create(newTask)
+    )
+    .then(function(task) {
+
+      return Q(
+        Course.findById(task.course)
+        .exec()
+      )
+      .then(function(course) {
+
+        course.tasks.push(task._id);
+
+        return Q(
+          course.save()
+        )
+        .then(function() {
+          return task;
+        });
+      });
+    })
+  };
+
+  var getStudent = function() {
+    if (req.params.studentId !== "me") {
+      studentId = req.params.studentId;
+
+      return Q(
+        User.findById(studentId)
+        .exec()
+      )
+    }
+
+    return req.user;
+  };
+
+  return Q.all([
+    createPrivateTask(),
+    getStudent()
+  ])
+  .spread(function(task, student) {
+    var newModificationType = TASK_MODIFICATION_TYPES.APPLY;
+
+    var taskAlreadyModified = _.findWhere(student.modifiedTasks, function(modifiedTask) {
+      return modifiedTask.task.toString() === originalTaskId.toString();
+    });
+    
+    if (taskAlreadyModified) {
+      newModificationType = taskAlreadyModified.modificationType;
+      taskAlreadyModified.modificationType = TASK_MODIFICATION_TYPES.NOT_APPLY;
+    } else {
+      student.modifiedTasks.push({
+        task: originalTaskId,
+        modificationType: TASK_MODIFICATION_TYPES.NOT_APPLY
+      });
+    }
+
+    student.modifiedTasks.push({
+      task: task._id,
+      modificationType: newModificationType
+    });
+
+    return Q(
+      student.save()
+    )
+    .then(function() {
+      return res.json(201, task);
+    });
+  })
+  .fail(function(err) {
     return handleError(res, err);
   });
 };
