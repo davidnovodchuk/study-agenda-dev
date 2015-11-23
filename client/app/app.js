@@ -19,7 +19,9 @@ var App = angular.module('studyAgendaApp', [
     'ui.utils',
     'ui.select',
     'studyAgendaApp.directives',
-    'ngDialog'
+    'ngDialog',
+    'ui.bootstrap-slider',
+    'oitozero.ngSweetAlert'
   ]);
 
 App.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {

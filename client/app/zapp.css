@@ -4,10 +4,16 @@
  *
  * Angle - Bootstrap Admin App + AngularJS
  *
+<<<<<<< HEAD
  * Version: 3.1.0
  * Author: @themicon_co
  * Website: http://themicon.co
  * License: https://wrapbootstrap.com/help/licenses
+=======
+ * Author: @themicon_co
+ * Website: http://themicon.co
+ * License: http://support.wrapbootstrap.com/knowledge_base/topics/usage-licenses
+>>>>>>> 5c12a10... Finished Availability HOurs
  *
  */
 /* ========================================================================
@@ -8266,7 +8272,7 @@ flot .legend .legendColorBox > div > div {
  ========================================================================== */
 /**
  * Custom form elements
- *    - Checkbox 
+ *    - Checkbox
  *    - Radios
  *    - Switch
  *    - Rounded inputs
@@ -9406,7 +9412,7 @@ body .ng-table-pager:after {
 }
 /* ========================================================================
    Component: plugins.less
-   - User this stylesheet to include single css styles and fixes 
+   - User this stylesheet to include single css styles and fixes
      for plugins
  ========================================================================== */
 /**
@@ -10921,7 +10927,7 @@ body .jvectormap-zoomout {
   max-width: 100%;
   min-width: 100%;
 }
-/** 
+/**
  * Displays hidden content on hover. Add this class to the parent element.
  * Markup
  *   <div class="hover-visible">
@@ -11282,4 +11288,38 @@ fieldset[disabled] flatdoc .button.active {
 flatdoc .button .badge {
   color: #23b7e5;
   background-color: #ffffff;
+}
+
+.content-after-title {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.social-media-icon {
+  height: 40px;
+  padding: 0px 0px 10px 5px;
+}
+/* hides the sidebar on mobiles*/
+@media (max-width: 768px) {
+  .nav-wrapper {
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+}
+/* adjust layout spaces */
+.wrapper > section {
+  margin-top: 55px !important;
+}
+.wrapper > .aside .aside-inner {
+  padding-top: 55px;
+}
+.wrapper > .offsidebar {
+  padding-top: 55px;
+  margin-top: 0;
+}
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
 }
