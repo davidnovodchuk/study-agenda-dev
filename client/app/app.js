@@ -4051,7 +4051,7 @@ App.controller('SidebarController', ['$rootScope', '$scope', '$state', '$http', 
           },
           {
             "text": "Dashboard 2",
-            "sref": "student.dashboard",
+            "sref": "student.dashboard2",
             // "params": { "categoryId": category.urlName },
             "icon": "icon-speedometer"
           },

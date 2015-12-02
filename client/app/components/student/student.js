@@ -21,6 +21,13 @@ angular.module('studyAgendaApp')
         authenticate: true,
         hasRole: USER_ROLES.STUDENT,
       })
+      .state('student.dashboard2', {
+        url: 'dashboard2',
+        templateUrl: 'app/components/student/dashboard2/dashboard2.html',
+        controller: 'StudentDashboardCtrl2',
+        authenticate: true,
+        hasRole: USER_ROLES.STUDENT,
+      })
       .state('student.change-password', {
         url: 'change-password',
         templateUrl: 'app/components/account/change-password/change-password.html',
