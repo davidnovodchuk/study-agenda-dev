@@ -41,5 +41,12 @@ angular.module('studyAgendaApp')
         controller: 'ChangePasswordCtrl',
         authenticate: true,
         hasRole: USER_ROLES.ADMIN,
+      })
+      .state('admin.profile', {
+        url: 'profile',
+        templateUrl: 'app/components/account/profile/profile.html',
+        controller: 'ProfileCtrl',
+        authenticate: true,
+        hasRole: USER_ROLES.ADMIN
       });
   });
