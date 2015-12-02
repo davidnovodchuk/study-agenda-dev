@@ -134,6 +134,11 @@ exports.update = function(req, res, next) {
     if (req.body.studyDays) {
       updated.studyDays = req.body.studyDays;
     }
+
+    if (req.body.enrollments) {
+      updated.enrollments = req.body.enrollments;
+    }
+
     return Q(
       updated.save()
     )

@@ -11,5 +11,6 @@ var router = express.Router();
 
 router.get('/me/courses-tasks', auth.hasRole(USER_ROLES.STUDENT), controller.myCoursesTasks);
 router.put('/:id/add-task-modification', auth.hasRole(USER_ROLES.STUDENT), controller.addTaskModification);
+router.get('/:id/enrollments', auth.hasRole(USER_ROLES.STUDENT), controller.getMyEnrollments);
 
 module.exports = router;

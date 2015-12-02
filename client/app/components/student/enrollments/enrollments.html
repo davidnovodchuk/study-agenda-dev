@@ -1,0 +1,51 @@
+<h3>Enrollments</h3>
+<div class="row row-centered" data-ng-show="!enrollments.length">
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 center-block">
+    <h4>Add Enrollment</h4>
+    <div data-sa-add-edit-enrollment
+         data-after-success-submit-function="getEnrollments"></div>
+  </div>
+</div>
+<div class="row" data-ng-show="enrollments.length">
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <h4>{{isInEditMode ? 'Edit' : 'Add'}} Enrollment</h4>
+    <div data-sa-add-edit-enrollment
+         data-new-enrollment="enrollmentToEdit"
+         data-is-in-edit-mode="isInEditMode"
+         data-cancel-edit-function="cancelEditEnrollment"
+         data-after-success-submit-function="getEnrollments"></div>
+  </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <h4>My Enrollments</h4>
+    <div data-ng-repeat="enrollment in enrollments">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <fieldset>
+            <legend>{{enrollment.school.name}}</legend>
+            <ul>
+              <li data-ng-repeat="campus in enrollment.campuses">
+                <h5>{{campus.name}} campus</h5>
+                <ul>
+                  <li data-ng-repeat="course in enrollment.courses" data-ng-if="course.campus === campus._id">
+                    {{course.code + ' ' + course.section + ' - ' + course.title}}
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </fieldset>
+          <div class="pull-left">
+            <div data-sa-delete-confirmation
+                 data-delete-button-text="'delete enrollment'"
+                 data-delete-function="deleteEnrollment"
+                 data-delete-function-item-id="enrollment._id"
+                 data-delete-item-name="enrollment.school.name"
+                 data-delete-item-type="'enrollment'"></div>
+          </div>
+          <div class="pull-right">
+            <button class="btn btn-sm btn-default" data-ng-click="editEnrollment(enrollment)">edit enrollment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

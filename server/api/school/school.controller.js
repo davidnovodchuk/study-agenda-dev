@@ -8,6 +8,7 @@ var Q = require("q");
 exports.index = function(req, res) {
   return Q(
     School.find()
+    .sort('name')
     .exec()
   )
   .then(function (schools) {

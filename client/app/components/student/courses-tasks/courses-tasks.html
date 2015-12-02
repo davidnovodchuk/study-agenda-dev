@@ -1,10 +1,10 @@
-<h3>My Courses and Tasks</h3>  
+<h3>My Courses and Tasks</h3>
 <div class="row">
   <div data-ng-repeat="course in courses">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
       <div class="panel panel-primary">
         <div class="panel-heading clearfix">
-          <h3 class="panel-title pull-left">{{course.code || course.title}}</h3>
+          <h3 class="panel-title pull-left">{{course.code + ' ' + course.section}}</h3>
           <button class="btn btn-default pull-right" data-ng-click="addTaskToCourse(course._id, course.code || course.title)" style="vertical-align:top;">Add Task</button>
         </div>
         <div class="panel-body">
@@ -47,7 +47,7 @@
   <div class="modal-body">
     <fieldset>
       <div class="form-group">
-        <label class="col-sm-2 control-label">Course:</label>   
+        <label class="col-sm-2 control-label">Course:</label>
         <div class="form-group col-sm-10">
           {{courseName}}
         </div>
@@ -55,7 +55,7 @@
     </fieldset>
     <fieldset>
       <div class="form-group">
-        <label class="col-sm-2 control-label">Task Name</label>   
+        <label class="col-sm-2 control-label">Task Name</label>
         <div class="form-group col-sm-10">
           <input type="text" name="task_name" placeholder="Enter task name (eg. Assignment 1 or Midterm Test)" autocomplete="off" data-ng-model="newTask.name" required="" class="form-control" autofocus/>
           <span data-ng-show="(addTaskForm.$submitted || addTaskForm.task_name.$dirty) &amp;&amp; addTaskForm.task_name.$error.required" class="text-danger">Task name is required</span>
@@ -63,7 +63,7 @@
       </div>
     </fieldset>
     <fieldset>
-      <label class="col-sm-2 control-label">Task Weight</label>     
+      <label class="col-sm-2 control-label">Task Weight</label>
       <div class="form-group col-sm-10">
         <div class="input-group">
           <input type="number" name="task_weight" min="0" max="100" placeholder="How many percents the task worth?" autocomplete="off" data-ng-model="newTask.weight" required="" class="form-control" />
@@ -79,7 +79,7 @@
     </fieldset>
     <fieldset>
       <div class="form-group">
-        <label class="col-sm-2 control-label">Task Due Date</label>   
+        <label class="col-sm-2 control-label">Task Due Date</label>
         <div class="form-group col-sm-10">
           <div data-sa-date-input data-ng-model="newTask.dueDate" data-field-name="'task_dueDate'"></div>
           <span data-ng-show="(addTaskForm.$submitted || addTaskForm.task_dueDate.$dirty) &amp;&amp; addTaskForm.task_dueDate.$error.required" class="text-danger">Task due date is required</span>

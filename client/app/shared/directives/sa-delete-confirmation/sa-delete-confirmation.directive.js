@@ -14,7 +14,8 @@ angular.module('sa-delete-confirmation', [])
       // optional attribute:
       additionalText: '=?',
       deleteItemType: '=?',
-      deleteButtonClass: '=?'
+      deleteButtonClass: '=?',
+      deleteFunctionItemId: '=?'
     },
     link: function(scope) {
       scope.confirmDelete = function() {
@@ -36,7 +37,11 @@ angular.module('sa-delete-confirmation', [])
 
         confirmDeleteModal.result
         .then(function () {
-          scope.deleteFunction();
+          if (scope.deleteFunctionItemId) {
+            scope.deleteFunction(scope.deleteFunctionItemId);
+          } else {
+            scope.deleteFunction();
+          }
         }, function () {
           // NOTE: code here is executed when modal is cancelled
         });

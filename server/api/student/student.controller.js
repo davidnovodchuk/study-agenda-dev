@@ -7,7 +7,7 @@ var Q = require('q');
 
 exports.myCoursesTasks = function(req, res) {
   var studentId = req.user._id;
-  
+
   return Q(
     User.findById(studentId)
     .populate(['enrollments.courses','modifiedTasks.task'])
@@ -16,13 +16,13 @@ exports.myCoursesTasks = function(req, res) {
   )
   .then(function(student){
     return User.populate(student, {
-      path: 'enrollments.courses.tasks', 
+      path: 'enrollments.courses.tasks',
       model: Task
     });
   })
   .then(function(student){
-    if(!student) { 
-      return res.send(401); 
+    if(!student) {
+      return res.send(401);
     }
 
     return res.json(student);
@@ -47,8 +47,8 @@ exports.addTaskModification = function(req, res) {
     .exec()
   )
   .then(function(student){
-    if(!student) { 
-      return res.send(401); 
+    if(!student) {
+      return res.send(401);
     }
 
     var taskToModify = _.findWhere(student.modifiedTasks, function(modifiedTask) {
@@ -65,7 +65,7 @@ exports.addTaskModification = function(req, res) {
       student.save()
     )
     .then(function(student) {
-    
+
       return res.status(200).json(student);
     });
   })
@@ -74,6 +74,28 @@ exports.addTaskModification = function(req, res) {
     return handleError(res, err);
   });
 };
+
+exports.getMyEnrollments = function(req, res) {
+  var studentId = req.user._id;
+
+  return Q(
+    User.findById(studentId)
+    .populate(['enrollments.school', 'enrollments.campuses', 'enrollments.courses'])
+    .select('enrollments._id enrollments.school enrollments.campuses enrollments.courses')
+    .exec()
+  )
+  .then(function(student){
+    if(!student) {
+      return res.send(401);
+    }
+
+    return res.json(student);
+  })
+  .fail(function(err) {
+
+    return handleError(res, err);
+  });
+}
 
 /**
  * Authentication callback

@@ -4053,25 +4053,31 @@ App.controller('SidebarController', ['$rootScope', '$scope', '$state', '$http', 
             "text": "Availability",
             "sref": "student.availability",
             // "params": { "categoryId": category.urlName },
-            "icon": "icon-speedometer"
+            "icon": "icon-clock"
           },
+          // {
+          //   "text": "Agenda",
+          //   "sref": "student.agenda",
+          //   // "params": { "categoryId": category.urlName },
+          //   "icon": "icon-speedometer"
+          // },
           {
-            "text": "Agenda",
-            "sref": "student.agenda",
+            "text": "Enrollments",
+            "sref": "student.enrollments",
             // "params": { "categoryId": category.urlName },
-            "icon": "icon-speedometer"
-          },
-          {
-            "text": "Enrolments",
-            "sref": "student.enrolments",
-            // "params": { "categoryId": category.urlName },
-            "icon": "icon-speedometer"
+            "icon": "icon-briefcase"
           },
           {
             "text": "Courses and Tasks",
             "sref": "student.courses-tasks",
             // "params": { "categoryId": category.urlName },
-            "icon": "icon-speedometer"
+            "icon": "icon-notebook"
+          },
+          {
+            "text": "Profile",
+            "sref": "student.profile",
+            // "params": { "categoryId": category.urlName },
+            "icon": "icon-user"
           }
         ];
       }
