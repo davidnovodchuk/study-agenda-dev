@@ -1,19 +1,9 @@
 <h3>Availablility Hours<small>Hours dedicated to studying</small></h3>
 <div class="row row-centered">
   <div class="col-lg-6 col-md-6 col-sm-12 center-block">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <form role="form" data-ng-submit="updateHours()" name="form" novalidate="" class="form-validate mb-lg">
-          <div data-ng-repeat="studyDay in studyDays" >
-            <div class="day-name">{{studyDay.day | date : 'EEEE'}}<span class="pull-right"><b>{{studyDay.hours}}</b></span></div>
-            <slider name="hours" id="index" slider-horizontal data-ng-model="studyDay.hours" style="width:100%; height: 50px" min="slider.min" max="slider.max" step="slider.step" orientation="horizontal" class="bs-slider slider-horizontal "></slider>
-          </div>
-        </form>
-        <div data-ng-show="form.$dirty">
-          <button class="pull-right btn btn-sm btn-default button-availability" data-ng-click="cancelHours()">cancel</button>
-          <button class="pull-right btn btn-sm btn-primary button-availability" data-ng-click="saveHours()">save</button>
-        </div>
-      </div>
+    <div class="alert alert-info title-alert">
+      <h4>How many hours you spend studying outside classes?</h4>
     </div>
+    <div sa-availability-hours></div>
   </div>
 </div>

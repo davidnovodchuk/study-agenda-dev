@@ -32,6 +32,14 @@ angular.module('studyAgendaApp')
       }
     };
 
+    $scope.cancelUpdate = function() {
+      new User().$get()
+      .then(function(user) {
+        $scope.user = user;
+      })
+      $scope.form.$setPristine();
+    };
+
     $scope.changePasswordModal = function(){
       var passwordModal = $modal.open({
         templateUrl: 'app/components/account/change-password/change-password.html',

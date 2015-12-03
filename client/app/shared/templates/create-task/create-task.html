@@ -1,40 +1,4 @@
-<h3>My Courses and Tasks</h3>
-<div class="row">
-  <div data-ng-repeat="course in courses">
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="panel panel-info">
-        <div class="panel-heading clearfix">
-          <h3 class="panel-title pull-left">{{course.code + ' ' + course.section}}</h3>
-          <button class="btn btn-default pull-right" data-ng-click="addTaskToCourse(course._id, course.code || course.title)" style="vertical-align:top;">Add Task</button>
-        </div>
-        <div class="panel-body">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Task</th>
-                <th>Due Date</th>
-                <th>Weight</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr data-ng-repeat="task in course.tasks | orderBy:'dueDate':reverse" data-ng-click="editTask(course, task)">
-                  <td><a href="" data-ng-click="editTask(course, task)">{{task.name}}</a>&nbsp;&nbsp;
-                    <span data-ng-if="task.completed" class="label label-success">
-                      <b>Completed</b>
-                    </span>
-                  </td>
-                  <td>{{task.dueDate | date:'MMM dd, yyyy'}}</td>
-                  <td>{{task.weight}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<script type="text/ng-template" id="addTaskDialog">
-  <form role="form" data-ng-submit="addTask()" name="addTaskForm" novalidate="" class="form-validate mb-lg">
+<form role="form" data-ng-submit="addTask()" name="addTaskForm" novalidate="" class="form-validate mb-lg">
   <div class="modal-header">
     <button type="button" class="close" data-ng-click="cancel()">
            <span aria-hidden="true">&times;</span>
@@ -49,7 +13,11 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">Course:</label>
         <div class="form-group col-sm-10">
-          {{courseName}}
+          <div data-ng-if="courseName">{{courseName}}</div>
+          <div data-ng-if="!courseName">
+            <select class="form-control" data-ng-options="course._id as course.code for course in courses" required name="task_course" data-ng-model="newTask.course"></select>
+              <span data-ng-show="(addTaskForm.$submitted || addTaskForm.task_course.$dirty) &amp;&amp; addTaskForm.task_course.$error.required" class="text-danger">Course is required</span>
+          </div>
         </div>
       </div>
     </fieldset>
@@ -94,5 +62,4 @@
       <button type="button" data-ng-click="cancel()" class="btn btn-default">Cancel</button>
     </div>
   </div>
-  </form>
-</script>
+</form>

@@ -2,7 +2,7 @@
 
 angular.module('sa-add-edit-enrollment', [])
 
-.directive('saAddEditEnrollment', function($modal, User, School, Campus) {
+.directive('saAddEditEnrollment', function($modal, User, School, Campus, ngNotify) {
   return {
     restrict: 'A',
     templateUrl: 'app/shared/directives/sa-add-edit-enrollment/sa-add-edit-enrollment.html',
@@ -380,14 +380,29 @@ angular.module('sa-add-edit-enrollment', [])
 
             currentUser.$update()
             .then(function(updatedUser) {
-              // getEnrollments();
+              ngNotify.config({
+                position: 'top',
+                type: 'success',
+                button: 'true',
+                html: 'true'
+              });
+              ngNotify.set('Enrollment was successfully saved');
+
               $scope.newEnrollment = {};
               $scope.addEnrollmentForm.$setPristine();
 
               $scope.cancelEditFunction && $scope.cancelEditFunction();
               $scope.afterSuccessSubmitFunction && $scope.afterSuccessSubmitFunction();
             })
-            .catch(function(err) {});
+            .catch(function(err) {
+              ngNotify.config({
+                position: 'top',
+                type: 'error',
+                button: 'true',
+                html: 'true'
+              });
+              ngNotify.set('The system was not able to save enrollment');
+            });
           })
           .catch(function(err) {});
         }

@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('studyAgendaApp')
-  .controller('StudentManageTaskCtrl', function ($scope, $modalInstance, $modal, 
-    TASK_MODIFICATION_TYPES, Task, student, course, task) {
+  .controller('StudentManageTaskCtrl', function ($scope, $modalInstance, $modal,
+    TASK_MODIFICATION_TYPES, Task, student, course, task, accomplishToday) {
     $scope.course = course;
   	$scope.task = new Task(task);
     $scope.task.dueDate = new Date($scope.task.dueDate);
+    $scope.accomplishToday = accomplishToday;
 
     var addTaskModification = function() {
       student.$addTaskModification({id: 'me'})
@@ -24,7 +25,7 @@ angular.module('studyAgendaApp')
 
   	$scope.editTask = function() {
       var editTaskModal = $modal.open({
-        templateUrl: 'app/shared/templates/student-edit-task/student-edit-task.html', 
+        templateUrl: 'app/shared/templates/student-edit-task/student-edit-task.html',
         controller: 'StudentEditTaskCtrl',
         animation: true,
         resolve: {

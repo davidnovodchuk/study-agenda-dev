@@ -1,23 +1,29 @@
 <h3>Enrollments</h3>
 <div class="row row-centered" data-ng-show="!enrollments.length">
   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 center-block">
-    <h4>Add Enrollment</h4>
+    <div class="alert alert-info title-alert">
+      <h4>Add Enrollment</h4>
+    </div>
     <div data-sa-add-edit-enrollment
          data-after-success-submit-function="getEnrollments"></div>
   </div>
 </div>
 <div class="row" data-ng-show="enrollments.length">
   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-    <h4>{{isInEditMode ? 'Edit' : 'Add'}} Enrollment</h4>
+    <div class="alert alert-info title-alert">
+      <h4>{{isInEditMode ? 'Edit' : 'Add'}} Enrollment</h4>
+    </div>
     <div data-sa-add-edit-enrollment
          data-new-enrollment="enrollmentToEdit"
          data-is-in-edit-mode="isInEditMode"
          data-cancel-edit-function="cancelEditEnrollment"
          data-after-success-submit-function="getEnrollments"></div>
   </div>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-    <h4>My Enrollments</h4>
-    <div data-ng-repeat="enrollment in enrollments">
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="alert alert-info title-alert">
+      <h4>My Enrollments</h4>
+    </div>
+    <div data-ng-repeat="enrollment in enrollments" data-ng-show="!isInEditMode">
       <div class="panel panel-default">
         <div class="panel-body">
           <fieldset>

@@ -29,6 +29,8 @@
       <link rel="stylesheet" href="bower_components/simple-line-icons/css/simple-line-icons.css" />
       <link rel="stylesheet" href="bower_components/ng-notify/src/styles/ng-notify.css" />
       <link rel="stylesheet" href="bower_components/select2/select2.css" />
+      <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
+      <link rel="stylesheet" href="bower_components/ng-material-floating-button/mfb/dist/mfb.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -53,8 +55,10 @@
       <link rel="stylesheet" href="app/components/student/enrollments/enrollments.css">
       <link rel="stylesheet" href="app/custom.css">
       <link rel="stylesheet" href="app/shared/directives/sa-add-edit-enrollment/sa-add-edit-enrollment.css">
+      <link rel="stylesheet" href="app/shared/directives/sa-availability-hours/sa-availability-hours.css">
       <link rel="stylesheet" href="app/shared/directives/sa-date-input/sa-date-input.css">
       <link rel="stylesheet" href="app/shared/modal/modal.css">
+      <link rel="stylesheet" href="app/shared/templates/create-task/create-task.css">
       <link rel="stylesheet" href="app/shared/templates/student-edit-task/student-edit-task.css">
       <link rel="stylesheet" href="app/shared/templates/student-manage-task/student-manage-task.css">
       <link rel="stylesheet" href="app/zapp.css">
@@ -123,6 +127,9 @@
       <script src="bower_components/angular-sweetalert/SweetAlert.js"></script>
       <script src="bower_components/ng-notify/src/scripts/ng-notify.js"></script>
       <script src="bower_components/select2/select2.js"></script>
+      <script src="bower_components/Chart.js/Chart.js"></script>
+      <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+      <script src="bower_components/ng-material-floating-button/src/mfb-directive.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
 
@@ -154,6 +161,7 @@
           <script src="app/components/student/student.js"></script>
           <script src="app/shared/directives/directives.js"></script>
           <script src="app/shared/directives/sa-add-edit-enrollment/sa-add-edit-enrollment.directive.js"></script>
+          <script src="app/shared/directives/sa-availability-hours/sa-availability-hours.directive.js"></script>
           <script src="app/shared/directives/sa-date-input/sa-date-input.directive.js"></script>
           <script src="app/shared/directives/sa-delete-confirmation/sa-delete-confirmation.directive.js"></script>
           <script src="app/shared/directives/sa-items-list/sa-items-list.directive.js"></script>
@@ -166,6 +174,7 @@
           <script src="app/shared/services/school/school.service.js"></script>
           <script src="app/shared/services/student/student.service.js"></script>
           <script src="app/shared/services/task/task.service.js"></script>
+          <script src="app/shared/templates/create-task/create-task.controller.js"></script>
           <script src="app/shared/templates/student-edit-task/student-edit-task.controller.js"></script>
           <script src="app/shared/templates/student-manage-task/student-manage-task.controller.js"></script>
           <!-- endinjector -->

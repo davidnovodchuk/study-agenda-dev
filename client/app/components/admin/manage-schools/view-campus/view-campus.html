@@ -8,7 +8,7 @@
             <fieldset>
               <legend>Edit Campus Details</legend>
               <div class="form-group">
-                <label class="col-sm-2 control-label">Name</label>    
+                <label class="col-sm-2 control-label">Name</label>
                 <div class="form-group col-sm-10">
                   <input type="text" name="account_name" placeholder="Enter name" autocomplete="off" data-ng-model="campus.name" required="" class="form-control" />
                   <span data-ng-show="form.account_name.$dirty &amp;&amp; form.account_name.$error.required" class="text-danger">This field is required</span>
@@ -17,7 +17,7 @@
             </fieldset>
             <fieldset>
               <div class="form-group">
-                <label class="col-sm-2 control-label">Address</label>    
+                <label class="col-sm-2 control-label">Address</label>
                 <div class="form-group col-sm-10">
                   <input type="text" name="account_address" placeholder="Enter address" autocomplete="off" data-ng-model="campus.address" required="" class="form-control" />
                   <span data-ng-show="form.account_name.$dirty &amp;&amp; form.account_name.$error.required" class="text-danger">This field is required</span>
@@ -34,18 +34,18 @@
           <fieldset>
             <legend>Campus Details</legend>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Name</label>    
+              <label class="col-sm-2 control-label">Name</label>
               <div class="form-group col-sm-10">{{campus.name}}</div>
             </div>
           </fieldset>
           <fieldset>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Address</label>    
+              <label class="col-sm-2 control-label">Address</label>
               <div class="form-group col-sm-10">{{campus.address}}</div>
             </div>
           </fieldset>
           <div class="pull-left">
-            <div data-sa-delete-confirmation 
+            <div data-sa-delete-confirmation
                  data-delete-button-text="'delete campus'"
                  data-delete-function="deleteCampus"
                  data-delete-item-name="campus.name"
@@ -63,15 +63,15 @@
           <fieldset>
             <legend>Add Course</legend>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Code</label>   
+              <label class="col-sm-2 control-label">Code</label>
               <div class="form-group col-sm-10">
-                <input type="text" name="course_code" placeholder="Enter course address" autocomplete="off" data-ng-model="newCourse.code" required="" class="form-control" />
-                <span data-ng-show="(addCourseForm.$submitted || addCourseForm.course_code.$dirty) &amp;&amp; addCourseForm.course_code.$error.required" class="text-danger">Course address is required</span>
+                <input type="text" name="course_code" placeholder="Enter course code" autocomplete="off" data-ng-model="newCourse.code" required="" class="form-control" />
+                <span data-ng-show="(addCourseForm.$submitted || addCourseForm.course_code.$dirty) &amp;&amp; addCourseForm.course_code.$error.required" class="text-danger">Course code is required</span>
               </div>
             </div>
           </fieldset>
           <fieldset>
-              <label class="col-sm-2 control-label">Title</label>     
+              <label class="col-sm-2 control-label">Title</label>
               <div class="form-group col-sm-10">
                 <input type="text" name="course_title" placeholder="Enter course name to add" autocomplete="off" data-ng-model="newCourse.title" required="" class="form-control" />
                 <span data-ng-show="(addCourseForm.$submitted || addCourseForm.course_title.$dirty) &amp;&amp; addCourseForm.course_title.$error.required" class="text-danger">Course name is required</span>
@@ -79,10 +79,10 @@
           </fieldset>
           <fieldset>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Section</label>   
+              <label class="col-sm-2 control-label">Section</label>
               <div class="form-group col-sm-10">
-                <input type="text" name="course_section" placeholder="Enter course address" autocomplete="off" data-ng-model="newCourse.section" required="" class="form-control" />
-                <span data-ng-show="(addCourseForm.$submitted || addCourseForm.course_section.$dirty) &amp;&amp; addCourseForm.course_section.$error.required" class="text-danger">Course address is required</span>
+                <input type="text" name="course_section" placeholder="Enter course section" autocomplete="off" data-ng-model="newCourse.section" required="" class="form-control" />
+                <span data-ng-show="(addCourseForm.$submitted || addCourseForm.course_section.$dirty) &amp;&amp; addCourseForm.course_section.$error.required" class="text-danger">Course section is required</span>
               </div>
             </div>
           </fieldset>
@@ -102,9 +102,9 @@
       <div class="panel-body">
         <fieldset>
           <legend>Course List</legend>
-            <div data-sa-items-list="courses" 
-                 data-columns="columns" 
-                 data-search-placeholder="'Search courses'" 
+            <div data-sa-items-list="courses"
+                 data-columns="columns"
+                 data-search-placeholder="'Search courses'"
                  data-row-link-fun="rowLinkFun"></div>
         </fieldset>
       </div>
