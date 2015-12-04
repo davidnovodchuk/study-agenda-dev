@@ -19,7 +19,7 @@
           <p></p>
         </div>
         <div>
-          <div>BTH730 Assignment1
+          <div><s>BTH730 Assignment1</s>
             <span class="fa-stack pull-right">
               <em class="fa fa-circle fa-stack-2x text-success"></em>
               <em class="fa fa-exclamation fa-stack-1x fa-inverse text-white"></em>
@@ -54,8 +54,11 @@
 
     <nav mfb-menu position="br" effect="zoomin" label="hover here"
      active-icon="fa fa-edit" resting-icon="fa fa-expand"
-     toggling-method="click">
-  <button mfb-button icon="fa fa-expand" label="menu item"></button>
-</nav>
+     toggling-method="click" >
+     <button mfb-button icon="fa fa-expand" label="menu item" ng-click="testFunciton()"></button>
+   </nav>
+   <canvas id="bar" class="chart chart-bar"
+     chart-data="data" chart-labels="labels">
+   </canvas
   </div>
 </div>
