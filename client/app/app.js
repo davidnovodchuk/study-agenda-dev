@@ -22,8 +22,9 @@ var App = angular.module('studyAgendaApp', [
     'ngDialog',
     'ngNotify',
     'ui.bootstrap-slider',
-    'oitozero.ngSweetAlert'
-]);
+    'oitozero.ngSweetAlert',
+    'ng-mfb'
+  ]);
 
 App.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
   $urlRouterProvider
