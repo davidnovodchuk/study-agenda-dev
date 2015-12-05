@@ -7,10 +7,22 @@
       <div class="panel-heading">Tuesday, Nov, 17 <div class="pull-right label label-danger">Today</div></div>
       <div class="panel-body">
         <div>
-          <p>BTH730 Assignment1
-            <span class="fa-stack pull-right">
+          <p>BTN710 Assignment2
+            <span data-ng-click = "infoModal()" class="fa-stack pull-right">
               <em class="fa fa-circle fa-stack-2x text-info"></em>
-              <em class="fa fa-exclamation fa-stack-1x fa-inverse text-white"></em>
+              <em class="fa fa-info fa-stack-1x fa-inverse text-white"></em>
+            </span>
+          </p>
+          <div class="ph">
+            <progressbar value="100" type="danger" class="m0 progress-xs">50%</progressbar>
+          </div>
+          <p></p>
+        </div>
+        <div>
+          <p>BTH730 Assignment1
+            <span data-ng-click = "infoModal()" class="fa-stack pull-right">
+              <em class="fa fa-circle fa-stack-2x text-info"></em>
+              <em class="fa fa-info fa-stack-1x fa-inverse text-white"></em>
             </span>
           </p>
           <div class="ph">
@@ -20,26 +32,26 @@
         </div>
         <div>
           <div><s>BTH730 Assignment1</s>
-            <span class="fa-stack pull-right">
-              <em class="fa fa-circle fa-stack-2x text-success"></em>
-              <em class="fa fa-exclamation fa-stack-1x fa-inverse text-white"></em>
+            <span data-ng-click = "infoModal()" class="fa-stack pull-right">
+              <em class="fa fa-circle fa-stack-2x text-info"></em>
+              <em class="fa fa-info fa-stack-1x fa-inverse text-white"></em>
             </span>
+            <span class="label label-success">Completed</span>
           </div>
-
           <p></p>
         </div>
       </div>
     </div>
     <!-- END panel-->
     <!-- START panel-->
-    <div id="dashPanel" class="panel panel-info">
+    <div id="dashPanel2" class="panel panel-info">
       <div class="panel-heading">Thursday, Nov, 19 </div>
       <div class="panel-body">
         <div>
           <p>BTH730 Assignment1
-            <span class="fa-stack pull-right">
+            <span data-ng-click = "infoModal()" class="fa-stack pull-right">
               <em class="fa fa-circle fa-stack-2x text-info"></em>
-              <em class="fa fa-exclamation fa-stack-1x fa-inverse text-white"></em>
+              <em class="fa fa-info fa-stack-1x fa-inverse text-white"></em>
             </span>
           </p>
           <div class="ph">
@@ -52,13 +64,13 @@
     </div>
     <!-- END panel-->
 
-    <nav mfb-menu position="br" effect="zoomin" label="hover here"
-     active-icon="fa fa-edit" resting-icon="fa fa-expand"
-     toggling-method="click" >
-     <button mfb-button icon="fa fa-expand" label="menu item" ng-click="testFunciton()"></button>
-   </nav>
-   <canvas id="bar" class="chart chart-bar"
-     chart-data="data" chart-labels="labels">
-   </canvas
+    <nav mfb-menu position="br" effect="zoomin" label="New Task"
+      active-icon="fa fa-plus" resting-icon="fa fa-plus"
+      toggling-method="click" ng-click="createTaskFunciton()">
+      <!-- <button mfb-button icon="fa fa-plus" label="New Task" ng-click="createTaskFunciton()"></button> -->
+    </nav>
+    <canvas id="bar" class="chart chart-bar"
+      chart-data="data" chart-labels="labels">
+    </canvas>
   </div>
 </div>

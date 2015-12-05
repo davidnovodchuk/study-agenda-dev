@@ -1,20 +1,23 @@
 'use strict';
 
 angular.module('studyAgendaApp')
-  .controller('StudentDashboardCtrl2', function ($scope, $state, Auth) {
+.controller('StudentDashboardCtrl2', function ($scope, $state, Auth) {
 
-    $scope.logout = function() {
-      Auth.logout();
-      $state.go('account.login');
-    };
-$scope.testFunciton = function(){
-  console.log("Test!!");
-}
-    $scope.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
-     $scope.series = ['Series A', 'Series B'];
+  $scope.logout = function() {
+    Auth.logout();
+    $state.go('account.login');
+  };
+  $scope.createTaskFunciton = function(){
+    console.log('Create Task Modal!!');
+  };
 
-     $scope.data = [
-       [65, 59, 80, 81, 56, 55, 40],
-       [28, 48, 40, 19, 86, 27, 90]
-     ];
-  });
+  $scope.infoModal = function(){
+    console.log('ModalInfo!!');
+  };
+  $scope.labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat'];
+  $scope.series = ['Series A', 'Series B'];
+
+  $scope.data = [
+    [6, 1 , 9, 2, 0, 7, 2,6]
+  ];
+});
