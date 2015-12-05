@@ -22,8 +22,10 @@ var App = angular.module('studyAgendaApp', [
     'ngDialog',
     'ngNotify',
     'ui.bootstrap-slider',
-    'oitozero.ngSweetAlert'
-]);
+    'oitozero.ngSweetAlert',
+    'ng-mfb',
+    'chart.js'
+  ]);
 
 App.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
   $urlRouterProvider
@@ -4046,6 +4048,12 @@ App.controller('SidebarController', ['$rootScope', '$scope', '$state', '$http', 
           {
             "text": "Dashboard",
             "sref": "student.dashboard",
+            // "params": { "categoryId": category.urlName },
+            "icon": "icon-speedometer"
+          },
+          {
+            "text": "Dashboard 2",
+            "sref": "student.dashboard2",
             // "params": { "categoryId": category.urlName },
             "icon": "icon-speedometer"
           },
