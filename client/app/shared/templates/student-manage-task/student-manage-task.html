@@ -3,11 +3,33 @@
          <span aria-hidden="true">&times;</span>
          <span class="sr-only">Close</span>
   </button>
-  <h4 class="modal-title" id="myModalLabel">
-      Manage Task - {{task.name}}
-  </h4>
+  <h4 class="modal-title" id="myModalLabel">Task Info</h4>
 </div>
 <div class="modal-body">
+    <fieldset>
+      <div class="fieldset-info-item">
+        <div class="col-sm-2"><b>Course:</b></div>
+        <div class="col-sm-10">{{course.code}}</div>
+      </div>
+        <div class="fieldset-info-item">
+        <div class="col-sm-2"><b>Name:</b></div>
+        <div class="col-sm-10">{{task.name}}</div>
+      </div>
+        <div class="fieldset-info-item">
+        <div class="col-sm-2"><b>Weight:</b></div>
+        <div class="col-sm-10">{{task.weight}} %</div>
+      </div>
+        <div class="fieldset-info-item">
+        <div class="col-sm-2"><b>Due Date:</b></div>
+        <div class="col-sm-10">{{task.dueDate | date:'MMMM dd, yyyy'}}</div>
+      </div>
+      <div data-ng-if="accomplishToday">
+        <div class="col-sm-2"><b>Accomplish Today:</b></div>
+        <div data-ng-if="accomplishToday === 100" class="col-sm-10"><progressbar value="100" type="danger" class="m0 progress-xs">100%</progressbar></div>
+        <div data-ng-if="accomplishToday === 80" class="col-sm-10"><progressbar value="80" type="warning" class="m0 progress-xs">80%</progressbar></div>
+        <div data-ng-if="accomplishToday === 20" class="col-sm-10"><progressbar value="20" type="success" class="m0 progress-xs">20%</progressbar></div>
+      </div>
+    </fieldset>
     <div class="student-manage-task-top-btn-bottom-padding" data-ng-if="!task.completed">
       <button type="button" data-ng-click="markTaskCompleted()" class="btn btn-success student-manage-task-top-btn">Mark task completed</button>
     </div>

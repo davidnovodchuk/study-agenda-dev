@@ -11323,3 +11323,7 @@ flatdoc .button .badge {
   margin-right: auto;
   float: none;
 }
+
+.title-alert {
+   margin-bottom: 5px;
+}

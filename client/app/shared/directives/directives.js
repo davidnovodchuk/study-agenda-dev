@@ -6,5 +6,6 @@ angular.module('studyAgendaApp.directives', [
   'sa-mongoose-error',
   'sa-delete-confirmation',
   'sa-date-input',
-  'sa-add-edit-enrollment'
+  'sa-add-edit-enrollment',
+  'sa-availability-hours'
 ]);

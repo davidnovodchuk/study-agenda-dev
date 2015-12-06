@@ -3,12 +3,11 @@
    <!-- START panel-->
   <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
-      <div class="panel panel-primary">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h4>Profile management</h4>
+        </div>
         <form role="form" name="form" novalidate data-ng-submit="updateProfile()" class="form-validate">
-          <div class="panel-heading">
-            <h4>Profile management</h4>
-          </div>
-
           <div class="panel-body">
 
             <div class="form-group has-feedback" data-ng-class="{ 'has-success': form.firstName.$valid &amp;&amp; submitted, 'has-error': form.firstName.$invalid &amp;&amp; submitted }">
@@ -33,15 +32,17 @@
                <span data-ng-show="form.email.$error.mongoose" class="text-danger">{{ errors.email }}</span>
             </div>
 
-            <div>
+            <!-- <div>
               <label class="text-muted">Password</label>
               <p>To change your password, click <a class="btn btn-info btn-xs" data-ng-click="changePasswordModal()">Change my password</a> </p>
               <span data-ng-show="form.$pristine" class="text-success">{{ message }}</span>
-            </div>
+            </div> -->
 
-            <button type="submit" class="btn btn-block btn-primary mt-lg">Update profile</button>
+            <button type="submit" data-ng-disabled="!form.$dirty" class="btn btn-block btn-info mt-lg">Update profile</button>
+            <button type="button" data-ng-if="form.$dirty" data-ng-click="cancelUpdate()" class="btn btn-block btn-default mt-lg">Cancel</button>
+            <button type="button" data-ng-click="changePasswordModal()" class="btn btn-block btn-warning mt-lg">Change password</button>
             <div data-ng-if="user" data-ng-class="{active: isActive('/logout')}">
-              <button class="btn btn-block mt-lg" data-ng-click="logout()">Logout</button>
+              <button type="button" class="btn btn-block mt-lg" data-ng-click="logout()">Logout</button>
             </div>
           </div>
         </form>

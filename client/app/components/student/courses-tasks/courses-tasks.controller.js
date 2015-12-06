@@ -57,36 +57,16 @@ angular.module('studyAgendaApp')
 
     $scope.addTaskToCourse = function(courseId, courseName) {
       var addTaskToCourseModal = $modal.open({
-        templateUrl: 'addTaskDialog',
+        templateUrl: 'app/shared/templates/create-task/create-task.html',
+        controller: 'createTaskModalCtrl',
         resolve: {
+          courseId: function() {
+            return courseId;
+          },
           courseName: function() {
             return courseName;
           }
-        },
-        controller: ['$scope', '$modalInstance', 'Task', 'courseName', function($scope, $modalInstance, Task, courseName) {
-          $scope.courseName = courseName;
-          $scope.newTask = new Task();
-          $scope.newTask.course = courseId;
-          $scope.newTask.dueDate = new Date();
-
-          $scope.cancel = function() {
-            $modalInstance.dismiss();
-          };
-
-          $scope.addTask = function() {
-            if ($scope.addTaskForm.$valid) {
-              $scope.newTask.$save()
-              .then( function(task) {
-                $modalInstance.close();
-                task.dueDate = new Date(task.dueDate);
-              })
-              .catch(function(err) {
-                // TODO: Add use pop-up to show error
-                $scope.serverError = 'The system was not able to save the task';
-              });
-            }
-          };
-        }]
+        }
       });
 
       addTaskToCourseModal.result
@@ -110,6 +90,9 @@ angular.module('studyAgendaApp')
           },
           task: function() {
             return task;
+          },
+          accomplishToday: function() {
+            return null;
           }
         }
       });
