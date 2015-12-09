@@ -540,7 +540,8 @@ body {
   }
   .aside-toggled .wrapper > section,
   .aside-toggled .wrapper > footer {
-    margin-left: 220px;
+    /*margin-left: 220px;*/
+    left: 220px;
   }
   .aside-toggled .wrapper > .aside {
     margin-left: 0;
