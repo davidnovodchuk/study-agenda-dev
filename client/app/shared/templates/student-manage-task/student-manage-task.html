@@ -31,15 +31,15 @@
       </div>
     </fieldset>
     <div class="student-manage-task-top-btn-bottom-padding" data-ng-if="!task.completed">
-      <button type="button" data-ng-click="markTaskCompleted()" class="btn btn-success student-manage-task-top-btn">Mark task completed</button>
+      <button type="button" data-ng-click="markTaskCompleted()" class="btn btn-success student-manage-task-top-btn">Mark Task Completed</button>
     </div>
     <div class="student-manage-task-top-btn-bottom-padding" data-ng-if="task.completed">
-      <button type="button" data-ng-click="unmarkTaskCompleted()" class="btn btn-success student-manage-task-top-btn">Unmark task completed</button>
+      <button type="button" data-ng-click="unmarkTaskCompleted()" class="btn btn-success student-manage-task-top-btn">Unmark Task Completed</button>
     </div>
     <div class="student-manage-task-top-btn-bottom-padding">
-      <button type="button" data-ng-click="editTask()" class="btn btn-primary student-manage-task-top-btn">Edit task details</button>
+      <button type="button" data-ng-click="editTask()" class="btn btn-primary student-manage-task-top-btn">Edit Task Details</button>
     </div>
-    <button type="button" data-ng-click="removeTask()" class="btn btn-danger student-manage-task-top-btn">Remvoe from my tasks</button>
+    <button type="button" data-ng-click="removeTask()" class="btn btn-danger student-manage-task-top-btn">Remvoe from my Tasks</button>
 </div>
 <div class="modal-footer">
   <span data-ng-show="serverError" class="text-danger">{{serverError}}</span>

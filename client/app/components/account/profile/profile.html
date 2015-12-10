@@ -38,9 +38,9 @@
               <span data-ng-show="form.$pristine" class="text-success">{{ message }}</span>
             </div> -->
 
-            <button type="submit" data-ng-disabled="!form.$dirty" class="btn btn-block btn-info mt-lg">Update profile</button>
+            <button type="submit" data-ng-disabled="!form.$dirty" class="btn btn-block btn-info mt-lg">Update Profile</button>
             <button type="button" data-ng-if="form.$dirty" data-ng-click="cancelUpdate()" class="btn btn-block btn-default mt-lg">Cancel</button>
-            <button type="button" data-ng-click="changePasswordModal()" class="btn btn-block btn-warning mt-lg">Change password</button>
+            <button type="button" data-ng-click="changePasswordModal()" class="btn btn-block btn-warning mt-lg">Change Password</button>
             <div data-ng-if="user" data-ng-class="{active: isActive('/logout')}">
               <button type="button" class="btn btn-block mt-lg" data-ng-click="logout()">Logout</button>
             </div>
