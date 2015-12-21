@@ -110,21 +110,23 @@ exports.authCallback = function(req, res, next) {
   res.redirect('/');
 };
 
-exports.getSchedule = function(req, res, next) {
-  var userId = req.body._id;
-  var today = req.body.today || new Date();
+exports.getSchedule = function(req, res) {
+  var studentId = req.user._id;
+  var today = new Date(req.query.today) || new Date();
 
   return Q(
-    User.findById(userId)
+    User.findById(studentId)
+    .select('enrollments studyDays modifiedTasks')
+    .lean()
     .exec()
   )
-  .then(function(user) {
-    if(!user) {
+  .then(function(student) {
+    if(!student) {
       return res.send(404);
     }
 
     return Q(
-      exports._calculateSchedule(user, today)
+      exports._calculateSchedule(student, today)
     )
     .then(function(schedule) {
       schedule = _.filter(schedule, function(scheduleDay) {
@@ -132,7 +134,11 @@ exports.getSchedule = function(req, res, next) {
           scheduleDay._tasksDue.length;
       });
 
-      res.json(schedule);
+      if (schedule) {
+        student.schedule = schedule;
+      }
+
+      res.json(student);
     });
   })
   .fail(function(err) {
@@ -142,6 +148,13 @@ exports.getSchedule = function(req, res, next) {
 
 exports._calculateSchedule = function(user, today) {
   var user = user || {};
+  var isTotalHoursZero = _.every(user.studyDays, function(studyDay) {
+    return studyDay.minutes === 0;
+  });
+
+  if (!user.enrollments.length || isTotalHoursZero) {
+    return null;
+  }
 
 	// I don't remember why subtractFromTotalDays is needed, this is why I keep it for now
 	var subtractFromTotalDays
