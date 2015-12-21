@@ -223,6 +223,8 @@ module.exports = function (grunt) {
         files: {
           src: [
             '<%= yeoman.dist %>/public/{,*/}*.js',
+            '!<%= yeoman.dist %>/public/bower_components/Chart.js',
+            '!<%= yeoman.dist %>/public/bower_components/angular-chart.js',
             '<%= yeoman.dist %>/public/{,*/}*.css',
             '<%= yeoman.dist %>/public/assets/img/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
             '<%= yeoman.dist %>/public/assets/fonts/*'

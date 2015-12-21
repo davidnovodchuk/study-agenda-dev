@@ -10,6 +10,7 @@ var USER_ROLES = CONSTANTS.USER_ROLES;
 var _ = require('lodash');
 var Q = require('q');
 var Task = require('../task/task.model');
+var School = require('../school/school.model');
 
 var validationError = function(res, err) {
   return res.json(422, err);

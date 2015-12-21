@@ -37,7 +37,7 @@
           <input type="number" name="task_weight" min="0" max="100" placeholder="How many percents the task worth?" autocomplete="off" data-ng-model="newTask.weight" required="" class="form-control" />
           <span class="input-group-addon">%</span>
         </div>
-        <div
+        <div>
           <span class="text">* If you don't know the weight, enter 0</span>
         </div>
         <span data-ng-show="(addTaskForm.$submitted || addTaskForm.task_weight.$dirty) &amp;&amp; addTaskForm.task_weight.$error.required" class="text-danger">Task weight is required</span>
