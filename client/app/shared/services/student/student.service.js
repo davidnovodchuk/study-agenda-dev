@@ -23,6 +23,12 @@ angular.module('studyAgendaApp')
         params: {
           controller:'enrollments'
         }
+      },
+      getSchedule: {
+        method: 'GET',
+        params: {
+          controller:'dashboard'
+        }
       }
     });
   });

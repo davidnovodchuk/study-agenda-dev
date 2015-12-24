@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('studyAgendaApp')
-  .controller('StudentDashboardCtrl', function ($scope, $state, $stateParams, $anchorScroll, $modal, Student, User) {
+  .controller('StudentDashboardCtrl', function ($scope, $state, $stateParams, $anchorScroll, $modal, Student) {
     $scope.refreshPage = function() {
       $anchorScroll();
       $state.transitionTo($state.current, $stateParams, {
@@ -10,9 +10,9 @@ angular.module('studyAgendaApp')
         notify: true
       });
     };
-
+    
     $scope.getStudent = function() {
-      new User().$get()
+      new Student().$getSchedule({id: 'me', today: new Date()})
       .then(function(student) {
         $scope.enrollments = student.enrollments;
         $scope.isTotalHoursZero = _.every(student.studyDays, function(studyDay) {
@@ -24,9 +24,18 @@ angular.module('studyAgendaApp')
             return studyDay.minutes / 60;
           });
 
-
           $scope.data = [availabilityChartData];
         }
+
+        $scope.daysWithTasksDue = [];
+
+        _.each(student.schedule, function(scheduleItem) {
+          if (scheduleItem._tasksDue.length) {
+            $scope.daysWithTasksDue.push(scheduleItem);
+          } else {
+            $scope.accomplishToday = scheduleItem;
+          }
+        });
 
         $scope.student = student;
       })
