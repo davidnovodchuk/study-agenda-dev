@@ -16,7 +16,17 @@ var path = require('path');
 var config = require('./environment');
 var passport = require('passport');
 
+
 module.exports = function(app) {
+  var fs = require('fs');
+  var https = require('https');
+  var httpsPort = 443;
+  var options = {
+    key: fs.readFileSync('/etc/letsencrypt/live/studyagenda.com/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/studyagenda.com/cert.pem')
+  };
+
+  var secureServer = https.createServer(options, app).listen(httpsPort);
   var env = app.get('env');
 
   app.set('views', config.root + '/server/views');
@@ -29,6 +39,14 @@ module.exports = function(app) {
   app.use(cookieParser());
   app.use(passport.initialize());
   if ('production' === env) {
+    app.set('port_https', httpsPort); // make sure to use the same port as above, or better yet, use the same variable
+    // Secure traffic only
+    app.all('*', function(req, res, next){
+      if (req.secure) {
+        return next();
+      }
+      res.redirect('https://'+req.hostname+':'+app.get('port_https')+req.url);
+    });
     app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
     app.use(express.static(path.join(config.root, 'public')));
     app.set('appPath', config.root + '/public');
