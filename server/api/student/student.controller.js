@@ -125,18 +125,70 @@ exports.getSchedule = function(req, res) {
       return res.send(404);
     }
 
-    return Q(
-      exports._calculateSchedule(student, today)
-    )
-    .then(function(schedule) {
-      schedule = _.filter(schedule, function(scheduleDay) {
-        return (scheduleDay._date.setHours(0,0,0,0) === today.setHours(0,0,0,0) && scheduleDay._tasks.length) ||
-          scheduleDay._tasksDue.length;
-      });
+    // return Q(
+    //   exports._calculateSchedule(student, today)
+    // )
+    // .then(function(schedule) {
+    //   schedule = _.filter(schedule, function(scheduleDay) {
+    //     return (scheduleDay._date.setHours(0,0,0,0) === today.setHours(0,0,0,0) && scheduleDay._tasks.length) ||
+    //       scheduleDay._tasksDue.length;
+    //   });
+    return Q([
+       exports._calculateSchedule(student, today),
+
+       Task.find()
+       .and([
+         { dueDate: { $gte: today.setHours(0,0,0,0) }},
+         { dueDate: { $lte: today.setHours(23,59,59,0) }}
+       ])
+       .populate('course')
+       .exec()
+     ])
+     .spread(function(schedule, tasksDueToday) {
+       var tasksNotInclude = [];
+       _.each(student.modifiedTasks, function(modifiedTask) {
+         if( modifiedTask.modificationType === TASK_MODIFICATION_TYPES.NOT_APPLY ||
+           modifiedTask.modificationType === TASK_MODIFICATION_TYPES.COMPLETED) {
+           tasksNotInclude.push(modifiedTask.task);
+         }
+       });
+
+       if(tasksNotInclude.length)
+       {
+         for( var i = tasksDueToday.length - 1 ; i >= 0 ; i-- ) {
+           for( var j = 0 ; j < tasksNotInclude.length ; j++ ) {
+             if( tasksDueToday[i]._id.toString() ===
+               tasksNotInclude[j].toString() ){
+               tasksDueToday.splice(i,1);
+               j = tasksNotInclude.length ;
+             }
+           }
+         }
+       }
+
+       schedule = _.filter(schedule, function(scheduleDay) {
+         return (scheduleDay._date.setHours(0,0,0,0) === today.setHours(0,0,0,0) && scheduleDay._tasks.length) ||
+           scheduleDay._tasksDue.length;
+       });
+
+       if (tasksDueToday.length) {
+         student.tasksDueToday = _.map(tasksDueToday, function(task) {
+           return {
+             _id: task._id,
+             name: task.name,
+             weight: task.weight,
+             course: task.course._id,
+             courseName: task.course.code
+           };
+         });
+       }
 
       if (schedule) {
         student.schedule = schedule;
       }
+
+      console.log("student:");
+      console.log(student);
 
       res.json(student);
     });

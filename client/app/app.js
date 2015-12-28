@@ -24,7 +24,8 @@ var App = angular.module('studyAgendaApp', [
     'ui.bootstrap-slider',
     'oitozero.ngSweetAlert',
     'chart.js',
-    'ng-mfb'
+    'ng-mfb',
+    'angular-svg-round-progress'
 ]);
 
 App.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {

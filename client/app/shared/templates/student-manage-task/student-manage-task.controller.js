@@ -6,7 +6,9 @@ angular.module('studyAgendaApp')
     $scope.course = course;
   	$scope.task = new Task(task);
     $scope.task.dueDate = new Date($scope.task.dueDate);
+    console.log(accomplishToday);
     $scope.accomplishToday = accomplishToday;
+
 
     var addTaskModification = function() {
       student.$addTaskModification({id: 'me'})

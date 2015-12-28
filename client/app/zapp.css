@@ -11321,3 +11321,6 @@ flatdoc .button .badge {
 .title-alert {
    margin-bottom: 5px;
 }
+.mfb-component__button--main, .mfb-component__button--child {
+  background-color: #ea4335;
+}
