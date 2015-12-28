@@ -21,7 +21,7 @@ var UserSchema = new Schema({
     lowercase: true,
     required: true,
     unique: true
-  }, 
+  },
   role: {
     type: Number,
     default: USER_ROLES.STUDENT,
@@ -70,7 +70,16 @@ var UserSchema = new Schema({
       ref: 'sa_tasks'
     },
     modificationType: Number
-  }]  
+  }],
+  isActivated: {
+    type: Boolean,
+    required: true,
+    default: true,
+  },
+  createdOn: {
+    type: Date,
+    required: true
+  },
 });
 
 /**

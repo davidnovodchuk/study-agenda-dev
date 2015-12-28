@@ -136,7 +136,9 @@ App.config(function ($stateProvider) {
     authenticate: true,
     controller: ['$rootScope', '$state', 'USER_ROLES',
      function($rootScope, $state, USER_ROLES) {
-      if ($rootScope.user && $rootScope.user.role === USER_ROLES.ADMIN) {
+      if ($rootScope.user && !$rootScope.user.isActivated) {
+        $state.go('account.inactive-user');
+      } else if ($rootScope.user && $rootScope.user.role === USER_ROLES.ADMIN) {
         $state.go('admin');
       } else if ($rootScope.user && $rootScope.user.role === USER_ROLES.STUDENT) {
         $state.go('student');

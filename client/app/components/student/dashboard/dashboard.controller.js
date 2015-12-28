@@ -10,7 +10,7 @@ angular.module('studyAgendaApp')
         notify: true
       });
     };
-    
+
     $scope.getStudent = function() {
       new Student().$getSchedule({id: 'me', today: new Date()})
       .then(function(student) {

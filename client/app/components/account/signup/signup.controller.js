@@ -18,7 +18,7 @@ angular.module('studyAgendaApp')
         })
         .then( function() {
           // Account created, redirect to home
-          $location.path('/login');
+          $location.path('/inactive-user');
         })
         .catch( function(err) {
           err = err.data;
@@ -28,7 +28,7 @@ angular.module('studyAgendaApp')
           angular.forEach(err.errors, function(error, field) {
             form[field].$setValidity('mongoose', false);
             $scope.errors[field] = error.message;
-            // assign custom change to the fields with errors 
+            // assign custom change to the fields with errors
             // in order to unset validity and allow for resubmission
             $scope.form[field].change = function(){
               $scope.form[field].$setValidity('mongoose',true);

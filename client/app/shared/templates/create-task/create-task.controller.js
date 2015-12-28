@@ -1,8 +1,6 @@
 'use strict';
 
 angular.module('studyAgendaApp')
-  // .controller('StudentManageTaskCtrl', function ($scope, $modalInstance, $modal,
-  //   TASK_MODIFICATION_TYPES, Task, student, course, task, accomplishToday) {
   .controller('createTaskModalCtrl', function($scope, $modalInstance, Task, Student, TASK_MODIFICATION_TYPES, TASK_PRIVACY_TYPES, ngNotify, courseName, courseId) {
     $scope.courseName = courseName;
     $scope.newTask = new Task();
