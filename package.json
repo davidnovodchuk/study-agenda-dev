@@ -9,6 +9,7 @@
     "connect-livereload": "^0.5.4",
     "connect-mongo": "^1.1.0",
     "cookie-parser": "^1.0.1",
+    "ejs": "^2.3.4",
     "errorhandler": "^1.4.2",
     "express": "^4.0.0",
     "express-jwt": "^3.3.0",
