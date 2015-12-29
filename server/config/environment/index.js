@@ -20,11 +20,12 @@ var all = {
 
   // Server port
   port: process.env.PORT || 9000,
+  sslPort: process.env.sslPort || 9001,
 
   // Should we populate the DB with sample data?
   seedDB: false,
 
-  // Secret for session, you will want to change this and make it an environment variable
+  // Secret for session , you will want to change this and make it an environment variable
   secrets: {
     session: 'studyAgenda-secret'
   },
