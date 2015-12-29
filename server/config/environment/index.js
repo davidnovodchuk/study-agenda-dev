@@ -20,7 +20,7 @@ var all = {
 
   // Server port
   port: process.env.PORT || 9000,
-  sslPort: process.env.sslPort || 9001,
+  sslPort: process.env.NODE_ENV === 'production' ?  443 : 9001,
 
   // Should we populate the DB with sample data?
   seedDB: false,
