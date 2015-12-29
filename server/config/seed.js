@@ -23,7 +23,7 @@ User.find(function(err, users) {
         role: USER_ROLES.ADMIN,
         name: 'Admin',
         email: 'admin@sa.com',
-        password: 'admin'
+        password: 'admino'
       }, function() {
           console.log('finished populating users');
         }

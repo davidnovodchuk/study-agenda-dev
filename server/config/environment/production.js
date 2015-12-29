@@ -13,8 +13,12 @@ module.exports = {
   // Server port
   port:     process.env.OPENSHIFT_NODEJS_PORT ||
             process.env.PORT ||
-            8080,
+            80,
 
+  sslPort:  443,
+
+  keyFile:  '/etc/letsencrypt/live/studyagenda.com/privkey.pem',
+  certFile: '/etc/letsencrypt/live/studyagenda.com/cert.pem',
   // MongoDB connection options
   mongo: {
     uri:    process.env.MONGOLAB_URI ||

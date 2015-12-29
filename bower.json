@@ -1,6 +1,6 @@
 {
   "name": "studyAgenda",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "dependencies": {
     "angular": "1.3.18",
     "angular-animate": "~1.3.15",
