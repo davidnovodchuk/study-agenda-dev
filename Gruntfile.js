@@ -25,7 +25,13 @@ module.exports = function (grunt) {
 
   // Define the configuration for all the tasks
   grunt.initConfig({
-
+    // cssImport:{
+    //   options: {
+    //     process: function(src, filepath){
+    //       return "";
+    //     }
+    //   }
+    // },
     // Project settings
     pkg: grunt.file.readJSON('package.json'),
     yeoman: {
@@ -227,8 +233,7 @@ module.exports = function (grunt) {
             '!<%= yeoman.dist %>/public/bower_components/angular-chart.js',
             '<%= yeoman.dist %>/public/{,*/}*.css',
             '<%= yeoman.dist %>/public/assets/img/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-            '<%= yeoman.dist %>/public/assets/fonts/*'
-          ]
+            '<%= yeoman.dist %>/public/assets/fonts/*'          ]
         }
       }
     },
@@ -250,6 +255,7 @@ module.exports = function (grunt) {
       js: ['<%= yeoman.dist %>/public/{,*/}*.js'],
       options: {
         assetsDirs: [
+          '<%= yeoman.dist %>/public',
           '<%= yeoman.dist %>/public',
           '<%= yeoman.dist %>/public/assets/img'
         ],
@@ -360,6 +366,16 @@ module.exports = function (grunt) {
           src: [
             'package.json',
             'server/**/*'
+          ]
+        }, {
+          expand: true,
+          dot: true,
+          flatten: true,
+          cwd: '<%= yeoman.client %>/bower_components/',
+          dest: '<%= yeoman.dist %>/public/fonts',
+          src: [
+            'font-awesome/fonts/*',
+            'simple-line-icons/fonts/*'
           ]
         }]
       },
