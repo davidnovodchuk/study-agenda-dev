@@ -17,6 +17,12 @@ angular.module('studyAgendaApp')
         params: {
           controller:'student-update'
         }
+      },
+      findByCourseDate: {
+        method: 'GET',
+        params: {
+          controller:'find-by-course-date'
+        }
       }
     });
   });

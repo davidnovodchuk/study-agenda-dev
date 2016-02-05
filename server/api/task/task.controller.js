@@ -16,7 +16,7 @@ exports.index = function(req, res) {
     .exec()
   )
   .then(function (tasks) {
-    
+
     return res.status(200).json(tasks);
   })
   .fail(function(err) {
@@ -34,8 +34,8 @@ exports.show = function(req, res) {
     .exec()
   )
   .then(function(task) {
-    if(!task) { 
-      return res.send(404); 
+    if(!task) {
+      return res.send(404);
     }
 
     return res.json(task);
@@ -85,8 +85,8 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
   var taskId = req.body._id;
 
-  if(req.body._id) { 
-    delete req.body._id; 
+  if(req.body._id) {
+    delete req.body._id;
   }
 
   return Q(
@@ -94,8 +94,8 @@ exports.update = function(req, res) {
     .exec()
   )
   .then(function(task) {
-    if(!task) { 
-      return res.send(404); 
+    if(!task) {
+      return res.send(404);
     }
 
     var updated = _.merge(task, req.body);
@@ -121,8 +121,8 @@ exports.destroy = function(req, res) {
     .exec()
   )
   .then(function(task) {
-    if(!task) { 
-      return res.send(404); 
+    if(!task) {
+      return res.send(404);
     }
 
     return Q(
@@ -140,15 +140,15 @@ exports.destroy = function(req, res) {
 
 exports.showWithReferences = function(req, res) {
   var taskId = req.params.id;
-  
+
   return Q(
     Task.findById(taskId)
     .populate("course")
     .exec()
   )
   .then(function(task) {
-    if(!task) { 
-      return res.send(404); 
+    if(!task) {
+      return res.send(404);
     }
 
     return res.json(task);
@@ -214,7 +214,7 @@ exports.studentUpdate = function(req, res) {
     var taskAlreadyModified = _.findWhere(student.modifiedTasks, function(modifiedTask) {
       return modifiedTask.task.toString() === originalTaskId.toString();
     });
-    
+
     if (taskAlreadyModified) {
       newModificationType = taskAlreadyModified.modificationType;
       taskAlreadyModified.modificationType = TASK_MODIFICATION_TYPES.NOT_APPLY;
@@ -242,6 +242,28 @@ exports.studentUpdate = function(req, res) {
   });
 };
 
+exports.findByCourseDate = function(req, res) {
+  console.log('+++++++++++++++++++++++++++++++++++++');
+  var taskId = "123";
+
+  return Q(
+    Task.findById(taskId)
+    .populate("course")
+    .exec()
+  )
+  .then(function(task) {
+    if(!task) {
+      return res.send(404);
+    }
+
+    return res.json(task);
+  })
+  .fail(function(err) {
+
+    return handleError(res, err);
+  });
+};
+
 function handleError(res, err) {
-  return res.send(500, err);
+  return res.status(500).send(err);
 }
