@@ -7,7 +7,7 @@ angular.module('studyAgendaApp')
     $scope.courseName = courseName;
     $scope.newTask = new Task();
     $scope.newTask.course = courseId;
-    $scope.newTask.dueDate = new Date();
+    // $scope.newTask.dueDate = new Date();
     $scope.dateChosen = false;
 
     if (!courseId) {
@@ -99,13 +99,21 @@ angular.module('studyAgendaApp')
       }
     };
 
+    $scope.$watch('newTask.course', function(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        if (!$scope.courseChosen) {
+          $scope.courseChosen = true;
+        }
+      }
+    });
+
     $scope.$watch('newTask.dueDate', function(newValue, oldValue) {
       if (newValue !== oldValue) {
-        // $scope.newTask.$findByCourseDate()
-        $scope.newTask.$findByCourseDate({newTask: $scope.newTask})
-        .then( function(task) {
-
-          task.dueDate = new Date(task.dueDate);
+        console.log(newValue + ' !== ' + oldValue);
+        $scope.newTask.$findByCourseDate()
+        .then(function(task) {
+          console.log('11111111');
+          console.log($scope.newTask);
 
           $scope.dateChosen = true;
         })

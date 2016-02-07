@@ -19,7 +19,7 @@ angular.module('studyAgendaApp')
         }
       },
       findByCourseDate: {
-        method: 'GET',
+        method: 'POST',
         params: {
           controller:'find-by-course-date'
         }

@@ -243,20 +243,26 @@ exports.studentUpdate = function(req, res) {
 };
 
 exports.findByCourseDate = function(req, res) {
-  console.log('+++++++++++++++++++++++++++++++++++++');
-  var taskId = "123";
+  var courseId = req.body && req.body.course;
+  var dueDate = req.body && req.body.dueDate;
+  var returnTask;
 
   return Q(
-    Task.findById(taskId)
-    .populate("course")
+    Task.find()
+    .where('course').equals(courseId)
     .exec()
   )
-  .then(function(task) {
-    if(!task) {
-      return res.send(404);
+  .then(function(tasks) {
+    if (!tasks.length) {
+      returnTask = req.body;
+    } else if (tasks.length === 1) {
+      returnTask = tasks[0];
+    } else {
+      returnTask = req.body;
+      returnTask.sameDateTasks = tasks;
     }
 
-    return res.json(task);
+    return res.json(returnTask);
   })
   .fail(function(err) {
 
