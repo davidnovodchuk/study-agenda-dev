@@ -7,5 +7,6 @@ angular.module('studyAgendaApp.directives', [
   'sa-delete-confirmation',
   'sa-date-input',
   'sa-add-edit-enrollment',
-  'sa-availability-hours'
+  'sa-availability-hours',
+  'sa-forgot-password'
 ]);

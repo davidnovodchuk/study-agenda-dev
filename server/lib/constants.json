@@ -12,5 +12,11 @@
 		"COMPLETED": 1,
 		"NOT_APPLY": 2,
 		"APPLY" : 3
+	},
+	"SENDGRID": {
+		"API_KEY": "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"
+	},
+	"APP": {
+		"URL": "https://studyagenda.com"
 	}
 }
