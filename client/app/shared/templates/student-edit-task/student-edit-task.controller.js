@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('studyAgendaApp')
-  .controller('StudentEditTaskCtrl', function ($scope, $modalInstance, $modal, 
+  .controller('StudentEditTaskCtrl', function ($scope, $modalInstance, $modal,
     TASK_MODIFICATION_TYPES, Task, student, course, task) {
     $scope.course = course;
   	$scope.task = new Task(task);

@@ -5,3 +5,45 @@
 .progress-bar {
     font-size: 0;
 }
+.percentage {
+  /*display: block;
+  float: right;
+  margin-right: -42px;*/
+  margin-top: -45px;
+}
+
+.info-button{
+  margin-left: 125px;
+  margin-top: 12px;
+}
+
+.dashboard-title{
+  vertical-align: middle;
+  line-height:30px;
+}
+
+.dashboard-row{
+  border-top:1px solid #cfdbe2;
+  padding-top:3%;
+  padding-bottom:3%;
+}
+
+.dashboard-row.dashboard-row-first {
+  border:none;
+  padding-top:0%;
+}
+
+.dashboard-row.dashboard-row-last {
+  padding-bottom:0%;
+}
+
+
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}

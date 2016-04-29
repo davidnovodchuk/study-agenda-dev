@@ -7,28 +7,57 @@
 </div>
 <div class="modal-body">
     <fieldset>
-      <div class="fieldset-info-item">
-        <div class="col-sm-2"><b>Course:</b></div>
-        <div class="col-sm-10">{{course.code}}</div>
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="fieldset-info-item">
+            <div class="col-sm-4"><b>Course:</b></div>
+            <div class="col-sm-8">{{course.code}}</div>
+          </div>
+            <div class="fieldset-info-item">
+            <div class="col-sm-4"><b>Name:</b></div>
+            <div class="col-sm-8">{{task.name}}</div>
+          </div>
+            <div class="fieldset-info-item">
+            <div class="col-sm-4"><b>Weight: </b></div>
+            <div class="col-sm-8">{{task.weight}} %</div>
+          </div>
+            <div class="fieldset-info-item">
+            <div class="col-sm-4"><b>Due Date:</b></div>
+            <div class="col-sm-8">{{task.dueDate | date:'MMMM dd, yyyy'}}</div>
+          </div>
+        </div>
+        <div class="col-xs-6 text-center">
+          <div><b>Accomplish Today:</b></div>
+          <div>
+            <div style="margin: auto">
+
+          <div class="text-center center-block" round-progress
+          max="100"
+          current="accomplishToday"
+          color="#45ccce"
+          bgcolor="#eaeaea"
+          radius="37"
+          stroke="7"
+          semi="false"
+          rounded="true"
+          clockwise="true"
+          responsive="false"
+          duration="800"
+          animation="easeInOutQuart"
+          animation-delay="0">
+          </div>
+          <div class="text-center percentage-big">{{accomplishToday}}%</div>
+        </div>
+
+          </div>
+        </div>
       </div>
-        <div class="fieldset-info-item">
-        <div class="col-sm-2"><b>Name:</b></div>
-        <div class="col-sm-10">{{task.name}}</div>
-      </div>
-        <div class="fieldset-info-item">
-        <div class="col-sm-2"><b>Weight:</b></div>
-        <div class="col-sm-10">{{task.weight}} %</div>
-      </div>
-        <div class="fieldset-info-item">
-        <div class="col-sm-2"><b>Due Date:</b></div>
-        <div class="col-sm-10">{{task.dueDate | date:'MMMM dd, yyyy'}}</div>
-      </div>
-      <div data-ng-if="accomplishToday">
+      <!-- <div data-ng-if="accomplishToday">
         <div class="col-sm-2"><b>Accomplish Today:</b></div>
         <div data-ng-if="accomplishToday === 100" class="col-sm-10"><progressbar value="100" type="danger" class="m0 progress-xs">100%</progressbar></div>
-        <div data-ng-if="accomplishToday === 80" class="col-sm-10"><progressbar value="80" type="warning" class="m0 progress-xs">80%</progressbar></div>
-        <div data-ng-if="accomplishToday === 20" class="col-sm-10"><progressbar value="20" type="success" class="m0 progress-xs">20%</progressbar></div>
-      </div>
+        <div data-ng-if="accomplishToday >= 80 && accomplishToday !== 100" class="col-sm-10"><progressbar value="accomplishToday" type="warning" class="m0 progress-xs">80%</progressbar></div>
+        <div data-ng-if="accomplishToday > 20 && accomplishToday < 80" class="col-sm-10"><progressbar value="30" type="success" class="m0 progress-xs">20%</progressbar></div>
+      </div> -->
     </fieldset>
     <div class="student-manage-task-top-btn-bottom-padding" data-ng-if="!task.completed">
       <button type="button" data-ng-click="markTaskCompleted()" class="btn btn-success student-manage-task-top-btn">Mark Task Completed</button>
@@ -39,7 +68,7 @@
     <div class="student-manage-task-top-btn-bottom-padding">
       <button type="button" data-ng-click="editTask()" class="btn btn-primary student-manage-task-top-btn">Edit Task Details</button>
     </div>
-    <button type="button" data-ng-click="removeTask()" class="btn btn-danger student-manage-task-top-btn">Remvoe from my Tasks</button>
+    <button type="button" data-ng-click="removeTask()" class="btn btn-danger student-manage-task-top-btn">Remove from my Tasks</button>
 </div>
 <div class="modal-footer">
   <span data-ng-show="serverError" class="text-danger">{{serverError}}</span>

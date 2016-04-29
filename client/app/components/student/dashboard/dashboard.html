@@ -1,90 +1,166 @@
-<h3>Student Dashboard</h3>
-<div class="row row-centered">
-  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 center-block">
-    <div data-ng-if="enrollments.length && !isTotalHoursZero">
-      <div id="dashPanel" class="panel panel-info">
-        <div class="panel-heading">Tuesday, Nov, 17 <div class="pull-right label label-danger">Today</div></div>
-        <div class="panel-body">
-          <div>
-            <p><a href="" data-ng-click="infoModal(100,false)">BTN710 - Assignment 1</a>
-              <span data-ng-click = "infoModal(100,false)" class="fa-stack pull-right">
-                <em class="fa fa-circle fa-stack-2x text-info"></em>
-                <em class="fa fa-info fa-stack-1x fa-inverse text-white"></em>
-              </span>
-            </p>
-            <div class="ph">
-              <progressbar value="100" type="danger" class="m0 progress-xs">50%</progressbar>
-            </div>
-            <p></p>
-          </div>
-          <div>
-            <div><a href="" data-ng-click="infoModal(false, true)"><s>BTH740 - Assignment 1</s></a>
-              <span data-ng-click = "infoModal(false, true)" class="fa-stack pull-right">
-                <em class="fa fa-circle fa-stack-2x text-info"></em>
-                <em class="fa fa-info fa-stack-1x fa-inverse text-white"></em>
-              </span>
-              <span class="label label-success">Completed</span>
-            </div>
-            <p></p>
-          </div>
-        </div>
-      </div>
-      <!-- END panel-->
-      <!-- START panel-->
-      <div id="dashPanel2" class="panel panel-info">
-        <div class="panel-heading">Thursday, Nov, 19 </div>
-        <div class="panel-body">
-          <div>
-            <p><a href="" data-ng-click="infoModal(80, false)">BTH730 - Assignment 2</a>
-              <span data-ng-click = "infoModal(80, false)" class="fa-stack pull-right">
-                <em class="fa fa-circle fa-stack-2x text-info"></em>
-                <em class="fa fa-info fa-stack-1x fa-inverse text-white"></em>
-              </span>
-            </p>
-            <div class="ph">
-              <progressbar value="80" type="warning" class="m0 progress-xs">50%</progressbar>
-            </div>
-            <p></p>
-          </div>
-          <div>
-            <p><a href="" data-ng-click="infoModal(20, false)">BTH730 - Assignment 2</a>
-              <span data-ng-click = "infoModal(20, false)" class="fa-stack pull-right">
-                <em class="fa fa-circle fa-stack-2x text-info"></em>
-                <em class="fa fa-info fa-stack-1x fa-inverse text-white"></em>
-              </span>
-            </p>
-            <div class="ph">
-              <progressbar value="20" type="success" class="m0 progress-xs">50%</progressbar>
-            </div>
-            <p></p>
-          </div>
-          <p></p>
+<h3>Dashboard</h3>
+<div class="row row-centered center-block">
+  <div class="col-lg-6 col-md-6 col-sm-12">
+        <form role="form" data-ng-submit="updateHours()" name="form" novalidate="" class="form-validate mb-lg">
+          <div data-ng-show="student.tasksDueToday.length > 0">
+            <div class="panel panel-default">
+              <div class="alert alert-info title-alert">Today</div>
+                <div class="panel-body">
+                  <div data-ng-repeat="todaysTask in student.tasksDueToday">
+                    <div data-ng-click="infoModal(100,false,todaysTask,null)" class="row dashboard-row" ng-class="{'dashboard-row-first': $first, 'dashboard-row-last':$last}"  style="min-height:55px">
+                      <div class="col-xs-10 dashboard-title">
+                        <div class="row">
+                          <div class="col-xs-12"><b>{{todaysTask.name}}</b></div>
+                        </div>
+                        <div class="row">
+                        <div class="col-xs-12">{{todaysTask.courseName}}</div>
+                        </div>
+                      </div>
+                      <div class="col-xs-2">
+                        <div class="pull-right">
+                          <div round-progress
+                            max="max"
+                            current="100"
+                            color="#45ccce"
+                            bgcolor="#eaeaea"
+                            radius="30"
+                            stroke="7"
+                            semi="false"
+                            rounded="true"
+                            clockwise="true"
+                            responsive="false"
+                            duration="800"
+                            animation="easeInOutQuart"
+                            animation-delay="0">
+                          </div>
+                          <div class="text-center percentage">100%</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
         </div>
       </div>
 
-      <nav mfb-menu position="br" effect="zoomin"
-        active-icon="fa fa-plus" resting-icon="fa fa-plus"
-        toggling-method="click" ng-click="createTaskFunciton()">
-        <!-- <button mfb-button icon="fa fa-plus" label="New Task" ng-click="createTaskFunciton()"></button> -->
-      </nav>
-      <a data-ui-sref="student.availability"><h4 class="text-center">Availability</h4>
-      <canvas id="bar" class="chart chart-bar"
-        chart-data="data" chart-labels="labels">
-      </canvas></a>
-    </div>
-    <div data-ng-if="!enrollments.length">
-      <div class="alert alert-info title-alert">
-        <h4>In order to use the app, please provide your enrollment information.</h4>
-      </div>
-      <div data-sa-add-edit-enrollment
-           data-after-success-submit-function="refreshPage"></div>
-    </div>
-    <div data-ng-if="enrollments.length && isTotalHoursZero">
-      <div class="alert alert-info title-alert">
-        <h4>In order to use the app, please provide your availability information.</br>
-          How many hours you spend studying outside classes?</h4>
-      </div>
-      <div data-sa-availability-hours data-call-on-save="refreshPage"></div>
-    </div>
+          <div data-ng-repeat="studyDay in daysWithTasksDue" >
+            <!-- if tasks have percentages -->
+            <div data-ng-show="studyDay.importance">
+              <div class="panel panel-default">
+                <div class="alert alert-info title-alert">Due on <b>{{studyDay._date | date: 'EEEE, MMMM d, y'}}</b><span class="pull-right"><b>{{studyDay.hours}}</b></span></div>
+                <div class="panel-body">
+                  <div data-ng-repeat="taskDue in studyDay._tasksDue" >
+                    <div data-ng-show="taskDue.importance">
+                      <!-- <hr ng-show="$first"></hr> -->
+                      <div data-ng-click="infoModal(taskDue.percentage,false,taskDue, studyDay._date)" class="row dashboard-row" ng-class="{'dashboard-row-first': $first, 'dashboard-row-last':$last}"  style="min-height:55px">
+                        <div class="col-xs-10 dashboard-title">
+                          <!-- <span data-ng-click="infoModal(taskDue.percentage,false,taskDue, studyDay._date)" class="fa-stack pull-left" style="border:2px solid blue; border-radius:20%;">
+                          <em class="fa fa-info fa-stack-1x"></em>
+                          </span> -->
+                          <div class="row">
+                            <div class="col-xs-12"><b>{{taskDue.name}}</b></div>
+                          </div>
+                          <div class="row">
+                          <div class="col-xs-12">
+                          {{taskDue.courseName}}
+                          </div>
+                          </div>
+                        </div>
+                      <div class="col-xs-2">
+                        <div data-ng-show="taskDue.percentage" class="pull-right">
+                          <div round-progress
+                          max="max"
+                          current="taskDue.percentage"
+                          color="#45ccce"
+                          bgcolor="#eaeaea"
+                          radius="30"
+                          stroke="7"
+                          semi="false"
+                          rounded="true"
+                          clockwise="true"
+                          responsive="false"
+                          duration="800"
+                          animation="easeInOutQuart"
+                          animation-delay="0">
+                          </div>
+                          <div class="text-center percentage">{{taskDue.percentage}}%</div>
+                        </div>
+                      </div>
+                      </div>
+                      <!-- <hr ng-show="!$last"></hr> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+              <!-- <hr ng-show="!$last"></hr> -->
+              </div>
+
+
+              <a data-ui-sref="student.availability"><h4 class="text-center">Availability</h4>
+                <canvas style="padding: 15px" id="bar" class="chart chart-bar"
+                chart-data="data" chart-labels="labels">
+              </canvas>
+            </a>
+</form>
+            </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+            <div data-ng-show="comingUpTasks.length > 0">
+              <div class="panel panel-default">
+
+                <div class="alert alert-info title-alert"><b>Future Tasks Coming Up</b><span class="pull-right"><b>{{studyDay.hours}}</b></span></div>
+                <div data-ng-repeat="comingUp in comingUpTasks" >
+
+                  <div class="panel panel-body">
+                    <div class="row">
+                      <div class="col-xs-6">
+                      <div><b>{{comingUp._date | date: 'MMMM d, y'}}</b><span class="pull-right"><b>{{comingUp.hours}}</b></span></div>
+                      </div>
+                    <div class="col-xs-6">
+                      <div data-ng-repeat="taskDue in comingUp._tasksDue" >
+                      <div data-ng-show="!taskDue.importance">
+                      <div class="row">
+                      <div data-ng-click="infoModal(taskDue.percentage,false,taskDue, comingUp._date)" class="row" style="min-height:45px" ng-class="{'dashboard-row-first': $first, 'dashboard-row-last':$last}">
+                      <!-- <span data-ng-click="infoModal(taskDue.percentage,false,taskDue, studyDay._date)" class="fa-stack pull-left" style="border:2px solid blue; border-radius:20%;">
+                      <em class="fa fa-info fa-stack-1x"></em>
+                      </span> -->
+                      <div class="col-xs-6"><b>{{taskDue.name}}</b></div>
+                      <div class="col-xs-6">{{taskDue.courseName}}</div>
+                      </div>
+                      </div> <!-- close row  -->
+                      </div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+            </div>
+          </div>
+          </div>
+        </form>
+ </div>
+
+</div>
+<div data-ng-if="!enrollments.length">
+  <div class="alert alert-info title-alert">
+    <h4>In order to use the app, please provide your enrollment information.</h4>
   </div>
+  <div data-sa-add-edit-enrollment
+  data-after-success-submit-function="refreshPage"></div>
+</div>
+<div data-ng-if="enrollments.length && isTotalHoursZero">
+  <div class="alert alert-info title-alert">
+    <h4>In order to use the app, please provide your availability information.<br>
+      How many hours you spend studying outside classes?</h4>
+    </div>
+    <div data-sa-availability-hours data-call-on-save="refreshPage"></div>
+ </div>
+ <nav menu-state="menuState" mfb-menu position="br" effect="zoomin"
+   active-icon="fa fa-plus" resting-icon="fa fa-plus"
+   toggling-method="click">
+
+   <button mfb-button icon="fa fa-plus" label="New Task" ng-click="createTaskFunciton()"></button>
+   <button data-ui-sref="student.availability" mfb-button icon="fa fa-edit" label="Edit Hours"></button>
+ </nav>
+</div>
 </div>
