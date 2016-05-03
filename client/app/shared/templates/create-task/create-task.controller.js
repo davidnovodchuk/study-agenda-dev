@@ -5,7 +5,8 @@ angular.module('studyAgendaApp')
     $scope.courseName = courseName;
     $scope.newTask = new Task();
     $scope.newTask.course = courseId;
-    $scope.newTask.dueDate = new Date();
+    // $scope.newTask.dueDate = new Date();
+    $scope.dateChosen = false;
 
     if (!courseId) {
       var getCourses = function() {
@@ -59,7 +60,6 @@ angular.module('studyAgendaApp')
         .catch(function(err) {
           // on error showing error
           // TODO: Add pop-up to show error
-          console.log(err);
         });
       };
 
@@ -96,4 +96,27 @@ angular.module('studyAgendaApp')
         });
       }
     };
+
+    $scope.$watch('newTask.course', function(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        if (!$scope.courseChosen) {
+          $scope.courseChosen = true;
+        }
+      }
+    });
+
+    $scope.$watch('newTask.dueDate', function(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        console.log(newValue + ' !== ' + oldValue);
+        $scope.newTask.$findByCourseDate()
+        .then(function(task) {
+          console.log('11111111');
+          console.log($scope.newTask);
+
+          $scope.dateChosen = true;
+        })
+        .catch(function(err) {
+        });
+      }
+    });
   });

@@ -21,31 +21,7 @@
         </div>
       </div>
     </fieldset>
-    <fieldset>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Task Name</label>
-        <div class="form-group col-sm-10">
-          <input type="text" name="task_name" placeholder="Enter task name (eg. Assignment 1 or Midterm Test)" autocomplete="off" data-ng-model="newTask.name" required="" class="form-control" autofocus/>
-          <span data-ng-show="(addTaskForm.$submitted || addTaskForm.task_name.$dirty) &amp;&amp; addTaskForm.task_name.$error.required" class="text-danger">Task name is required</span>
-        </div>
-      </div>
-    </fieldset>
-    <fieldset>
-      <label class="col-sm-2 control-label">Task Weight</label>
-      <div class="form-group col-sm-10">
-        <div class="input-group">
-          <input type="number" name="task_weight" min="0" max="100" placeholder="How many percents the task worth?" autocomplete="off" data-ng-model="newTask.weight" required="" class="form-control" />
-          <span class="input-group-addon">%</span>
-        </div>
-        <div>
-          <span class="text">* If you don't know the weight, enter 0</span>
-        </div>
-        <span data-ng-show="(addTaskForm.$submitted || addTaskForm.task_weight.$dirty) &amp;&amp; addTaskForm.task_weight.$error.required" class="text-danger">Task weight is required</span>
-        <span data-ng-show="(addTaskForm.$submitted || addTaskForm.task_weight.$dirty) &amp;&amp; addTaskForm.task_weight.$error.min" class="text-danger">Task weight should be greater or equal to 0</span>
-        <span data-ng-show="(addTaskForm.$submitted || addTaskForm.task_weight.$dirty) &amp;&amp; addTaskForm.task_weight.$error.max" class="text-danger">Task weight should be less or equal to 100</span>
-      </div>
-    </fieldset>
-    <fieldset>
+    <fieldset data-ng-show="courseChosen">
       <div class="form-group">
         <label class="col-sm-2 control-label">Task Due Date</label>
         <div class="form-group col-sm-10">
@@ -54,6 +30,32 @@
         </div>
       </div>
     </fieldset>
+    <div data-ng-show="dateChosen">
+      <fieldset>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Task Name</label>
+          <div class="form-group col-sm-10">
+            <input type="text" name="task_name" placeholder="Enter task name (eg. Assignment 1 or Midterm Test)" autocomplete="off" data-ng-model="newTask.name" required="" class="form-control" autofocus/>
+            <span data-ng-show="(addTaskForm.$submitted || addTaskForm.task_name.$dirty) &amp;&amp; addTaskForm.task_name.$error.required" class="text-danger">Task name is required</span>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <label class="col-sm-2 control-label">Task Weight</label>
+        <div class="form-group col-sm-10">
+          <div class="input-group">
+            <input type="number" name="task_weight" min="0" max="100" placeholder="How many percents the task worth?" autocomplete="off" data-ng-model="newTask.weight" required="" class="form-control" />
+            <span class="input-group-addon">%</span>
+          </div>
+          <div>
+            <span class="text">* If you don't know the weight, enter 0</span>
+          </div>
+          <span data-ng-show="(addTaskForm.$submitted || addTaskForm.task_weight.$dirty) &amp;&amp; addTaskForm.task_weight.$error.required" class="text-danger">Task weight is required</span>
+          <span data-ng-show="(addTaskForm.$submitted || addTaskForm.task_weight.$dirty) &amp;&amp; addTaskForm.task_weight.$error.min" class="text-danger">Task weight should be greater or equal to 0</span>
+          <span data-ng-show="(addTaskForm.$submitted || addTaskForm.task_weight.$dirty) &amp;&amp; addTaskForm.task_weight.$error.max" class="text-danger">Task weight should be less or equal to 100</span>
+        </div>
+      </fieldset>
+    </div>
   </div>
   <div class="modal-footer">
     <span data-ng-show="serverError" class="text-danger">{{serverError}}</span>
